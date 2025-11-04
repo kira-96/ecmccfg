@@ -1,6 +1,6 @@
 +++  
 title = "Technosoft iPOS4808, iPOS8020"   
-weight = 17
+weight = 30
 chapter = false  
 +++
 
@@ -95,7 +95,7 @@ ethercat -m0 -p0 foe_read FOESW_8020.bin > test.bin
 ```
 require ecmccfg "ENG_MODE=1"
 
-#- Not the iPOS4808BX_2
+#- Note the "_2" in iPOS4808BX_2
 ${SCRIPTEXEC} ${ecmccfg_DIR}addSlave.cmd, "SLAVE_ID=21, HW_DESC=iPOS4808BX_2"
 epicsEnvSet("ECMC_EC_SLAVE_NUM_DRIVE",        "$(ECMC_EC_SLAVE_NUM)")
 
