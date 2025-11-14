@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Defaults (PSI test setup)
+# defaults (PSI test setup)
 P=${1:-c6025a-08}
 AX=${2:-M1}
 
