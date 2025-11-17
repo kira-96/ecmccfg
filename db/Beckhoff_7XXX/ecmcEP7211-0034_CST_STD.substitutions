@@ -1,7 +1,7 @@
 file "ecmcEL72XX_DRV_CST.template"
 {
-  pattern {CH_ID, ESLO,      EGU     }
-          {01   , 2.3406E-5, "rad/s" }
+  pattern {CH_ID, ESLO,  EGU     }
+          {01   , 0.1,   "%" }
 }
 
 file "ecmcEL72XX_ENC.template"
