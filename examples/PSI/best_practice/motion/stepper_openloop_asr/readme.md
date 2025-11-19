@@ -1,5 +1,5 @@
 # Test IOC for open loop stepper motor with auto-save-restore
-The example absed on that PSI ioc install tool is used.
+The example based on that PSI ioc install tool is used.
 
 ## Auto save restore configurations
 Auto save/restore of motor position is made through motor record.

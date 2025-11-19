@@ -18,7 +18,7 @@ epicsEnvSet(ENC_SID,${ECMC_EC_SLAVE_NUM})
 ${SCRIPTEXEC} ${ecmccfg_DIR}loadYamlAxis.cmd,   "FILE=./cfg/axis.yaml,          DEV=${IOC}, AX_NAME=M1, AXIS_ID=1, DRV_SID=${DRV_SID}, ENC_SID=${ENC_SID}, ENC_CH=01"
 ${SCRIPTEXEC} ${ecmccfg_DIR}loadYamlEnc.cmd,    "FILE=./cfg/enc_open_loop.yaml, DEV=${IOC}, ENC_SID=${DRV_SID}"
 
-#${SCRIPTEXEC} ${ecmccfg_DIR}pvtControllerConfig.cmd  "TRG_EC_ENTRY=ec0.s$(ECMC_EC_SLAVE_NUM).ONE.31, TRG_DUR_S=0.1"
+${SCRIPTEXEC} ${ecmccfg_DIR}pvtControllerConfig.cmd  "TRG_EC_ENTRY=ec0.s$(ECMC_EC_SLAVE_NUM).ONE.31, TRG_DUR_S=0.1"
 
-${SCRIPTEXEC} ${ecmccfg_DIR}pvtControllerConfig.cmd
+#${SCRIPTEXEC} ${ecmccfg_DIR}pvtControllerConfig.cmd
 
