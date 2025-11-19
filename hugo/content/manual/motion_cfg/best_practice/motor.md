@@ -10,7 +10,6 @@ chapter = false
 2. [Open loop stepper with retries](#open-loop-stepper-with-retries)
 3. [No motor record](#no-motor-record)
 
-
 ## Auto-save restore
 Test IOC for open loop stepper motor with auto-save-restore
 The example is based on that PSI ioc install tool is used.
