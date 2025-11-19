@@ -24,6 +24,45 @@ Statements are terminated by a semicolon `;`
 ### variables
 All variables are initiated to `0`
 
+#### declaration
+Variables can be declared in the beginning of the PLC code by defining a `VAR..END_VAR` block:
+```
+VAR
+  <var_name> : <address>;
+END_VAR
+```
+
+`<var_name>` in the plc code will then be substituted by `<address>` before compile.
+
+The following "addresses" are supported:
+* global:
+  - `global.<name>`
+* static
+  - `static.<name>`
+* ethercat
+  - `ec<mid>`
+  - `ec<mid>.s<sid>`
+  - `ec<mid>.s<sid>.<name>`
+* motion:
+  - `ax<id>`
+  - `ax<id>.traj`
+  - `ax<id>.enc`
+  - `ax<id>.drv`
+  - `ax<id>.mon`
+  - `ax<id>.traj.<name>`
+  - `ax<id>.enc.<name>`
+  - `ax<id>.drv.<name>`
+  - `ax<id>.mon.<name>`
+* data storage:
+  - `ds<id>`
+  - `ds<id>.<name>`
+* plc:
+  - `plc<id>`
+* constants
+  - `<name>`
+
+For more information see the "best practice" section for PLC programming.
+
 ### comments
 The hash character `#` is reserved for comments.
 Everything after this char will be removed before compile.

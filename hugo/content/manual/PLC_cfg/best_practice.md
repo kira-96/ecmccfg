@@ -175,7 +175,7 @@ VAR
 END_VAR
 ```
 
-The following "addresses" can be used:
+The following "addresses" are supported:
 * global:
   - `global.<name>`
 * static
@@ -197,6 +197,8 @@ The following "addresses" can be used:
 * data storage:
   - `ds<id>`
   - `ds<id>.<name>`
+* plc:
+  - `plc<id>`
 * constants
   - `<name>`
 
@@ -226,6 +228,10 @@ VAR
   
   // Constants
   pi             : 3.1415;
+
+  // PLC
+  myPLC          : ${SELF}
+
 END_VAR
 
 coolingValveBO:=not(coolingValveBO);
