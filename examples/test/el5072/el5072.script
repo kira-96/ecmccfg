@@ -40,7 +40,7 @@ ecmcConfigOrDie "Cfg.EcAddSdoDT(${ECMC_EC_SLAVE_NUM},0x8001,0x14,7500,U16)"
 # 6000dec: 6 Vrms
 # 6500dec: 6.5 Vrms
 # 7000dec: 7 Vrms
-ecmcConfigOrDie "Cfg.EcAddSdoDT(${ECMC_EC_SLAVE_NUM},0x8001,0x14,5000,U16)"
+ecmcConfigOrDie "Cfg.EcAddSdoDT(${ECMC_EC_SLAVE_NUM},0x8001,0x15,5000,U16)"
 
 # SETTINGS PER CHANNEL
 ## CH 1,2
