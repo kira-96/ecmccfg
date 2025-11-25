@@ -5161,9 +5161,9 @@
     <widget class="caRelatedDisplay" name="carelateddisplay">
      <property name="geometry">
       <rect>
-       <x>240</x>
+       <x>270</x>
        <y>20</y>
-       <width>96</width>
+       <width>66</width>
        <height>31</height>
       </rect>
      </property>
@@ -5182,7 +5182,7 @@
       <rect>
        <x>5</x>
        <y>0</y>
-       <width>215</width>
+       <width>261</width>
        <height>76</height>
       </rect>
      </property>
@@ -5211,7 +5211,7 @@
       <property name="geometry">
        <rect>
         <x>90</x>
-        <y>25</y>
+        <y>30</y>
         <width>100</width>
         <height>18</height>
        </rect>
@@ -5233,7 +5233,7 @@
       <property name="geometry">
        <rect>
         <x>5</x>
-        <y>25</y>
+        <y>30</y>
         <width>80</width>
         <height>18</height>
        </rect>
@@ -5246,7 +5246,7 @@
       <property name="geometry">
        <rect>
         <x>5</x>
-        <y>47</y>
+        <y>50</y>
         <width>80</width>
         <height>18</height>
        </rect>
@@ -5259,26 +5259,26 @@
       <property name="geometry">
        <rect>
         <x>195</x>
-        <y>25</y>
-        <width>18</width>
+        <y>30</y>
+        <width>56</width>
         <height>18</height>
        </rect>
       </property>
       <property name="labels">
-       <string>R</string>
+       <string>R (Legacy)</string>
       </property>
       <property name="files">
        <string>motorx_all.ui</string>
       </property>
       <property name="args">
-       <string>P=$(DEV):,M=$(Axis)</string>
+       <string>P=$(DEV):,M=$(Axis),DEV=$(DEV),Axis=$(Axis),AX_ID=$(AX_ID),IOC=$(IOC)</string>
       </property>
      </widget>
      <widget class="caTextEntry" name="catextentry_8">
       <property name="geometry">
        <rect>
         <x>91</x>
-        <y>48</y>
+        <y>50</y>
         <width>65</width>
         <height>18</height>
        </rect>
@@ -5307,6 +5307,25 @@
       </property>
       <property name="unitsEnabled">
        <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="caRelatedDisplay" name="carelateddisplay_10">
+      <property name="geometry">
+       <rect>
+        <x>195</x>
+        <y>50</y>
+        <width>56</width>
+        <height>18</height>
+       </rect>
+      </property>
+      <property name="labels">
+       <string>New</string>
+      </property>
+      <property name="files">
+       <string>ecmcMotor.ui</string>
+      </property>
+      <property name="args">
+       <string>P=$(DEV):,M=$(Axis),DEV=$(DEV),Axis=$(Axis),AX_ID=$(AX_ID),IOC=$(IOC)</string>
       </property>
      </widget>
     </widget>
