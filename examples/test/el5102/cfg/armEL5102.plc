@@ -1,0 +1,39 @@
+/* 
+  When homing, the EL5102 latch needs to be armed twice when motion direction is changed. 
+  Probably related to firmware issues/bug.
+
+  This is a temporary include plc file to overcome this issue.. 
+  Waiting for feedback from Beckhoff.
+
+  MACROS:
+    ENC_SID:  Encoder slave id (%d)
+    ENC_CH:   Encoder channel (%2d)  
+*/
+
+// Output extra 0
+if(static.triggering_s${ENC_SID}_${ENC_CH}=1) {
+   ${M}.s${ENC_SID}.encoderControl${ENC_CH}:=ec_clr_bit(${M}.s${ENC_SID}.encoderControl${ENC_CH},0);
+   static.triggering_s${ENC_SID}_${ENC_CH}:=2;
+   println('Extra 0');
+   return [];
+};
+
+// Output extra 1
+if(static.triggering_s${ENC_SID}_${ENC_CH}=2) {
+   ${M}.s${ENC_SID}.encoderControl${ENC_CH}:=ec_set_bit(${M}.s${ENC_SID}.encoderControl${ENC_CH},0);
+   static.triggering_s${ENC_SID}_${ENC_CH}:=0;
+   println('Extra 1');
+   return [];
+};
+
+static.curr_arm_s${ENC_SID}_${ENC_CH}:=ec_chk_bit(${M}.s${ENC_SID}.encoderControl${ENC_CH},0);
+
+// Catch transition
+if(static.curr_arm_s${ENC_SID}_${ENC_CH} and
+   not(static.old_arm_s${ENC_SID}_${ENC_CH}) and
+   not(static.triggering_s${ENC_SID}_${ENC_CH})) {
+  println('Trigger arm one extra time');
+  static.triggering_s${ENC_SID}_${ENC_CH}:=1;
+};
+
+static.old_arm_s${ENC_SID}_${ENC_CH}:=static.curr_arm_s${ENC_SID}_${ENC_CH};
