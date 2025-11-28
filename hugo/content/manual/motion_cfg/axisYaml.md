@@ -240,26 +240,54 @@ optional
 
 - `velocityFilterSize`: Add filtering if the encoder is too coarse to reliably determine velocity each PLC cycle
 
-
 ## controller
-PID controller parameters
+Parameters for centralized PID controller. 
+
+These settings are only valid for:
+* Physical axes
+* CSV mode
+* CSP_PC mode (CSP with one encoder setup as useAsCSPDrvEnc). In this mode there are double position control loops, one in ecmc and one in drive.
 
 mandatory
-
 - `Kp`: proportional
 
 optional
-
 - `Ki`: integral; default 0
 - `Kd`: differential; default 0
 - `Kff`: feed forward; default 1
+- `deadband`:
+  - `tol`: Stop control if within this distance from target for the below time
+  - `time`: Time filter
+- `limits`:
+  - `minOutput`: Minimum controller output
+  - `maxOutput`: Maximum controller output
+  - `minIntegral`: Minimum integral output
+  - `maxIntegral`: Maximum integral output
+- `inner`:
+  - `tol`: When within this distance to target, `inner.Kp`, `inner.Ki`, `inner.Kd` will be used
+  - `Kp`: Kp for when close to target
+  - `Ki`: Ki for when close to target
+  - `Kd`: Kd for when close to target
 
 ```yaml
 controller:
   Kp:  90
-  # Ki:  0.1
-  # Kd:  0
-  # Kff: 1
+  #Ki:  0.1
+  #Kd:  0
+  #Kff: 1
+  #deadband:
+  #  tol: 0.01
+  #  time: 100
+  #limits:
+  #  minOutput: -100
+  #  maxOutput: 100
+  #  minIntegral: -100
+  #  maxIntegral: 100
+  #inner:
+  #  Kp: 0.1
+  #  Ki: 0.1
+  #  Kd: 0.1
+  #tol: 0.1  
 ```
 
 ## trajectory
@@ -284,11 +312,11 @@ optional
   - `emergencyDeceleration`: deceleration setpoint for emergencies. Defaults to acceleration setpoint if not specified.
   - `jerk`: jerk for s-curved profiles (in EGU/sec3)
 - `jog`
-  * `velocity`: velocity setpoint the axis will be initialized to for jogging
-  * `acceleration`: acceleration setpoint for initialization, for jogging
+  - `velocity`: velocity setpoint the axis will be initialized to for jogging
+  - `acceleration`: acceleration setpoint for initialization, for jogging
 - `modulo`
-  * `range`: modulo range
-  * `type`: modulo type
+  - `range`: modulo range
+  - `type`: modulo type
 
 ```yaml
 trajectory:
@@ -317,8 +345,8 @@ See the example for details.
 mandatory
 
 - `limit`
-  * `forward`: limit switch sensor input in the forward direction.
-  * `backward`: limit switch sensor input in the backward direction.
+  - `forward`: limit switch sensor input in the forward direction.
+  - `backward`: limit switch sensor input in the backward direction.
 - `home`: binary input for the home sensor
 - `extinterlock`: binary input for external interlock.
 
@@ -329,6 +357,22 @@ input:
     backward: ec0.s$(DRV_SLAVE).ONE.0   #  Ethercat entry for high limit switch input
   home: ec0.s$(DRV_SLAVE).ONE.0         #  Ethercat entry for home switch input
   interlock: ec0.s$(DRV_SLAVE).ONE.0    #  Ethercat entry for interlock switch input
+```
+The inputs can also be overridden with the keyword "plcOverride". In this case these values must be written in PLC code instead.
+```
+...
+input:
+  limit:
+    forward: 'plcOverride'                            # Overridden, see plc code below
+    backward: 'plcOverride'                           # Overridden, see plc code below
+...
+plc:
+  enable: true                                        # Enable axis plc
+  externalCommands: true                              # Allow axis to inputs from PLC  
+  code:                                               # Sync code (appended after code in plc.file)
+    - ax${AX_ID=1}.mon.lowlim:=ec_chk_bit(ec0.s$(DRV_SID).binaryInputs01,0) and ec_chk_bit(ec0.s$(DRV_SID).ONE,0);
+    - ax${AX_ID=1}.mon.highlim:=ec_chk_bit(ec0.s$(DRV_SID).binaryInputs01,1) and ec_chk_bit(ec0.s$(DRV_SID).ONE,1);
+  ..
 ```
 
 ## output
@@ -419,7 +463,7 @@ optional
   * `tolerance`: tolerance in engineering units
   * `time`: time for the condition to be true in ms
 - `target`
-  * `enable`: enable target monitoring
+  * `enable`: enable target monitoring. This is mandatory for use with motor record.
   * `tolerance`: tolerance in engineering units
   * `time`: time for the condition to be true in ms
 - `velocity`
@@ -453,6 +497,7 @@ axis:
   id: 1                                               # Axis id
   type: joint                                         # this is for future selection of axis type
   mode: CSV                                           # supported mode, CSV and CSP, defaults CSV
+  # Please switch to ecmc auto-enable/disable (axis.autoEnable) instead of the motor record.
   parameters: 'axisPar' # additional parameters       # Additional params to motor record driver
   #                                                       "powerAutoOnOff=<value>;"  //2: What you want, 1:do not use, 0 to disable
   #                                                       "powerOffDelay=<value>:"
@@ -502,7 +547,6 @@ drive:
   setpoint: ec0.s$(DRV_SLAVE).velocitySetpoint01      # Velocity setpoint if CSV. Position setpoint if CSP
   reduceTorque: 2                                     # Reduce torque bit in drive control word
   reduceTorqueEnable: True                            # Enable reduce torque functionality
-  useAsCSPDrvEnc: True                                # Use this encoder as CSP drive encoder (ecmc controller enabled in CSP)
   brake:
     enable: false
     output: ec0...                                    # Ethercat link to brake output
@@ -548,6 +592,7 @@ encoder:
     armCmd:                                           # Value in dec to arm latch/touch probe to write to encoder.control 
     armBits:                                          # Bit size of encoder.latch.armCmd
   primary: True                                       # Use this encoder as primary (for control)
+  useAsCSPDrvEnc: True                                # Use this encoder as CSP drive encoder (ecmc controller enabled in CSP)
   homing:
     type: 3                                           # Homing sequence type
     position: -30                                     # Position to reference encoder to
