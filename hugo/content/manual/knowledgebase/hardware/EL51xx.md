@@ -31,7 +31,7 @@ Configuring the wrong process data will lead to an error message  "* EtherCAT * 
 The solution is to use the correct configuration script.
 
 ### EL5101-0010
-This is commonly used at PSI (even though the EL5112 should be teh standard choice). For configuration, use the EL5101-0010 configuration script:
+This is commonly used at PSI (even though the EL5112 should be the standard choice). For configuration, use the EL5101-0010 configuration script:
 ```
 ${SCRIPTEXEC} ${ecmccfg_DIR}addSlave.cmd, "SLAVE_ID=16, HW_DESC=EL5101-0010"
 ```
@@ -61,17 +61,17 @@ ${SCRIPTEXEC} ${ecmccfg_DIR}addSlave.cmd, "SLAVE_ID=16, HW_DESC=EL5112_AB"
 ```
 
 ### EL5131
-This terminal support setting cam/trigger outputs at certain counter values (for predefined time, and direction).  
+This terminal supports setting cam/trigger outputs at certain counter values (for predefined time, and direction).  
 
 8 predefined threshold counter values can be entered and configured switch outputs on or off. These thresholds can also be accessed/updated during runtime.
 
 Depending how the terminal should be used, the following startup scripts exists:
-* EL5131: Normal increment encoder operation
+* EL5131: Normal incremental encoder operation
 * EL5131_DC: Normal incremental encoder and DC clock (access to timestamps)
 * EL5131_DC_TRG: Incremental encoder, access to timestamps, access to configuration of thresholds for outputs for triggering.
 
 ```
-# EL5131: Normal increment encoder operation:
+# EL5131: Normal incremental encoder operation:
 ${SCRIPTEXEC} ${ecmccfg_DIR}addSlave.cmd, "SLAVE_ID=16, HW_DESC=EL5131"
 
 # EL5131_DC: Normal incremental encoder and DC clock (access to timestamps)

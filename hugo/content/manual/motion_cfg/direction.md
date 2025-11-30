@@ -14,9 +14,9 @@ The best option is to change the direction of motion on the slave level. The alt
 ## EtherCAT slave
 
 ecmccfg allows SDOs to set individual SDOs in the startup-script of the IOC or in dedicated config files for slaves.
-As most slaves have a SDOs to invert the direction of motion or counting, it's only natural to make use of this feature.
+As most slaves have an SDO to invert the direction of motion or counting, it's only natural to make use of this feature.
 The benefit of changing the direction on the slave is obvious.
-All axes move in there natural direction, as given by the machine coordinate system.
+All axes move in their natural direction, as given by the machine coordinate system.
 Limit switches - consequently - are always where they belong, even non-experts can diagnose the device or system.
 Examples for encoder and drive are given below.
 
@@ -26,7 +26,7 @@ Consult the respective slave manual for the correct SDO.
 
 ### encoder direction
 
-In many cases inversion of the encoder value is possible in the ethercat slave. 
+In many cases inversion of the encoder value is possible in the EtherCAT slave. 
 By using INV_DIR macro to applyComponent.cmd, the direction can be changed.
 
 {{% notice info %}}

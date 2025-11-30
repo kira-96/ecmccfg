@@ -82,13 +82,13 @@ Not a valid homing sequence, can be used if encoder is absolute.
 
 ### ECMC_SEQ_HOME_BWD_HOME_HOME            = 9,
 1. Axis moves backward until positive edge detected in limit switch signal. Position is latched. (polarity of home sensor can be changed)
-2. Axis contiues to move until a negative edge of the home sensor is detected. Axis stops.
+2. Axis continues to move until a negative edge of the home sensor is detected. Axis stops.
 3. Axis moves forward until positive edge detected in limit switch signal. Position is latched. (polarity of home sensor can be changed)
 4. Homing is performed. ECMC_HOME_POS will be the new position at the center point of the two latched positions in step 2 and 4. 
 
 ### ECMC_SEQ_HOME_FWD_HOME_HOME            = 10,
 1. Axis moves forward until positive edge detected in limit switch signal. Position is latched. (polarity of home sensor can be changed)
-2. Axis contiues to move until a negative edge of the home sensor is detected. Axis stops.
+2. Axis continues to move until a negative edge of the home sensor is detected. Axis stops.
 3. Axis moves backward until positive edge detected in limit switch signal. Position is latched. (polarity of home sensor can be changed)
 4. Homing is performed. ECMC_HOME_POS will be the new position at the center point of the two latched positions in step 2 and 4. 
 
@@ -127,9 +127,9 @@ encoder:
     latchCount: 1                                                         # latch number to ref on (1=ref on first latch)
 ```
 
-**Backround to the cfgs (control and status word for latching)**
+**Background to the cfgs (control and status word for latching)**
 * bit 0 of control word is: 0x7000:01 - Enable latch on index
-* bit 0 of status word is: 0x6000:01 - Latch occured 
+* bit 0 of status word is: 0x6000:01 - Latch occurred 
 
 
 ### ECMC_SEQ_HOME_HIGH_LIM_INDEX            = 12,
@@ -167,13 +167,13 @@ encoder:
     latchCount: 1                                                         # latch number to ref on (1=ref on first latch)
 ```
 
-**Backround to the cfgs (control and status word for latching)**
+**Background to the cfgs (control and status word for latching)**
 * bit 0 of control word is: 0x7000:01 - Enable latch on index
-* bit 0 of status word is: 0x6000:01 - Latch occured 
+* bit 0 of status word is: 0x6000:01 - Latch occurred 
 
 
 ### ECMC_SEQ_HOME_SET_POS                  = 15, (setPosition)
-Sequence 15 is resereved for save/restore functionality.  
+Sequence 15 is reserved for save/restore functionality.  
 Use ECMC_SEQ_HOME_SET_POS_2 instead (same but not blocked by motor record).
 
 However the sequence 15 can be triggered like the following:
@@ -190,11 +190,11 @@ caput IOC_TEST:Axis1.SET 0
 ```
 
 ### ECMC_SEQ_HOME_LOW_LIM_SINGLE_TURN_ABS  = 21,
-Indented use for resolvers (single turn absolute). Similar to seq 11 and 12.
+Intended use for resolvers (single turn absolute). Similar to seq 11 and 12.
 1. Axis moves backward until low limit switch and stops
 2. Axis moves forward until limit switch change state 
 3. Axis stops
-4. Homing is performed. The multi-turn bits will be homed to the value of ECMC_HOME_POS also considering a offset of turns defined in ECMC_HOME_LATCH_COUNT_OFFSET.
+4. Homing is performed. The multi-turn bits will be homed to the value of ECMC_HOME_POS also considering an offset of turns defined in ECMC_HOME_LATCH_COUNT_OFFSET.
 
 Some additional parameters are important for this homing sequence should work (example):
 ```
@@ -207,7 +207,7 @@ epicsEnvSet("ECMC_HOME_LATCH_COUNT_OFFSET","2")                       # Number o
 1. Axis moves forward until high limit switch and stops
 2. Axis moves backward until limit switch change state 
 3. Axis stops
-4. Homing is performed. The multi turn bits will be homed to the value of ECMC_HOME_POS also considering a offset of turns defined in ECMC_HOME_LATCH_COUNT_OFFSET.
+4. Homing is performed. The multi turn bits will be homed to the value of ECMC_HOME_POS also considering an offset of turns defined in ECMC_HOME_LATCH_COUNT_OFFSET.
 
 Note: Only the multi turn bits are updated!
 
@@ -224,7 +224,7 @@ Sequence 25 is the same as 15 but not blocked by motor record. The sequence will
 ### ECMC_SEQ_HOME_TRIGG_EXTERN               = 26
 Trigger external homing sequence in drive. 
 1. Optional: set drive mode to homing (and wait for mode read-back)
-3. Set trigg of homing (bit)
+3. Set trigger of homing (bit)
 4. Wait for homing ready (bit). Reference the ecmc encoder object on rising edge of the homing ready bit
 5. Optional: Change drive mode back to motion (and wait for mode read-back)
 6. Optional: Init post move if configured

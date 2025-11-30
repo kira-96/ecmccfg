@@ -44,7 +44,7 @@ in addition the following optional sections are available.
 - [softlimits](#softlimits)
 - [monitoring](#monitoring)
 
-Each sections provides an example, the optional keys are commented.
+Each section provides an example, the optional keys are commented.
 
 ***
 
@@ -77,7 +77,7 @@ axis:
     enableTimeout: 5.0                                # If defined, ecmc tries to auto-enable for a maximum enableTimeout seconds.
     disableTimeout:   5.0                                # If defined, ecmc disables axis after idle (non busy) in disableTime seconds
 ```
-The motor record auto-enable/disable fucntionality will then automatically be disabled. 
+The motor record auto-enable/disable functionality will then automatically be disabled. 
 {{% notice warning %}}
 However, do not configure both ecmc native and motor record auto enable/disable at the same time.
 {{% /notice %}}
@@ -99,7 +99,7 @@ The powerAutoOnOff is defining a mode and should always be set to 2.
 {{% /notice %}}
   
 {{% notice info %}}
-Note the mandatory ";" in the end of the parameters string. If not present, then teh last parameter will not be parsed.
+Note the mandatory ";" in the end of the parameters string. If not present, then the last parameter will not be parsed.
 {{% /notice %}}
 
 
@@ -391,8 +391,8 @@ optional
 ```
 
 ## homing
-This section is should be obsolete at PSI, as for all new installation using EtherCAT, absolute encoders are mandatory.
-In case a legacy system or temporary installation requires a incremental encoder, or even open loop operation, several procedures for referencing are available.
+This section should be obsolete at PSI, as for all new installations using EtherCAT, absolute encoders are mandatory.
+In case a legacy system or temporary installation requires an incremental encoder, or even open loop operation, several procedures for referencing are available.
 
 optional
 
@@ -448,7 +448,7 @@ Three entities can be monitored, (1) lag, aka following error, (2) target, aka i
 
 {{% notice info %}}
 It is highly advisable to always use the `lag` and `target` monitoring fo closed-loop axis.
-Failure to do so, will most likely results in unexpected behaviour.
+Failure to do so will most likely result in unexpected behavior.
 {{% /notice %}}
 
 {{% notice info %}}
@@ -507,7 +507,7 @@ axis:
   feedSwitchesValue: 1                                # Value to write to axis.feedSwitchesOutput. Defaults to 1
   group: testGroup                                    # Add axis to group (group will be created if not exists), 
   #                                                     group id will be stored in GRP<axis.group>_ID for later use.
-  autoMode:                                           # Switch drive modes automaticaly for normal motion and homing (smaract for instance)
+  autoMode:                                           # Switch drive modes automatically for normal motion and homing (smaract for instance)
     modeSet: ec0..                                    # Ethercat entry drive mode write (set CSV,CSP,homing)
     modeAct: ec0..                                    # Ethercat entry drive mode reading (set CSV,CSP,homing)
     modeCmdMotion: 9                                  # Drive mode value for normal motion (written to axis.drvMode.modeSet when normal motion)
@@ -571,7 +571,7 @@ encoder:
   control: ec0.s$(ENC_SLAVE).encoderControl01         # mandatory only if 'reset' is used
   status: ec0.s$(DRV_SLAVE).encoderStatus01           # mandatory only if 'warning' or 'error' are used
   ready: 10                                           # Bit in encoder status word for encoder ready
-  source: 0                                           # 0 = Encoder value from etehrcat hardware, 1 = Encoder value from PLC
+  source: 0                                           # 0 = Encoder value from EtherCAT hardware, 1 = Encoder value from PLC
   reset: 1                                            # Reset   (optional)
   warning: 2                                          # Warning (optional)
   error:                                              # max 3 (optional)
@@ -606,7 +606,7 @@ encoder:
     tolToPrim: 0                                      # If set then this is the max allowed tolerance between prim encoder and this encoder
     postMoveEnable: yes                               # Enable move after successfull homing
     postMovePosition: 10                              # Position to move to after successfull homing
-    trigg: ec0..                                      # Ethercat entry for triggering drive internal homing seq (seq id 26)
+    trigg: ec0..                                      # EtherCAT entry for triggering drive internal homing seq (seq id 26)
     ready: ec0..                                      # Ethercat entry for readinf drive internal homing seq ready (seq id 26)
     latchCount: 1                                     # latch number to ref on (1=ref on first latch)
   delayComp:                                          # Delay compensation for time between application of setpoint to reading of encoder (normally atleast 1 cycle)
@@ -651,7 +651,7 @@ trajectory:
     range: 360                                        # Modulo range 0..360
     type: 0                                           # Modulo type
 
-#  Limits can be overridden with plc-code by setting input.limit.forward or input.limit.backward to 'plcOverride', then 'ax<id>.mon.lowlim' and or 'ax<id>.mon.highlim' needs to be written to in plc code (1 means linit OK).
+#  Limits can be overridden with plc-code by setting input.limit.forward or input.limit.backward to 'plcOverride', then 'ax<id>.mon.lowlim' and or 'ax<id>.mon.highlim' needs to be written to in plc code (1 means limit OK).
 
 input:
   limit:
@@ -700,7 +700,7 @@ monitoring:
   stall:
     enable: True                                      # Enable stall monitoring. Attarget must be enabled for this functionallity
     time:
-      timeout: 10000                                  # If not attarget after "timeout" cycles after trajectory generator is ready then drive will disable
+      timeout: 10000                                  # If not at target after "timeout" cycles after trajectory generator is ready then drive will disable
       factor: 5.0                                     # Measures duration of last motion command (busy high edge to busy low edge). The new timeout will be defined as this duration multiplied by this factor. The timeout finaly used for stall detection will be the longest (of time.timeout and calculated from time.factor).
 
 plc:
@@ -726,4 +726,3 @@ plc:
 #      size: 100
 
 ```
-
