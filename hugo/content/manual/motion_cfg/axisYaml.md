@@ -1,5 +1,6 @@
 +++  
 title = "yaml configuration"
+slug = "axisyaml"
 weight = 15
 chapter = false  
 +++  

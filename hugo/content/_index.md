@@ -31,3 +31,9 @@ You should have received a copy of the GNU General Public License
 ## Download
 
 <a href="https://github.com/paulscherrerinstitute/ecmccfg" target="_blank" rel="top language">![GitHub top language](https://img.shields.io/github/languages/top/paulscherrerinstitute/ecmccfg?style=for-the-badge)</a>
+
+## Documentation
+- [Manual](./manual/) for configuration and usage
+- [Quickstart](./manual/quickstart/) to bring up a single axis
+- [Troubleshooting](./manual/troubleshooting/) for common issues
+- [Examples](./manual/examples/) to reuse configs and scripts

@@ -58,7 +58,7 @@ This will result in negative values for `MRES` of the motorRecord.
 
 ## EPICS motorRecord
 
-The `epics` key of the [axis config](../axisyaml) allows for motorRecord fields to be initialized.
+The `epics` key of the [axis config](./axisyaml/) allows for motorRecord fields to be initialized.
 By initalizing the `DIR` field to `Neg`, the motorRecord will start inverted.
 
 ```yaml
