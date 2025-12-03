@@ -228,7 +228,7 @@ Custom plc functions can be written in c in plugins.
  36. ax<id>.mon.ilockfwd          motion interlock fwd dir         (rw)
                                   ax<id>.mon.ilockfwd=1: motion allowed
                                   ax<id>.mon.ilockfwd=0: motion not allowed        
- 37. ax<id>.mon.attarget          axis at taget                    (ro)
+ 37. ax<id>.mon.attarget          axis at target                   (ro)
  38. ax<id>.mon.lowlim            low limit switch                 (ro)
  39. ax<id>.mon.highlim           high limit switch                (ro)
  40. ax<id>.mon.homesensor        home sensor                      (ro)
@@ -548,7 +548,7 @@ A shared memory buffer of 120 doubles can be accessed for read and write operati
                          <dec>            : Deceleration
                          ):
     Absolute motion of axis.
-    Motion is triggerd with a positive edge on <execute> input.
+    Motion is triggered with a positive edge on <execute> input.
     returns 0 if success or error code.
     
  2. retvalue = mc_move_rel(
@@ -560,7 +560,7 @@ A shared memory buffer of 120 doubles can be accessed for read and write operati
                          <dec>            : Deceleration
                          );
     Relative motion of axis <axIndex>.
-    Motion is triggerd with a positive edge on <execute> input.
+    Motion is triggered with a positive edge on <execute> input.
     returns 0 if success or error code.
  
  3. retvalue = mc_move_ext_pos(
@@ -573,7 +573,7 @@ A shared memory buffer of 120 doubles can be accessed for read and write operati
     Move to current external plc position. Functions intended use is to 
     move to the start position for syncronized axes. This command is exactly 
     the same as issueing "mc_move_pos()" with the target postion ax<id>.traj.extsetpos.
-    Motion is triggerd with a positive edge on <execute> input.
+    Motion is triggered with a positive edge on <execute> input.
     returns 0 if success or error code.
  
  
@@ -585,7 +585,7 @@ A shared memory buffer of 120 doubles can be accessed for read and write operati
                          <dec>            : Deceleration
                          );
     Constant velocity motion of axis <axIndex>.
-    Motion is triggerd with a positive edge on <execute> input.
+    Motion is triggered with a positive edge on <execute> input.
     returns 0 if success or error code.
  
  5. retvalue = mc_home(
@@ -596,7 +596,7 @@ A shared memory buffer of 120 doubles can be accessed for read and write operati
                          <velOffCam>      : Target velocity off cam
                          );
     Perform a homing sequence of axis <axIndex>.
-    Motion is triggerd with a positive edge on <execute> input.
+    Motion is triggered with a positive edge on <execute> input.
     returns 0 if success or error code.
  
  6. retvalue = mc_home_pos(
@@ -608,7 +608,7 @@ A shared memory buffer of 120 doubles can be accessed for read and write operati
                       <homePos>        : Homing position
                       );
  Perform a homing sequence of axis <axIndex>
- Motion is triggerd with a positive edge on <execute> input.
+ Motion is triggered with a positive edge on <execute> input.
  returns 0 if success or error code.
  
  7. retvalue = mc_halt(
@@ -616,7 +616,7 @@ A shared memory buffer of 120 doubles can be accessed for read and write operati
                          <execute>,       : Trigger
                          );
     Stop motion of axis <axIndex>.
-    Command is triggerd with a positive edge on <execute> input.
+    Command is triggered with a positive edge on <execute> input.
     returns 0 if success or error code.
  
  8. retvalue = mc_power(
@@ -624,7 +624,7 @@ A shared memory buffer of 120 doubles can be accessed for read and write operati
                          <enable>,        : Enable power
                          );
     Enable power of  axis <axIndex>.
-    Motion is triggerd with a positive edge on <execute> input.
+    Motion is triggered with a positive edge on <execute> input.
     returns 0 if success or error code.
  
  9. retvalue = mc_get_busy(

@@ -12,6 +12,15 @@ A configuration framework for ECMC Motion Control Module for EPICS.
 
 The configuration framework contains the necessary files to configure an EPICS IOC for EtherCAT based motion control and DAQ.
 
+## Navigation
+- [Quickstart](./quickstart/) for a minimal single-axis bring-up
+- [Motion configuration](./motion_cfg/) for scaling, direction, homing, and YAML axis details
+- [PLC configuration](./PLC_cfg/) for PLC syntax, utilities, and best practices
+- [Hardware knowledge base](./knowledgebase/hardware/) for terminal-specific notes
+- [Examples](./examples/) for ready-to-adapt scenarios and scripts
+- [Troubleshooting](./troubleshooting/) for common startup and motion issues
+- [Upgrades](./upgrades/) for migration checklists and breaking changes
+
 ***
 ## Topics
 {{% children %}}

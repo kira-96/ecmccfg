@@ -38,7 +38,7 @@ MTEST04-MTN-ASM:Axis1.DVAL
 The motion axis in this example is configured to move in open loop but executing retries based on an absolute encoder.
 
 ### General configuration
-Two encoders are configutred for teh motion object:
+Two encoders are configured for the motion object:
 * **01**: BISS-C absolute encoder
 * **02**: Open loop counter
 
@@ -49,9 +49,9 @@ Important motor record fields are:
 1. **RTRY** : Max retry count
 2. **RMOD** : Retry Mode
 3. **UEIP** : Use encoder if present
-4. **RDBD** : Readtry deadband 
+4. **RDBD** : Retry deadband 
 5. **URIP** : Use RDBL Link If Present
-6. **RDBL** : Readback link (position form EPICS variable)
+6. **RDBL** : Readback link (position from an EPICS variable)
 
 #### RTRY : Max retry count
 maximum retry count. Needs to be set to a number higher than 0
@@ -89,9 +89,9 @@ Any vars added to `epics.motorRecord.fieldInit` will be forwarded to motor recor
 # RTRY : Max retry count
 # RMOD : Retry Mode
 # UEIP : Use encoder if present
-# RDBD : Readtry deadband 
+# RDBD : Retry deadband 
 # URIP : Use RDBL Link If Present
-# RDBL : Readback link (position form EPICS variable)
+# RDBL : Readback link (position from an EPICS variable)
 
 epics:
   name: ${AX_NAME=M1}                                 # Axis name
@@ -114,7 +114,7 @@ iocsh.bash startup.cmd
 ```
 dbpf IOC_TEST:Axis1 10
 ```
-Now the motion should be going step whise (depending on RTRY) and end up in:
+Now the motion should be going stepwise (depending on RTRY) and end up in:
 1. ecmc act pos = 10/0.95
 2. motor record act pos = 10
 
