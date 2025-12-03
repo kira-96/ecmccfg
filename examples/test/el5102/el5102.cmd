@@ -1,4 +1,4 @@
-require ecmccfg v11.0.3_RC1 "ENG_MODE=1"
+require ecmccfg v11.0.3_RC1 "ENG_MODE=1,ECMC_VER=sandst_a"
 
 ${SCRIPTEXEC} ${ecmccfg_DIR}addSlave.cmd,       "SLAVE_ID=3, HW_DESC=EL5102"
 epicsEnvSet(ENC_SID,${ECMC_EC_SLAVE_NUM})

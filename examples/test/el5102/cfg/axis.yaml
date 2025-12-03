@@ -50,7 +50,7 @@ encoder:
 #    armCmd: 21
 #    armBits: 5
   homing:
-    type: 12                                           # Homing sequence type
+    type: 11                                           # Homing sequence type
     position: 10                                       # Position to reference encoder to
     velocity:
       to: 0.5                                          # Velocity to cam/sensor (used for some homing seqs)
@@ -78,8 +78,8 @@ input:
   limit:
     forward: ec0.s$(DRV_SID).ONE.1         # Ethercat entry for low limit switch input
     backward: ec0.s$(DRV_SID).ONE.0        # Ethercat entry for high limit switch input
-  home: 'ec0.s$(DRV_SID).ONE.0'                       # Ethercat entry for home switch
-  interlock: 'ec0.s$(DRV_SID).ONE.0'                  # Ethercat entry for interlock switch input
+  home: 'ec0.s$(ENC_SID).ONE.0'                       # Ethercat entry for home switch
+  interlock: 'ec0.s$(ENC_SID).ONE.0'                  # Ethercat entry for interlock switch input
 
 softlimits:
   enable: false                                       # Enable soft limits

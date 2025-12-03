@@ -53,7 +53,7 @@ epicsEnvSet(CH,0)  # CH 1
 # 6dec: “6-wire LVDT”
 # 13dec:”3-wire Half Bridge”
 # 15dec:”5-wire Half Bridge”
-ecmcConfigOrDie "Cfg.EcAddSdoDT(${ECMC_EC_SLAVE_NUM},0x80${CH}1,0x12,6,U16)"
+ecmcConfigOrDie "Cfg.EcAddSdoDT(${ECMC_EC_SLAVE_NUM},0x80${CH}1,0x12,4,U16)"
 
 ## Sensor impedance setting:
 # 0dec: “High impedance / Marposs®” (default)
@@ -62,10 +62,10 @@ ecmcConfigOrDie "Cfg.EcAddSdoDT(${ECMC_EC_SLAVE_NUM},0x80${CH}1,0x12,6,U16)"
 ecmcConfigOrDie "Cfg.EcAddSdoDT(${ECMC_EC_SLAVE_NUM},0x80${CH}1,0x13,0,U16)"
 
 ## Specification of the sensor sensitivity, value in mV/V/mm
-ecmcConfigOrDie "Cfg.EcAddSdoDT(${ECMC_EC_SLAVE_NUM},0x80${CH}1,0x16,100,F32)"
+ecmcConfigOrDie "Cfg.EcAddSdoDT(${ECMC_EC_SLAVE_NUM},0x80${CH}1,0x16,10,F32)"
 
 ## Overall sensor range, symmetrical specification in ±mm (+-50mm)
-ecmcConfigOrDie "Cfg.EcAddSdoDT(${ECMC_EC_SLAVE_NUM},0x80${CH}1,0x18,50,F32)"
+ecmcConfigOrDie "Cfg.EcAddSdoDT(${ECMC_EC_SLAVE_NUM},0x80${CH}1,0x18,100,F32)"
 
 ## Selection of the filter frequency
 # 20dec: 20 Hz
