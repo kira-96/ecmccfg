@@ -1,7 +1,7 @@
 ##############################################################################
 ## Example config for EL7041 and EL5042
 
-require ecmccfg "ENG_MODE=1,MASTER_ID=0"
+require ecmccfg "ENG_MODE=1,MASTER_ID=0,ECMC_VER=sandst_a"
 
 # EL2819    16Ch digital output
 ${SCRIPTEXEC} ${ecmccfg_DIR}addSlave.cmd,       "SLAVE_ID=2,HW_DESC=EL2819"
@@ -14,7 +14,7 @@ ${SCRIPTEXEC} ${ecmccfg_DIR}applyComponent.cmd  "COMP=Encoder-RLS-LA11-26bit-BIS
 epicsEnvSet(ENC_SID,${ECMC_EC_SLAVE_NUM})
 
 # EL7041    1Ch Stepper
-${SCRIPTEXEC} ${ecmccfg_DIR}addSlave.cmd,       "SLAVE_ID=15,HW_DESC=EL7041-0052"
+${SCRIPTEXEC} ${ecmccfg_DIR}addSlave.cmd,       "SLAVE_ID=14,HW_DESC=EL7041-0052"
 ${SCRIPTEXEC} ${ecmccfg_DIR}applyComponent.cmd  "COMP=Motor-Generic-2Phase-Stepper,  MACROS='I_MAX_MA=1500, I_STDBY_MA=1000, U_NOM_MV=48000, R_COIL_MOHM=1230'"
 epicsEnvSet(DRV_SID,${ECMC_EC_SLAVE_NUM})
 

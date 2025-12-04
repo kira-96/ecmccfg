@@ -30,7 +30,7 @@ ecmcEpicsEnvSetCalc -h
 
       Restrictions:
          - Some flags and/or width/precision combinations might not be supported.
-         - Hex numbers in the expression is not allowed (but hex as output by formating is OK).
+         - Hex numbers in the expression is not allowed (but hex as output by formatting is OK).
          - Non floating point values will be rounded to nearest int.
 
 ```

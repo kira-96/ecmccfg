@@ -13,9 +13,11 @@ var errorCode:=0;
 if(ax1.drv.enable and not(static.done))
 {
   println('Executing move...');
-  errorCode=mc_move_abs(1,1,720,720,2000,2000);
+  errorCode:=mc_move_abs(1,1,720,720,2000,2000);
   if(errorCode){
-    println('Function mc_home() returned error: ', errorCode);
+    if(${SELF}.dbg){
+      println('Function mc_move_abs() returned error: ', errorCode);
+    };
     ${SELF}.error:=errorCode;
   };
   static.done:=1;

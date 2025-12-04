@@ -1,5 +1,6 @@
 +++  
 title = "yaml configuration"
+slug = "axisyaml"
 weight = 15
 chapter = false  
 +++  
@@ -44,7 +45,7 @@ in addition the following optional sections are available.
 - [softlimits](#softlimits)
 - [monitoring](#monitoring)
 
-Each sections provides an example, the optional keys are commented.
+Each section provides an example, the optional keys are commented.
 
 ***
 
@@ -77,7 +78,7 @@ axis:
     enableTimeout: 5.0                                # If defined, ecmc tries to auto-enable for a maximum enableTimeout seconds.
     disableTimeout:   5.0                                # If defined, ecmc disables axis after idle (non busy) in disableTime seconds
 ```
-The motor record auto-enable/disable fucntionality will then automatically be disabled. 
+The motor record auto-enable/disable functionality will then automatically be disabled. 
 {{% notice warning %}}
 However, do not configure both ecmc native and motor record auto enable/disable at the same time.
 {{% /notice %}}
@@ -99,7 +100,7 @@ The powerAutoOnOff is defining a mode and should always be set to 2.
 {{% /notice %}}
   
 {{% notice info %}}
-Note the mandatory ";" in the end of the parameters string. If not present, then teh last parameter will not be parsed.
+Note the mandatory ";" in the end of the parameters string. If not present, then the last parameter will not be parsed.
 {{% /notice %}}
 
 
@@ -240,26 +241,54 @@ optional
 
 - `velocityFilterSize`: Add filtering if the encoder is too coarse to reliably determine velocity each PLC cycle
 
-
 ## controller
-PID controller parameters
+Parameters for centralized PID controller. 
+
+These settings are only valid for:
+* Physical axes
+* CSV mode
+* CSP_PC mode (CSP with one encoder setup as useAsCSPDrvEnc). In this mode there are double position control loops, one in ecmc and one in drive.
 
 mandatory
-
 - `Kp`: proportional
 
 optional
-
 - `Ki`: integral; default 0
 - `Kd`: differential; default 0
 - `Kff`: feed forward; default 1
+- `deadband`:
+  - `tol`: Stop control if within this distance from target for the below time
+  - `time`: Time filter
+- `limits`:
+  - `minOutput`: Minimum controller output
+  - `maxOutput`: Maximum controller output
+  - `minIntegral`: Minimum integral output
+  - `maxIntegral`: Maximum integral output
+- `inner`:
+  - `tol`: When within this distance to target, `inner.Kp`, `inner.Ki`, `inner.Kd` will be used
+  - `Kp`: Kp for when close to target
+  - `Ki`: Ki for when close to target
+  - `Kd`: Kd for when close to target
 
 ```yaml
 controller:
   Kp:  90
-  # Ki:  0.1
-  # Kd:  0
-  # Kff: 1
+  #Ki:  0.1
+  #Kd:  0
+  #Kff: 1
+  #deadband:
+  #  tol: 0.01
+  #  time: 100
+  #limits:
+  #  minOutput: -100
+  #  maxOutput: 100
+  #  minIntegral: -100
+  #  maxIntegral: 100
+  #inner:
+  #  Kp: 0.1
+  #  Ki: 0.1
+  #  Kd: 0.1
+  #tol: 0.1  
 ```
 
 ## trajectory
@@ -284,11 +313,11 @@ optional
   - `emergencyDeceleration`: deceleration setpoint for emergencies. Defaults to acceleration setpoint if not specified.
   - `jerk`: jerk for s-curved profiles (in EGU/sec3)
 - `jog`
-  * `velocity`: velocity setpoint the axis will be initialized to for jogging
-  * `acceleration`: acceleration setpoint for initialization, for jogging
+  - `velocity`: velocity setpoint the axis will be initialized to for jogging
+  - `acceleration`: acceleration setpoint for initialization, for jogging
 - `modulo`
-  * `range`: modulo range
-  * `type`: modulo type
+  - `range`: modulo range
+  - `type`: modulo type
 
 ```yaml
 trajectory:
@@ -317,8 +346,8 @@ See the example for details.
 mandatory
 
 - `limit`
-  * `forward`: limit switch sensor input in the forward direction.
-  * `backward`: limit switch sensor input in the backward direction.
+  - `forward`: limit switch sensor input in the forward direction.
+  - `backward`: limit switch sensor input in the backward direction.
 - `home`: binary input for the home sensor
 - `extinterlock`: binary input for external interlock.
 
@@ -329,6 +358,22 @@ input:
     backward: ec0.s$(DRV_SLAVE).ONE.0   #  Ethercat entry for high limit switch input
   home: ec0.s$(DRV_SLAVE).ONE.0         #  Ethercat entry for home switch input
   interlock: ec0.s$(DRV_SLAVE).ONE.0    #  Ethercat entry for interlock switch input
+```
+The inputs can also be overridden with the keyword "plcOverride". In this case these values must be written in PLC code instead.
+```
+...
+input:
+  limit:
+    forward: 'plcOverride'                            # Overridden, see plc code below
+    backward: 'plcOverride'                           # Overridden, see plc code below
+...
+plc:
+  enable: true                                        # Enable axis plc
+  externalCommands: true                              # Allow axis to inputs from PLC  
+  code:                                               # Sync code (appended after code in plc.file)
+    - ax${AX_ID=1}.mon.lowlim:=ec_chk_bit(ec0.s$(DRV_SID).binaryInputs01,0) and ec_chk_bit(ec0.s$(DRV_SID).ONE,0);
+    - ax${AX_ID=1}.mon.highlim:=ec_chk_bit(ec0.s$(DRV_SID).binaryInputs01,1) and ec_chk_bit(ec0.s$(DRV_SID).ONE,1);
+  ..
 ```
 
 ## output
@@ -347,8 +392,8 @@ optional
 ```
 
 ## homing
-This section is should be obsolete at PSI, as for all new installation using EtherCAT, absolute encoders are mandatory.
-In case a legacy system or temporary installation requires a incremental encoder, or even open loop operation, several procedures for referencing are available.
+This section should be obsolete at PSI, as for all new installations using EtherCAT, absolute encoders are mandatory.
+In case a legacy system or temporary installation requires an incremental encoder, or even open loop operation, several procedures for referencing are available.
 
 optional
 
@@ -404,7 +449,7 @@ Three entities can be monitored, (1) lag, aka following error, (2) target, aka i
 
 {{% notice info %}}
 It is highly advisable to always use the `lag` and `target` monitoring fo closed-loop axis.
-Failure to do so, will most likely results in unexpected behaviour.
+Failure to do so will most likely result in unexpected behavior.
 {{% /notice %}}
 
 {{% notice info %}}
@@ -419,7 +464,7 @@ optional
   * `tolerance`: tolerance in engineering units
   * `time`: time for the condition to be true in ms
 - `target`
-  * `enable`: enable target monitoring
+  * `enable`: enable target monitoring. This is mandatory for use with motor record.
   * `tolerance`: tolerance in engineering units
   * `time`: time for the condition to be true in ms
 - `velocity`
@@ -453,6 +498,7 @@ axis:
   id: 1                                               # Axis id
   type: joint                                         # this is for future selection of axis type
   mode: CSV                                           # supported mode, CSV and CSP, defaults CSV
+  # Please switch to ecmc auto-enable/disable (axis.autoEnable) instead of the motor record.
   parameters: 'axisPar' # additional parameters       # Additional params to motor record driver
   #                                                       "powerAutoOnOff=<value>;"  //2: What you want, 1:do not use, 0 to disable
   #                                                       "powerOffDelay=<value>:"
@@ -462,7 +508,7 @@ axis:
   feedSwitchesValue: 1                                # Value to write to axis.feedSwitchesOutput. Defaults to 1
   group: testGroup                                    # Add axis to group (group will be created if not exists), 
   #                                                     group id will be stored in GRP<axis.group>_ID for later use.
-  autoMode:                                           # Switch drive modes automaticaly for normal motion and homing (smaract for instance)
+  autoMode:                                           # Switch drive modes automatically for normal motion and homing (smaract for instance)
     modeSet: ec0..                                    # Ethercat entry drive mode write (set CSV,CSP,homing)
     modeAct: ec0..                                    # Ethercat entry drive mode reading (set CSV,CSP,homing)
     modeCmdMotion: 9                                  # Drive mode value for normal motion (written to axis.drvMode.modeSet when normal motion)
@@ -502,7 +548,6 @@ drive:
   setpoint: ec0.s$(DRV_SLAVE).velocitySetpoint01      # Velocity setpoint if CSV. Position setpoint if CSP
   reduceTorque: 2                                     # Reduce torque bit in drive control word
   reduceTorqueEnable: True                            # Enable reduce torque functionality
-  useAsCSPDrvEnc: True                                # Use this encoder as CSP drive encoder (ecmc controller enabled in CSP)
   brake:
     enable: false
     output: ec0...                                    # Ethercat link to brake output
@@ -527,7 +572,7 @@ encoder:
   control: ec0.s$(ENC_SLAVE).encoderControl01         # mandatory only if 'reset' is used
   status: ec0.s$(DRV_SLAVE).encoderStatus01           # mandatory only if 'warning' or 'error' are used
   ready: 10                                           # Bit in encoder status word for encoder ready
-  source: 0                                           # 0 = Encoder value from etehrcat hardware, 1 = Encoder value from PLC
+  source: 0                                           # 0 = Encoder value from EtherCAT hardware, 1 = Encoder value from PLC
   reset: 1                                            # Reset   (optional)
   warning: 2                                          # Warning (optional)
   error:                                              # max 3 (optional)
@@ -548,6 +593,7 @@ encoder:
     armCmd:                                           # Value in dec to arm latch/touch probe to write to encoder.control 
     armBits:                                          # Bit size of encoder.latch.armCmd
   primary: True                                       # Use this encoder as primary (for control)
+  useAsCSPDrvEnc: True                                # Use this encoder as CSP drive encoder (ecmc controller enabled in CSP)
   homing:
     type: 3                                           # Homing sequence type
     position: -30                                     # Position to reference encoder to
@@ -561,7 +607,7 @@ encoder:
     tolToPrim: 0                                      # If set then this is the max allowed tolerance between prim encoder and this encoder
     postMoveEnable: yes                               # Enable move after successfull homing
     postMovePosition: 10                              # Position to move to after successfull homing
-    trigg: ec0..                                      # Ethercat entry for triggering drive internal homing seq (seq id 26)
+    trigg: ec0..                                      # EtherCAT entry for triggering drive internal homing seq (seq id 26)
     ready: ec0..                                      # Ethercat entry for readinf drive internal homing seq ready (seq id 26)
     latchCount: 1                                     # latch number to ref on (1=ref on first latch)
   delayComp:                                          # Delay compensation for time between application of setpoint to reading of encoder (normally atleast 1 cycle)
@@ -607,7 +653,7 @@ trajectory:
     range: 360                                        # Modulo range 0..360
     type: 0                                           # Modulo type
 
-#  Limits can be overridden with plc-code by setting input.limit.forward or input.limit.backward to 'plcOverride', then 'ax<id>.mon.lowlim' and or 'ax<id>.mon.highlim' needs to be written to in plc code (1 means linit OK).
+#  Limits can be overridden with plc-code by setting input.limit.forward or input.limit.backward to 'plcOverride', then 'ax<id>.mon.lowlim' and or 'ax<id>.mon.highlim' needs to be written to in plc code (1 means limit OK).
 
 input:
   limit:
@@ -656,7 +702,7 @@ monitoring:
   stall:
     enable: True                                      # Enable stall monitoring. Attarget must be enabled for this functionallity
     time:
-      timeout: 10000                                  # If not attarget after "timeout" cycles after trajectory generator is ready then drive will disable
+      timeout: 10000                                  # If not at target after "timeout" cycles after trajectory generator is ready then drive will disable
       factor: 5.0                                     # Measures duration of last motion command (busy high edge to busy low edge). The new timeout will be defined as this duration multiplied by this factor. The timeout finaly used for stall detection will be the longest (of time.timeout and calculated from time.factor).
 
 plc:
@@ -682,4 +728,3 @@ plc:
 #      size: 100
 
 ```
-

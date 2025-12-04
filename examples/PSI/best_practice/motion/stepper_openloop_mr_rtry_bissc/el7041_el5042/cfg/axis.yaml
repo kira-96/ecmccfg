@@ -12,6 +12,7 @@ epics:
   description: Test cfg                               # Axis description
   unit: mm                                            # Unit  
   motorRecord:
+    desc: 'My Axis'
     syncSoftLimits: False
     # Use readback link from encoder 01
     fieldInit: 'FOFF=Frozen,RRES=1.0,RTRY=2,RMOD=1,UEIP=0,RDBD=0.1,URIP=1,RDBL=$(IOC):${AX_NAME=M1}-Enc${RTRY_ENC_CH=01}-PosAct' # Extra config for Motor record

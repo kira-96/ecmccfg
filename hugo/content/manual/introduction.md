@@ -12,7 +12,7 @@ During IOC-startup, the requested configuration is validated against the actuall
 Mismatches will result in an error, the IOC will _not_ start.
 
 {{% notice warning %}}
-Blindly restarting the IOC, with only partially working EtherCAT hardware, will results in an inoperable IOC! If troubleshooting is needed then check out the [knowledge base](../knowledgebase) for details.
+Blindly restarting the IOC with only partially working EtherCAT hardware will result in an inoperable IOC! If troubleshooting is needed then check out the [knowledge base](../knowledgebase) for details.
 {{% /notice %}}
 
 ### IOC structure
@@ -43,9 +43,9 @@ In addition to these ecmccfg scripts also the ecmccomp repo that contains a comp
 
 ##### examples
 The `addSlave` is used for simple slaves, a default configuration is automatically applied.
-In addition default PVs will created for the basic slave features, i.e. status.
+In addition default PVs will be created for the basic slave features, i.e. status.
 Most slaves also have PVs created matching the purpose, i.e. inputs will have `bi` records, outputs will have `bo` records for each channel.
-This behaviour can be modified by arguments.
+This behavior can be modified by arguments.
 
 * add a coupler and slaves
   ```bash
@@ -90,9 +90,9 @@ In order to manually set `binaryOutput01` to `1` at startup, the following can b
   ```
 
 ##### adding a physical motor axis
-Axis configuration will is explained in details [here](../axis).
-The preferred way to confuser axes is with the `yaml` based configuration.
-It unifies the way, (1) physical axes, (2) virtual axes and (3) synchronization is handled.
+Axis configuration is explained in detail [here](../axis).
+The preferred way to configure axes is with the `yaml` based configuration.
+It unifies the way (1) physical axes, (2) virtual axes and (3) synchronization is handled.
 It is theoretically possible to use a mix of `yaml` and classic configuration, but this is untested.
 
   * yaml config
@@ -105,7 +105,7 @@ It is theoretically possible to use a mix of `yaml` and classic configuration, b
   ${SCRIPTEXEC} ${ecmccfg_DIR}configureAxis.cmd,  "CONFIG=./cfg/axis_1"
   ```
 {{% notice tip %}}
-See [best practice](../motion_cfg/best_practice/) and [yaml cfg](../motion_cfg/axisyaml/) and for more information.
+See [best practice](../motion_cfg/best_practice/) and [yaml cfg](../motion_cfg/axisyaml/) for more information.
 {{% /notice %}}
 
 ##### adding a virtual motor axis
@@ -113,7 +113,7 @@ See [best practice](../motion_cfg/best_practice/) and [yaml cfg](../motion_cfg/a
   ${SCRIPTEXEC} ${ecmccfg_DIR}configureVirtualAxis.cmd,     "CONFIG=./cfg/axis_11_virt"
   ```
 {{% notice tip %}}
-See [best practice](../motion_cfg/best_practice/) and [yaml cfg](../motion_cfg/axisyaml/) and for more information.
+See [best practice](../motion_cfg/best_practice/) and [yaml cfg](../motion_cfg/axisyaml/) for more information.
 {{% /notice %}}
 
 ##### adding synchronization
@@ -122,7 +122,7 @@ See [best practice](../motion_cfg/best_practice/) and [yaml cfg](../motion_cfg/a
   ${SCRIPTEXEC} ${ecmccfg_DIR}applyAxisSynchronization.cmd, "CONFIG=./cfg/axis_11_sync"
   ```   
 {{% notice tip %}}
-See [best practice](../motion_cfg/best_practice/) and [yaml cfg](../motion_cfg/axisyaml/) and for more information.
+See [best practice](../motion_cfg/best_practice/) and [yaml cfg](../motion_cfg/axisyaml/) for more information.
 {{% /notice %}}
 
 ##### loading a PLC from file

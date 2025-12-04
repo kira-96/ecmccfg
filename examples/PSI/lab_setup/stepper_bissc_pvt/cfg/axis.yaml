@@ -3,6 +3,8 @@ axis:
   #parameters: 'powerAutoOnOff=2;powerOffDelay=-1;'
   autoEnable:
     atStartup: True
+    enableTimeout: 2
+    disableTimeout: 2
 
 epics:
   name: ${AX_NAME=M1}                                 # Axis name

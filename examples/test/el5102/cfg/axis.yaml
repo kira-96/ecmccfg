@@ -1,17 +1,19 @@
 axis:
   id: ${AXIS_ID=1}                                    # Axis id
-  #parameters: 'powerAutoOnOff=2;powerOffDelay=-1;'
+  #feedSwitchesOutput: ec0.s${BO_SID}.binaryOutput${BO_CH=01} # Ethercat entry for feed switches
   autoEnable:
-    enableTimeout: 2
-    disableTimeout: 2
+    enableTimeout: 5.0
+    disableTimeout: 5.0
+  tweakDist: 0.5
 
 epics:
-  name: ${AX_NAME=M1}                                 # Axis anme
+  name: ${AX_NAME=M1}                                 # Axis name
   precision: 3                                        # Decimal count
   description: Test cfg                               # Axis description
-  unit: mm                                            # Unit
+  unit: mm                                            # Unit  
   motorRecord:
-    fieldInit: 'RTRY=0,FOFF=Frozen'                   # Extra config for Motor record
+    syncSoftLimits: False
+    fieldInit: 'RTRY=0,FOFF=Frozen'                 # Extra config for Motor record
 
 drive:
   numerator: 10                                       # Fastest speed in eng. units (2000 Fullsteps/s==10mm/s)
@@ -32,30 +34,37 @@ drive:
     - 14                                              # Error 2 (if no drive error bit then leave empty)
 
 encoder:
-  desc: BISS-C
+  desc: INC
   numerator: 1                                        # Scaling numerator example 1 mm/rev
   denominator: 4096                                   # Scaling denominator example 4096 ticks per 360 degree
-  type: 1                                             # Type: 0=Incremental, 1=Absolute
+  type: 0                                             # Type: 0=Incremental, 1=Absolute
   bits: 32                                            # Total bit count of encoder raw data
-  absBits: 26                                         # Absolute bit count (for absolute encoders) always least significant part of 'bits'
-  absOffset: -15615                                   # Encoder offset in eng units (for absolute encoders)
   position: ec0.s$(ENC_SID).positionActual${ENC_CH=01}  # Ethercat entry for actual position input (encoder)
   status: ec0.s$(ENC_SID).encoderStatus${ENC_CH=01}     # mandatory only if 'warning' or 'error' are used
-  ready: 2                                            # Bit in encoder status word for encoder ready
-  warning: 0                                          # Warning (optional)
-  error:                                              # max 3 (optional)
-    - 1                                               # Error 0
-  delayComp:                                          # Delay compensation for time between application of setpoint to reading of encoder (normally atleast 2 cycles)
-    time: 0                                           # Delay time between set and act [cycles]
-    enable: true                                        # enable (defaults to 1 if not set)
+  control: ec0.s$(ENC_SID).encoderControl${ENC_CH=01}
+  primary: True
+  latch:
+    position: ec0.s$(ENC_SID).encoderLatchPostion$(ENC_CH=01) # Link to latched value. Used for some homing seqs
+    control:  0                                        # Bit in encoder control word to arm latch. Used for some homing seqs
+    status: 0                                          # Bit in encoder status word for latch triggered status. Used for some homing seqs
+#    armCmd: 21
+#    armBits: 5
+  homing:
+    type: 11                                           # Homing sequence type
+    position: 10                                       # Position to reference encoder to
+    velocity:
+      to: 0.5                                          # Velocity to cam/sensor (used for some homing seqs)
+      from: 0.1                                        # Velocity from cam/sensor (used for some homing seqs)
+    acceleration: 1                                    # Acceleration during homing
+    deceleration: 1                                    # Deceleration during homing
+    latchCount: 1                                      # latch number to ref on (1=ref on first latch)
 
 controller:
-  Kp: 10                                              # Kp proportinal gain
+  Kp: 2                                               # Kp proportinal gain
   Ki: 0                                               # Ki integral gain
   Kd: 0                                               # Kd derivative gain
 
 trajectory:
-  type: 1
   axis:
     velocity: 2                                       # Default velo for axis
     acceleration: 2                                   # Default acc for axis
@@ -67,22 +76,22 @@ trajectory:
 
 input:
   limit:
-    forward: ec0.s$(DRV_SID).driveStatus01.12         # Ethercat entry for low limit switch input
-    backward: ec0.s$(DRV_SID).driveStatus01.11        # Ethercat entry for high limit switch input
-  home: 'ec0.s$(DRV_SID).ONE.0'                       # Ethercat entry for home switch
-  interlock: 'ec0.s$(DRV_SID).ONE.0'                  # Ethercat entry for interlock switch input
+    forward: ec0.s$(DRV_SID).ONE.1         # Ethercat entry for low limit switch input
+    backward: ec0.s$(DRV_SID).ONE.0        # Ethercat entry for high limit switch input
+  home: 'ec0.s$(ENC_SID).ONE.0'                       # Ethercat entry for home switch
+  interlock: 'ec0.s$(ENC_SID).ONE.0'                  # Ethercat entry for interlock switch input
 
 softlimits:
   enable: false                                       # Enable soft limits
-  forward: 30                                        # Soft limit position fwd
+  forward: -5                                        # Soft limit position fwd
   forwardEnable: true                                # Soft limit position fwd enable
-  backward: -30                                      # Soft limit position bwd
+  backward: -15                                      # Soft limit position bwd
   backwardEnable: true                               # Soft limit position bwd enable
 
 monitoring:
   lag:
     enable: true                                      # Enable position lag monitoring (following error)
-    tolerance: 0.1                                    # Allowed tolerance
+    tolerance: 0.5                                    # Allowed tolerance
     time: 10                                          # Allowed time outside tolerance  target:
   velocity:
     enable: false                                     # Enable velocity monitoring
@@ -92,10 +101,5 @@ monitoring:
       drive: 200                                      # Time allowed outside max velo before system disables drive
   target:
     enable: true                                      # Enable at target monitoring (needs to be enabled if using motor record)
-    tolerance: 0.001                                  # Allowed tolerance
-    time: 1000                                        # Filter time inside tolerance to be at target
-  stall:
-    enable: True
-    time:
-      timeout: 10000
-      factor: 5.0
+    tolerance: 0.01                                   # Allowed tolerance
+    time: 10                                          # Filter time inside tolerance to be at target
