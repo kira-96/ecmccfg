@@ -568,9 +568,10 @@ encoder:
     time: 1.5                                         # Delay time between set and act [cycles]
 #    enable: true                                     # enable (defaults to 1 if not set)
   lookuptable:
-    filename: ./cfg/enc.corr                          # Load correction lockuptable file (default enabled if loaded)
+    filename: ./cfg/enc.corr                          # Load correction lockuptable file (default enabled if loaded) (value will be subtracted from encoder value).
 #    enable: 1                                        # Enable correction table
-#    mask: '0x3FF'                                    # Encoder raw mask to apply correction (example single turn bits or period bits of EL5021)
+#    scale: 1                                         # Scale applied to LUT
+#    range: 360                                       # LUT modulo value  
 
 controller:
   Kp: 15                                              # Kp proportional gain
