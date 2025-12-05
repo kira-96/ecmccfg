@@ -613,30 +613,30 @@ encoder:
   delayComp:                                          # Delay compensation for time between application of setpoint to reading of encoder (normally atleast 1 cycle)
     time: 1.5                                         # Delay time between set and act [cycles]
 #    enable: true                                     # enable (defaults to 1 if not set)
-  lookuptable:
-    filename: ./cfg/enc.corr                          # Load correction lockuptable file (default enabled if loaded) (value will be subtracted from encoder value).
-#    enable: 1                                        # Enable correction table
-#    scale: 1                                         # Scale applied to LUT
-#    range: 360                                       # LUT modulo value  
+  lookuptable:                                        # Lookuptables are only applied when encoder is homed
+    filename: ./cfg/enc.corr                          # Load correction lockuptable file. Value will be subtracted from encoder value.
+#    enable: 1                                        # Enable correction table (default enabled if loaded).
+#    scale: 1                                         # Scale applied to LUT (if you want value to be added then set scale to -1.0)
+#    range: 360                                       # LUT modulo value (Lut should cover the range 0..range)
 
 controller:
-  Kp: 15                                              # Kp proportional gain
-  Ki: 0.02                                            # Ki integral gain
-  Kd: 0                                               # Kd derivative gain
-  Kff: 1                                              # Feed forward gain
-  deadband:
-    tol: 0.01                                         # Stop control if within this distance from target for the below time
-    time: 100
-  limits:
-    minOutput: -100                                   # Minimum controller output
-    maxOutput: 100                                    # Maximum controller output
-    minIntegral: -100                                 # Minimum integral output
-    maxIntegral: 100                                  # Maximum integral output
-  inner:
-    Kp: 0.1                                           # Kp for when close to target
-    Ki: 0.1                                           # Ki for when close to target
-    Kd: 0.1                                           # Kd for when close to target
-    tol: 0.1                                          # Distance from target for when inner PID params will be used, defaults to atTarget tol
+  Kp: 1                                               # Kp proportional gain
+#  Ki: 0.001                                           # Ki integral gain
+#  Kd: 0                                               # Kd derivative gain
+#  Kff: 1                                              # Feed forward gain
+#  deadband:
+#    tol: 0.01                                         # Stop control if within this distance from target for the below time
+#    time: 100
+#  limits:
+#    minOutput: -100                                   # Minimum controller output
+#    maxOutput: 100                                    # Maximum controller output
+#    minIntegral: -100                                 # Minimum integral output
+#    maxIntegral: 100                                  # Maximum integral output
+#  inner:
+#    Kp: 0.1                                           # Kp for when close to target
+#    Ki: 0.1                                           # Ki for when close to target
+#    Kd: 0.1                                           # Kd for when close to target
+#    tol: 0.1                                          # Distance from target for when inner PID params will be used, defaults to atTarget tol
 
 trajectory:
   type: 1                                             # Default 0 = trapetz, 1 = S-curve (ruckig)
@@ -684,7 +684,7 @@ monitoring:
     tolerance: 0.5                                    # Allowed tolerance
     time: 10                                          # Allowed time outside tolerance
   target:
-    enable: true                                      # Enable at target monitoring (needs to be enabled if using motor record)
+    enable: true                                      # Enable at target monitoring (needs to be enabled and configured if using motor record)
     tolerance: 0.5                                    # Allowed tolerance
     time: 10                                          # Filter time inside tolerance to be at target
   velocity:
