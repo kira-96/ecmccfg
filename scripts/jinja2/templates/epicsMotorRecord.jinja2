@@ -27,6 +27,11 @@ epicsEnvUnset(ECMC_AXIS_FLAGS)
 {%- set jogVelocity=trajectory.axis.velocity/10 if jog.velocity is undefined else jog.velocity %}
 {#- use axis acceleration for jog id not explicitly defined #}
 {%- set jogAcceleration=trajectory.axis.acceleration if jog.acceleration is undefined else jog.acceleration %}
+{% if trajectory.axis.acceleration > 0 %}
+    {%- set backlashAccTime = trajectory.axis.velocity/trajectory.axis.acceleration %}
+{%- else %}
+    {%- set backlashAccTime = 0 %}
+{%- endif %}
 
 {%- if monitoring is defined %}
     {%- if monitoring.target is defined %}
@@ -73,7 +78,7 @@ epicsEnvSet(ECMC_MR_DCOF,0)
 ecmcEpicsEnvSetCalc(ECMC_TEMP_SREV,'abs({{ drive.denominator|default(1)|int }})')
 ecmcEpicsEnvSetCalc(ECMC_TEMP_UREV,'abs({{ drive.numerator|default(1)|float }})')
 ecmcFileExist(${ECMC_MR_MODULE="ecmcMotorRecord"}.template,1,1)
-dbLoadRecords(${ECMC_MR_MODULE="ecmcMotorRecord"}.template,"PREFIX=${ECMC_PREFIX},MOTOR_NAME={{ epics.name }},MOTOR_PORT=${ECMC_MOTOR_PORT},ECMC_PORT=${ECMC_ASYN_PORT},AXIS_NO={{ axis.id }},DESC='{{ epics.motorRecord.description|default('') }}',EGU={{ epics.unit }},PREC={{ epics.precision }},VELO={{ trajectory.axis.velocity }},JVEL={{ jogVelocity }},JAR={{ jogAcceleration }},ACCS={{ trajectory.axis.acceleration }},RDBD={{ rdbd }},DLLM={{ DLLM|float }},DHLM={{ DHLM|float }},HOMEPROC={{ homing.type|default(0)|int }},SREV=$(ECMC_TEMP_SREV),UREV=$(ECMC_TEMP_UREV),TWV={{ axis.tweakDist|default(1.0)|float }},{{ epics.motorRecord.fieldInit|default('') }},${ECMC_MR_TEMP_FIELDS=""},PCOF=${ECMC_MR_PCOF},ICOF=${ECMC_MR_ICOF},DCOF=${ECMC_MR_DCOF},SYNC_DXLM={{ syncEcmcMRSofLim|int }}")
+dbLoadRecords(${ECMC_MR_MODULE="ecmcMotorRecord"}.template,"PREFIX=${ECMC_PREFIX},MOTOR_NAME={{ epics.name }},MOTOR_PORT=${ECMC_MOTOR_PORT},ECMC_PORT=${ECMC_ASYN_PORT},AXIS_NO={{ axis.id }},DESC='{{ epics.motorRecord.description|default('') }}',EGU={{ epics.unit }},PREC={{ epics.precision }},VELO={{ trajectory.axis.velocity }},JVEL={{ jogVelocity }},JAR={{ jogAcceleration }},ACCS={{ trajectory.axis.acceleration }},RDBD={{ rdbd }},DLLM={{ DLLM|float }},DHLM={{ DHLM|float }},HOMEPROC={{ homing.type|default(0)|int }},SREV=$(ECMC_TEMP_SREV),UREV=$(ECMC_TEMP_UREV),TWV={{ axis.tweakDist|default(1.0)|float }},PCOF=${ECMC_MR_PCOF},ICOF=${ECMC_MR_ICOF},DCOF=${ECMC_MR_DCOF},SYNC_DXLM={{ syncEcmcMRSofLim|int }},BACC={{ backlashAccTime }},{{ epics.motorRecord.fieldInit|default('') }},${ECMC_MR_TEMP_FIELDS=""}")
 epicsEnvUnset(ECMC_TEMP_UREV)
 epicsEnvUnset(ECMC_TEMP_SREV)
 epicsEnvUnset(ECMC_MR_TEMP_FIELDS)
