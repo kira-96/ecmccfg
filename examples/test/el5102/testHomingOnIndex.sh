@@ -49,7 +49,7 @@ function test_home_seq_11() {
   sleep 1
   # simulated limits
   caput $PREFIX:m0s002-One 2
-  sleep 1
+  sleep 3
   caput $PREFIX:m0s002-One 3
   wait_for_PV $1 $2 Homed 10
 }
@@ -59,7 +59,7 @@ function test_home_seq_12() {
   sleep 1
   # simulated limits
   caput $PREFIX:m0s002-One 1
-  sleep 1
+  sleep 3
   caput $PREFIX:m0s002-One 3
   wait_for_PV $1 $2 Homed 10
 }

@@ -53,8 +53,8 @@ encoder:
     type: 11                                           # Homing sequence type
     position: 10                                       # Position to reference encoder to
     velocity:
-      to: 0.5                                          # Velocity to cam/sensor (used for some homing seqs)
-      from: 0.1                                        # Velocity from cam/sensor (used for some homing seqs)
+      to: 2                                          # Velocity to cam/sensor (used for some homing seqs)
+      from: 1                                        # Velocity from cam/sensor (used for some homing seqs)
     acceleration: 1                                    # Acceleration during homing
     deceleration: 1                                    # Deceleration during homing
     latchCount: 1                                      # latch number to ref on (1=ref on first latch)
