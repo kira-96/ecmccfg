@@ -4915,7 +4915,7 @@ border-radius: 2px;
      <rect>
       <x>10</x>
       <y>336</y>
-      <width>356</width>
+      <width>316</width>
       <height>21</height>
      </rect>
     </property>
@@ -4942,9 +4942,9 @@ border-radius: 2px;
    <widget class="caRelatedDisplay" name="caRelatedDisplay_0">
     <property name="geometry">
      <rect>
-      <x>380</x>
+      <x>405</x>
       <y>335</y>
-      <width>91</width>
+      <width>66</width>
       <height>21</height>
      </rect>
     </property>
@@ -4978,6 +4978,40 @@ border-radius: 2px;
      <enum>caRowColMenu::Menu</enum>
     </property>
    </widget>
+   <widget class="caMessageButton" name="camessagebutton">
+    <property name="geometry">
+     <rect>
+      <x>335</x>
+      <y>335</y>
+      <width>61</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>50</width>
+      <height>18</height>
+     </size>
+    </property>
+    <property name="text">
+     <string>reset</string>
+    </property>
+    <property name="channel" stdset="0">
+     <string notr="true">$(P)$(M)-ErrRst</string>
+    </property>
+    <property name="label">
+     <string notr="true">reset</string>
+    </property>
+    <property name="releaseMessage">
+     <string notr="true">0</string>
+    </property>
+    <property name="pressMessage">
+     <string notr="true">1</string>
+    </property>
+    <property name="colorMode">
+     <enum>caMessageButton::Default</enum>
+    </property>
+   </widget>
    <zorder>caRectangle_8</zorder>
    <zorder>caLabel_21</zorder>
    <zorder>caTextEntry_10</zorder>
@@ -4988,6 +5022,7 @@ border-radius: 2px;
    <zorder>camessagebutton_17</zorder>
    <zorder>calineedit_7</zorder>
    <zorder>caRelatedDisplay_0</zorder>
+   <zorder>camessagebutton</zorder>
   </widget>
  </widget>
  <customwidgets>
