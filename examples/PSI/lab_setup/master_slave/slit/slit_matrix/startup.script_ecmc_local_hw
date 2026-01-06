@@ -1,14 +1,12 @@
 #- Configuration scripts
-require ecmccfg "MASTER_ID=0,ENG_MODE=1,EC_RATE=500"
-#require ecmccfg v11.0.0_RC1 "MASTER_ID=0,ENG_MODE=1,EC_RATE=500,ECMC_VER=v11.0.0_RC1"
-#require ecmccomp v11.0.0_RC1
+require ecmccfg "MASTER_ID=0,ENG_MODE=1,EC_RATE=100"
 
 #- Only output errors
 asynSetTraceMask(${ECMC_ASYN_PORT}, -1, 0x01)
 
 #- #################################################################
 # Configure Hardware and Motion
-< ../common/cfgHW_and_motion_local.cmd
+< ./cfg/cfgHW_and_motion_local_mr_disable.cmd
 
 #- Add state machine to sync the virtual and physical axes (the groups are defined in the yaml axis-cfg files) 
 ${SCRIPTEXEC} ${ecmccfg_DIR}addMasterSlaveSM.cmd "NAME=Slit_SM, MST_GRP_NAME=virtualAxes, SLV_GRP_NAME=realAxes"

@@ -1,6 +1,5 @@
 axis:
   id: ${AXIS_ID=1}                                    # Axis id
-  #parameters: 'powerAutoOnOff=2;powerOffDelay=-1;'
   autoEnable:
     enableTimeout: 2
     disableTimeout: 2
@@ -58,7 +57,7 @@ trajectory:
   type: 1
   axis:
     velocity: 2                                       # Default velo for axis
-    acceleration: 2                                   # Default acc for axis
+    acceleration: 5                                   # Default acc for axis
     deceleration: 2                                   # Default dec for axis
     emergencyDeceleration: 5                          # Deceleration when axis in error state
     jerk: 10                                          # Default jerk for axis

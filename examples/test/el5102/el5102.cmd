@@ -11,5 +11,5 @@ epicsEnvSet(DRV_SID,${ECMC_EC_SLAVE_NUM})
 ${SCRIPTEXEC} ${ecmccfg_DIR}loadYamlAxis.cmd,   "FILE=./cfg/axis.yaml,              DEV=${IOC}, AX_NAME=M1, AXIS_ID=1, DRV_SID=${DRV_SID}, ENC_SID=${ENC_SID}, ENC_CH=01"
 ${SCRIPTEXEC} ${ecmccfg_DIR}loadYamlEnc.cmd,    "FILE=./cfg/enc_open_loop.yaml,     DEV=${IOC}, DRV_SID=${DRV_SID}"
 
-$(SCRIPTEXEC) $(ecmccfg_DIR)loadPLCFile.cmd,    "FILE=./cfg/armEL5102.plc,          PLC_MACROS='ENC_SID=${ENC_SID}, ENC_CH=01'"
+#$(SCRIPTEXEC) $(ecmccfg_DIR)loadPLCFile.cmd,    "FILE=./cfg/armEL5102.plc,          PLC_MACROS='ENC_SID=${ENC_SID}, ENC_CH=01'"
 

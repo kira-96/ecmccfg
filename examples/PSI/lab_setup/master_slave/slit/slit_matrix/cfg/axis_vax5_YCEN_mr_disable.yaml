@@ -23,9 +23,9 @@ encoder:
 
 trajectory:
   axis:
-    velocity: 1
-    acceleration: 1
-    jerk: 5
+    velocity: 0.5
+    acceleration: 0.25
+    jerk: 0.25
 
 input:
   limit:
@@ -52,7 +52,7 @@ monitoring:
     time: 100
   velocity:
     enable: yes
-    max: 2
+    max: 0.6
     time:
       trajectory: 100
       drive: 100
