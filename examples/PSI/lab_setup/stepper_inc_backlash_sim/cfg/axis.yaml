@@ -1,0 +1,77 @@
+axis:
+  id: ${AXIS_ID=1}                                    # Axis id  
+  mode: CSV
+  tweakDist: 10
+  autoEnable:
+    enableTimeout: 2
+    disableTimeout: 2
+epics:
+  name: ${AX_NAME=M1}                                 # Axis anme
+  precision: 3                                        # Decimal count
+  description: Test cfg                               # Axis description
+  unit: mm                                           # Unit
+  motorRecord:
+      fieldInit: 'RTRY=0,FOFF=Frozen,BACC=0.1,BVEL=1'                 # Extra config for Motor record
+
+drive:
+  numerator: 10                                       # Fastest speed in eng. units (360*8000Hz)
+  denominator: 32768                                  # Scaling denominator example 4096 ticks per 360 degree
+  type: 0                                             # Stepper: 0. DS402: 1 (DS402 = servos and advanced stepper drives)
+  setpoint: ec0.s$(DRV_SID).velocitySetpoint${DRV_CH=01}        # Velocity setpoint if CSV. Position setpoint if CSP
+  control: ec0.s$(DRV_SID).driveControl${DRV_CH=01}             # Control word ethercat entry
+  status: ec0.s$(DRV_SID).driveStatus${DRV_CH=01}               # Status word ethercat entry
+
+encoder:
+  desc: Openloop
+  numerator: 1                                       # Scaling numerator example 1 mm/rev
+  denominator: 12800                                 # Scaling denominator example 4096 ticks per 360 degree
+  type: 0                                              # Type: 0=Incremental, 1=Absolute
+  bits: 16                                             # Total bit count of encoder raw data
+  absBits: 0                                           # Absolute bit count (for absolute encoders) always least significant part of 'bits'
+  position: ec0.s$(ENC_SID).positionActual${ENC_CH=01} # Incremental encoder is mapped as positionActual0X_2
+  status: ec0.s$(ENC_SID).encoderStatus${ENC_CH=01}    # mandatory only if 'warning' or 'error' are used
+
+controller:
+  Kp: 1.0                                           # Kp proportinal gain
+  Ki: 0.05                                          # Ki integral gain
+  Kd: 0                                             # Kd derivative gain
+
+trajectory:
+  type: 1
+  axis:
+    velocity: 4                                     # Default velo for axis
+    acceleration: 5                                 # Default acc for axis
+    deceleration: 5                                 # Default dec for axis
+    jerk: 50                                        # Default jerk for axis
+  jog:
+    velocity: 1                                     # Default velo fro JOG (motor record)
+
+input:
+  limit:
+    forward: ec0.s-1.ONE.0   # Ethercat entry for low limit switch input
+    backward: ec0.s-1.ONE.0  # Ethercat entry for high limit switch input
+  home: 'ec0.s-1.ONE.2'                               # Ethercat entry for home switch
+  interlock: 'ec0.s-1.ONE.0'                          # Ethercat entry for interlock switch input
+
+softlimits:
+  enable: false                                       # Enable soft limits
+  forward: 100                                        # Soft limit position fwd
+  forwardEnable: false                                # Soft limit position fwd enable
+  backward: -100                                      # Soft limit position bwd
+  backwardEnable: false                               # Soft limit position bwd enable
+
+monitoring:
+  lag:
+    enable: true                                      # Enable position lag monitoring (following error)
+    tolerance: 0.2                                    # Allowed tolerance
+    time: 100                                         # Allowed time outside tolerance  target:
+  velocity:
+    enable: false                                     # Enable velocity monitoring
+    max: 8                                            # Allowed max velocity
+    time:
+      trajectory: 100                                 # Time allowed outside max velo before system init halt
+      drive: 200                                      # Time allowed outside max velo before system disables drive
+  target:
+    enable: true                                      # Enable at target monitoring (needs to be enabled if using motor record)
+    tolerance: 0.005                                  # Allowed tolerance
+    time: 100                                         # Filter time inside tolerance to be at target

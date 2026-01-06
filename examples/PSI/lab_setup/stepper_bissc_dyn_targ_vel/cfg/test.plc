@@ -1,0 +1,21 @@
+# Adapt velocity depending on act position (distance from 0) and max velocity
+VAR
+  myPLC: ${SELF};
+  myAxis: ax1;  
+  startPos :static.startPos;
+  baseSpeed :2;
+  maxSpeed  :5;
+END_VAR
+
+if(myPLC.firstscan){
+  println('Starting up!!!!');
+  startPos:=myAxis.enc.actpos;
+};
+
+// Calc new targ vel
+static.targetvel:=min(baseSpeed + abs(myAxis.enc.actpos-startPos),maxSpeed);
+
+// Both the below variants work for trajectory type == TRAPETZ (not for RUCKIG/s-curve)
+//myAxis.traj.targetvel:=static.targetvel;
+mc_set_traj_vel(myAxis.id,static.targetvel);
+
