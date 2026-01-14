@@ -8,7 +8,7 @@ chapter = false
 1. [Prefered NICs](#Prefered-NICs)
 2. [latency issues / lost frames](#latency-issues--lost-frames)
 3. [EtherCAT rate (EC_RATE)](#EtherCAT-rate-(EC_RATE))
-4. [Debian 12](#(PSI-specific)-Debian-12)
+4. [PSI specific](#PSI-specific)
 
 ### Prefered NICs
 
@@ -119,17 +119,35 @@ In order to successfully run an ecmc ethercat system at higher rates some tuning
 " above.
 * consider use of more than one domain
 
-#### (PSI specific) Debian 12
+### PSI specific
+#### Debian 12
 For debian 12 a different phyton venv needs to be copied to the tmp dir at startup.
 The venv can be found here: /ioc/NeedfulThings/ecmc_python_venv/.venv_deb12/
 
-### iocsh startup
+#### iocsh startup
 ecmc needs to be started with root priviledges (or with a user in realtime group), without ecmc might segfault.
 
-### c6025-0010 startup
+#### c6025-0010 startup
 Need to change boot setting:
 * At PSI: make normal warewulf and packet fence setup, DON'T FORGETT THE USB DONGLE!!!
 * Go to boot menu
 * Boot menu: Set boot option 1 to "Usb stick"
 * Advanced->Network stack configuration: Enable network stack and PXE support
 * Save and exit
+
+#### No visible slaves
+Wrong MAC addresses in the ethercat configuration could lead to that the ethercat masters are "waiting form devices":
+```
+dmesg
+...
+[ 1154.773837] EtherCAT: Requesting master 2...
+[ 1154.773839] EtherCAT ERROR 2: Master still waiting for devices!
+[ 1169.412719] EtherCAT: Requesting master 1...
+[ 1169.412721] EtherCAT ERROR 1: Master still waiting for devices!
+[ 1169.518489] EtherCAT: Requesting master 0...
+[ 1169.518491] EtherCAT ERROR 0: Master still waiting for devices!
+[ 1169.518829] EtherCAT: Requesting master 2...
+[ 1169.518830] EtherCAT ERROR 2: Master still waiting for devices!
+...
+```
+Check that the correct MAC adresses are defined for the ethercat masters. At PSI the MACS are defined in the ETHERCATDRVR file (`/ioc/hosts/<hostname>/cfg/ETHERCATDRVR`).
