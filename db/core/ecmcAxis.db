@@ -68,7 +68,7 @@ record(longin,"${P}${AXIS_NAME}-Stat"){
 record(calc,"${P}${AXIS_NAME}-SeqState") {
   field(DESC, "Seq state")
   field(PINI, "$(PINI=1)")
-  field(CALC,"A>>23 & 0xF")
+  field(CALC,"A>>24 & 0x7")
   field(INPA,"${P}${AXIS_NAME}-Stat.VAL")
   field(FLNK, "${P}${AXIS_NAME}-LastIlock.PROC")
 }
@@ -335,6 +335,17 @@ record(bi,"${P}${AXIS_NAME}-BusyGlobal"){
   field(INP,  "${P}${AXIS_NAME}-Stat_.B16")
   field(ZNAM, "Free")
   field(ONAM, "Busy")
+  field(ZSV,  "NO_ALARM")
+  field(OSV,  "NO_ALARM")
+  field(FLNK, "${P}${AXIS_NAME}-Blocked.PROC")
+}
+
+# // bit 23 Blocked (Master slave)
+record(bi,"${P}${AXIS_NAME}-Blocked"){
+  field(DESC, "Blocked by Master slave")
+  field(INP,  "${P}${AXIS_NAME}-Stat_.B17")
+  field(ZNAM, "Free")
+  field(ONAM, "Blocked")
   field(ZSV,  "NO_ALARM")
   field(OSV,  "NO_ALARM")
 }
