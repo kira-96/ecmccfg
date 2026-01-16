@@ -91,6 +91,7 @@ chapter = false
   - `armBits` — Bit length of `armCmd`.
 - `primary` (optional) — Use as primary encoder for control.
 - `useAsCSPDrvEnc` (optional) — Use as CSP drive encoder when controller enabled in CSP.
+- `allowOverUnderFlow` (optional) — Allow over/under flow of encoder raw counter (default true). Set to false for linear encoders.
 - `homing` (optional) — Encoder homing settings.
   - `type` — Homing sequence type.
   - `position` — Referenced position.

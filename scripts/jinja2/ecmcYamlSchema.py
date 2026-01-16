@@ -308,6 +308,7 @@ class Schema:
                     'enable': {'type': 'boolean'},
                 }
             },
+            'allowOverUnderFlow': {'type': 'boolean'},
             'desc': {'type': 'string'},
             'position': {'type': 'string'},
             'control': {'type': 'string'},

@@ -65,24 +65,25 @@ chapter = false
 | encoder.position | Ethercat entry for actual position input (encoder) | No |
 | encoder.control | mandatory only if 'reset' is used | No |
 | encoder.status | mandatory only if 'warning' or 'error' are used | No |
-| encoder.ready | Bit in encoder status word for encoder ready | No |
+| encoder.ready | Bit in encoder status word for encoder ready | Yes |
 | encoder.source | 0 = Encoder value from EtherCAT hardware, 1 = Encoder value from PLC | No |
-| encoder.reset | Reset (optional) | No |
-| encoder.warning | Warning (optional) | No |
-| encoder.error[0] | Error 0 | No |
-| encoder.error[1] | Error 1 | No |
-| encoder.error[2] | Error 2 | No |
-| encoder.filter.velocity.size | Filter size for velocity | No |
-| encoder.filter.velocity.enable | enable velocity filter | No |
-| encoder.filter.position.size | Filter size for encoder value | No |
-| encoder.filter.position.enable | enable encoder value filter | No |
-| encoder.latch.position | Link to latched value. Used for some homing seqs | No |
-| encoder.latch.control | Bit in encoder control word to arm latch. Used for some homing seqs | No |
-| encoder.latch.status | Bit in encoder status word for latch triggered status. Used for some homing seqs | No |
-| encoder.latch.armCmd | Value in dec to arm latch/touch probe to write to encoder.control | No |
-| encoder.latch.armBits | Bit size of encoder.latch.armCmd | No |
-| encoder.primary | Use this encoder as primary (for control) | No |
-| encoder.useAsCSPDrvEnc | Use this encoder as CSP drive encoder (ecmc controller enabled in CSP) | No |
+| encoder.reset | Reset | Yes |
+| encoder.warning | Warning  | Yes |
+| encoder.error[0] | Error 0 | Yes |
+| encoder.error[1] | Error 1 | Yes |
+| encoder.error[2] | Error 2 | Yes |
+| encoder.filter.velocity.size | Filter size for velocity | Yes |
+| encoder.filter.velocity.enable | enable velocity filter | Yes |
+| encoder.filter.position.size | Filter size for encoder value | Yes |
+| encoder.filter.position.enable | enable encoder value filter | Yes |
+| encoder.latch.position | Link to latched value. Used for some homing seqs | Yes |
+| encoder.latch.control | Bit in encoder control word to arm latch. Used for some homing seqs | Yes |
+| encoder.latch.status | Bit in encoder status word for latch triggered status. Used for some homing seqs | Yes |
+| encoder.latch.armCmd | Value in dec to arm latch/touch probe to write to encoder.control | Yes |
+| encoder.latch.armBits | Bit size of encoder.latch.armCmd | Yes |
+| encoder.primary | Use this encoder as primary (for control) | Yes |
+| encoder.useAsCSPDrvEnc | Use this encoder as CSP drive encoder (ecmc controller enabled in CSP) | Yes |
+| encoder.allowOverUnderFlow | Allow over/under flow of encoder raw counter (default true). Set to false for linear encoders. | Yes |
 | encoder.homing.type | Homing sequence type | No |
 | encoder.homing.position | Position to reference encoder to | No |
 | encoder.homing.velocity.to | Velocity to cam/sensor (used for some homing seqs) | No |
@@ -103,7 +104,7 @@ chapter = false
 | encoder.lookuptable.enable | Enable correction table (default enabled if loaded). | Yes |
 | encoder.lookuptable.scale | Scale applied to LUT (if you want value to be added then set scale to -1.0) | Yes |
 | encoder.lookuptable.range | LUT modulo value (Lut should cover the range 0..range) | Yes |
-| controller.Kp | Kp proportional gain | No |
+| controller.Kp | Kp proportional gain | Yes |
 | controller.Ki | Ki integral gain | Yes |
 | controller.Kd | Kd derivative gain | Yes |
 | controller.Kff | Feed forward gain | Yes |

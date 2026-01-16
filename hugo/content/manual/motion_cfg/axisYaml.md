@@ -594,6 +594,7 @@ encoder:
     armBits:                                          # Bit size of encoder.latch.armCmd
   primary: True                                       # Use this encoder as primary (for control)
   useAsCSPDrvEnc: True                                # Use this encoder as CSP drive encoder (ecmc controller enabled in CSP)
+# allowOverUnderFlow: True                            # Allow over/under flow of encoder raw counter (default true). Set to false for linear encoders.
   homing:
     type: 3                                           # Homing sequence type
     position: -30                                     # Position to reference encoder to

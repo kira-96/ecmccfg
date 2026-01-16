@@ -203,3 +203,7 @@ ecmcConfigOrDie "Cfg.SetAxisEncOffset(${ECMC_AXIS_NO},{{ encoder.absOffset }})"
         epicsEnvSet(ECMC_AX_DRV_MODE, "CSP_PC_ENC_0${ECMC_ENC_CFG_ID=1}")
     {%- endif %}
 {%- endif %}
+
+{%- if encoder.allowOverUnderFlow is defined %}
+    ecmcConfigOrDie "Cfg.SetAxisEncAllowOverUnderFlow(${ECMC_AXIS_NO},{{ encoder.allowOverUnderFlow|int }})"
+{%- endif %}
