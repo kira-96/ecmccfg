@@ -13,25 +13,6 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <widget class="caRelatedDisplay" name="carelateddisplay_7">
-   <property name="geometry">
-    <rect>
-     <x>240</x>
-     <y>463</y>
-     <width>71</width>
-     <height>20</height>
-    </rect>
-   </property>
-   <property name="labels">
-    <string>Expert</string>
-   </property>
-   <property name="files">
-    <string>ecmcAxisExpert.ui</string>
-   </property>
-   <property name="args">
-    <string>DEV=$(DEV),Axis=$(Axis),AX_ID=$(AX_ID),IOC=$(IOC)</string>
-   </property>
-  </widget>
   <widget class="caMessageButton" name="camessagebutton_15">
    <property name="geometry">
     <rect>
@@ -1300,48 +1281,6 @@
        <bool>true</bool>
       </property>
      </widget>
-     <widget class="caMessageButton" name="camessagebutton_10">
-      <property name="geometry">
-       <rect>
-        <x>110</x>
-        <y>177</y>
-        <width>101</width>
-        <height>24</height>
-       </rect>
-      </property>
-      <property name="minimumSize">
-       <size>
-        <width>60</width>
-        <height>24</height>
-       </size>
-      </property>
-      <property name="text">
-       <string>STOP</string>
-      </property>
-      <property name="channel" stdset="0">
-       <string notr="true">$(DEV):$(Axis).STOP</string>
-      </property>
-      <property name="label">
-       <string notr="true">STOP</string>
-      </property>
-      <property name="foreground">
-       <color>
-        <red>255</red>
-        <green>255</green>
-        <blue>255</blue>
-       </color>
-      </property>
-      <property name="background">
-       <color>
-        <red>255</red>
-        <green>85</green>
-        <blue>0</blue>
-       </color>
-      </property>
-      <property name="pressMessage">
-       <string notr="true">1</string>
-      </property>
-     </widget>
      <widget class="caTextEntry" name="catextentry_25">
       <property name="geometry">
        <rect>
@@ -1504,48 +1443,6 @@
         <green>85</green>
         <blue>0</blue>
        </color>
-      </property>
-     </widget>
-     <widget class="caMessageButton" name="camessagebutton_17">
-      <property name="geometry">
-       <rect>
-        <x>5</x>
-        <y>177</y>
-        <width>96</width>
-        <height>24</height>
-       </rect>
-      </property>
-      <property name="minimumSize">
-       <size>
-        <width>60</width>
-        <height>24</height>
-       </size>
-      </property>
-      <property name="text">
-       <string>KILL</string>
-      </property>
-      <property name="channel" stdset="0">
-       <string notr="true">$(DEV):$(Axis).CNEN</string>
-      </property>
-      <property name="label">
-       <string notr="true">KILL</string>
-      </property>
-      <property name="foreground">
-       <color>
-        <red>255</red>
-        <green>255</green>
-        <blue>255</blue>
-       </color>
-      </property>
-      <property name="background">
-       <color>
-        <red>170</red>
-        <green>0</green>
-        <blue>0</blue>
-       </color>
-      </property>
-      <property name="pressMessage">
-       <string notr="true">0</string>
       </property>
      </widget>
      <widget class="caGraphics" name="cagraphics_3">
@@ -1837,6 +1734,90 @@
        <enum>caGraphics::Circle</enum>
       </property>
      </widget>
+     <widget class="caMessageButton" name="camessagebutton_10">
+      <property name="geometry">
+       <rect>
+        <x>110</x>
+        <y>175</y>
+        <width>101</width>
+        <height>24</height>
+       </rect>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>60</width>
+        <height>24</height>
+       </size>
+      </property>
+      <property name="text">
+       <string>STOP</string>
+      </property>
+      <property name="channel" stdset="0">
+       <string notr="true">$(DEV):$(Axis).STOP</string>
+      </property>
+      <property name="label">
+       <string notr="true">STOP</string>
+      </property>
+      <property name="foreground">
+       <color>
+        <red>255</red>
+        <green>255</green>
+        <blue>255</blue>
+       </color>
+      </property>
+      <property name="background">
+       <color>
+        <red>255</red>
+        <green>85</green>
+        <blue>0</blue>
+       </color>
+      </property>
+      <property name="pressMessage">
+       <string notr="true">1</string>
+      </property>
+     </widget>
+     <widget class="caMessageButton" name="camessagebutton_16">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>175</y>
+        <width>96</width>
+        <height>24</height>
+       </rect>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>60</width>
+        <height>24</height>
+       </size>
+      </property>
+      <property name="text">
+       <string>KILL</string>
+      </property>
+      <property name="channel" stdset="0">
+       <string notr="true">$(DEV):$(Axis).CNEN</string>
+      </property>
+      <property name="label">
+       <string notr="true">KILL</string>
+      </property>
+      <property name="foreground">
+       <color>
+        <red>255</red>
+        <green>255</green>
+        <blue>255</blue>
+       </color>
+      </property>
+      <property name="background">
+       <color>
+        <red>170</red>
+        <green>0</green>
+        <blue>0</blue>
+       </color>
+      </property>
+      <property name="pressMessage">
+       <string notr="true">0</string>
+      </property>
+     </widget>
      <zorder>caGraphics_4</zorder>
      <zorder>caGraphics_5</zorder>
      <zorder>calineedit_42</zorder>
@@ -1849,13 +1830,11 @@
      <zorder>catogglebutton_6</zorder>
      <zorder>calabel_81</zorder>
      <zorder>calineedit_34</zorder>
-     <zorder>camessagebutton_10</zorder>
      <zorder>catextentry_25</zorder>
      <zorder>caGraphics_2</zorder>
      <zorder>caGraphics_3</zorder>
      <zorder>calabel_83</zorder>
      <zorder>caled_39</zorder>
-     <zorder>camessagebutton_17</zorder>
      <zorder>cagraphics_3</zorder>
      <zorder>cagraphics_4</zorder>
      <zorder>calabel_85</zorder>
@@ -1866,6 +1845,8 @@
      <zorder>calabel_92</zorder>
      <zorder>catextentry_31</zorder>
      <zorder>catextentry_32</zorder>
+     <zorder>camessagebutton_10</zorder>
+     <zorder>camessagebutton_16</zorder>
     </widget>
    </widget>
    <widget class="QWidget" name="motion">
@@ -2207,7 +2188,7 @@
       <property name="geometry">
        <rect>
         <x>110</x>
-        <y>177</y>
+        <y>176</y>
         <width>101</width>
         <height>24</height>
        </rect>
@@ -2675,7 +2656,7 @@
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>177</y>
+        <y>176</y>
         <width>96</width>
         <height>24</height>
        </rect>
@@ -3947,32 +3928,13 @@
     </property>
    </widget>
   </widget>
-  <widget class="caRelatedDisplay" name="carelateddisplay_6">
-   <property name="geometry">
-    <rect>
-     <x>240</x>
-     <y>440</y>
-     <width>71</width>
-     <height>21</height>
-    </rect>
-   </property>
-   <property name="labels">
-    <string>Motor</string>
-   </property>
-   <property name="files">
-    <string>motorx_all.ui</string>
-   </property>
-   <property name="args">
-    <string>P=$(DEV):,M=$(Axis)</string>
-   </property>
-  </widget>
   <widget class="caLabel" name="calabel_2">
    <property name="geometry">
     <rect>
      <x>15</x>
      <y>315</y>
      <width>201</width>
-     <height>51</height>
+     <height>56</height>
     </rect>
    </property>
    <property name="text">
@@ -4003,6 +3965,28 @@
    </property>
    <property name="channel" stdset="0">
     <string notr="true">$(DEV):$(Axis)-Blocked</string>
+   </property>
+  </widget>
+  <widget class="caRelatedDisplay" name="carelateddisplay">
+   <property name="geometry">
+    <rect>
+     <x>240</x>
+     <y>455</y>
+     <width>71</width>
+     <height>26</height>
+    </rect>
+   </property>
+   <property name="labels">
+    <string>Expert;Mini;Motor;ecmc Main</string>
+   </property>
+   <property name="files">
+    <string>ecmcAxisExpert.ui;ecmcAxisCompact.ui;motorx_all.ui;ecmcMain.ui</string>
+   </property>
+   <property name="args">
+    <string>DEV=$(DEV),Axis=$(Axis),AX_ID=$(AX_ID),IOC=$(IOC);DEV=$(DEV),Axis=$(Axis),AX_ID=$(AX_ID),IOC=$(IOC);P=$(DEV):,M=$(Axis);DEV=$(DEV),Axis=$(Axis),AX_ID=$(AX_ID),IOC=$(IOC)</string>
+   </property>
+   <property name="stackingMode" stdset="0">
+    <enum>caRowColMenu::Menu</enum>
    </property>
   </widget>
  </widget>
