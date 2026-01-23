@@ -1190,8 +1190,8 @@
      <widget class="caToggleButton" name="catogglebutton_6">
       <property name="geometry">
        <rect>
-        <x>75</x>
-        <y>-3</y>
+        <x>45</x>
+        <y>0</y>
         <width>16</width>
         <height>20</height>
        </rect>
@@ -1409,8 +1409,8 @@
      <widget class="caLed" name="caled_39">
       <property name="geometry">
        <rect>
-        <x>150</x>
-        <y>0</y>
+        <x>65</x>
+        <y>1</y>
         <width>14</width>
         <height>18</height>
        </rect>
@@ -1818,6 +1818,58 @@
        <string notr="true">0</string>
       </property>
      </widget>
+     <widget class="caLabel" name="calabel_82">
+      <property name="geometry">
+       <rect>
+        <x>100</x>
+        <y>0</y>
+        <width>51</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>16</height>
+       </size>
+      </property>
+      <property name="text">
+       <string>problem:</string>
+      </property>
+     </widget>
+     <widget class="caByte" name="cabyte">
+      <property name="geometry">
+       <rect>
+        <x>160</x>
+        <y>2</y>
+        <width>14</width>
+        <height>14</height>
+       </rect>
+      </property>
+      <property name="channel" stdset="0">
+       <string notr="true">$(DEV):$(Axis).MSTA</string>
+      </property>
+      <property name="startBit">
+       <number>9</number>
+      </property>
+      <property name="endBit">
+       <number>9</number>
+      </property>
+      <property name="foreground" stdset="0">
+       <color>
+        <red>255</red>
+        <green>0</green>
+        <blue>0</blue>
+       </color>
+      </property>
+      <property name="background" stdset="0">
+       <color>
+        <red>0</red>
+        <green>85</green>
+        <blue>0</blue>
+       </color>
+      </property>
+     </widget>
      <zorder>caGraphics_4</zorder>
      <zorder>caGraphics_5</zorder>
      <zorder>calineedit_42</zorder>
@@ -1847,6 +1899,8 @@
      <zorder>catextentry_32</zorder>
      <zorder>camessagebutton_10</zorder>
      <zorder>camessagebutton_16</zorder>
+     <zorder>calabel_82</zorder>
+     <zorder>cabyte</zorder>
     </widget>
    </widget>
    <widget class="QWidget" name="motion">
@@ -2062,8 +2116,8 @@
      <widget class="caToggleButton" name="catogglebutton_2">
       <property name="geometry">
        <rect>
-        <x>75</x>
-        <y>-3</y>
+        <x>45</x>
+        <y>0</y>
         <width>16</width>
         <height>20</height>
        </rect>
@@ -2564,8 +2618,8 @@
      <widget class="caLed" name="caled_34">
       <property name="geometry">
        <rect>
-        <x>150</x>
-        <y>0</y>
+        <x>65</x>
+        <y>1</y>
         <width>14</width>
         <height>18</height>
        </rect>
@@ -3980,7 +4034,7 @@
     <string>Expert;Mini;Motor;ecmc Main</string>
    </property>
    <property name="files">
-    <string>ecmcAxisExpert.ui;ecmcAxisCompact.ui;motorx_all.ui;ecmcMain.ui</string>
+    <string>ecmcAxisExpert.ui;ecmcAxisMini.ui;motorx_all.ui;ecmcMain.ui</string>
    </property>
    <property name="args">
     <string>DEV=$(DEV),Axis=$(Axis),AX_ID=$(AX_ID),IOC=$(IOC);DEV=$(DEV),Axis=$(Axis),AX_ID=$(AX_ID),IOC=$(IOC);P=$(DEV):,M=$(Axis);DEV=$(DEV),Axis=$(Axis),AX_ID=$(AX_ID),IOC=$(IOC)</string>
@@ -4046,6 +4100,11 @@
    <class>caStripPlot</class>
    <extends>QwtPlot</extends>
    <header>caStripPlot</header>
+  </customwidget>
+  <customwidget>
+   <class>caByte</class>
+   <extends>QWidget</extends>
+   <header>caByte</header>
   </customwidget>
   <customwidget>
    <class>QwtPlot</class>
