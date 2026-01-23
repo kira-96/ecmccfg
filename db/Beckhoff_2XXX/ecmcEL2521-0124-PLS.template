@@ -1,0 +1,73 @@
+# Diagnostics (4 channels per status word)
+#    PDO entry 0x60*1:01,  1 bit, "Overtemperature"
+#    PDO entry 0x60*1:02,  1 bit, "Open Load"
+#    PDO entry 0x60*1:03,  1 bit, "Overcurrent"
+#    PDO entry 0x60*1:04,  1 bit, "Short Circuit to 24V"
+
+record(bo,"${ECMC_P}PLS${CH_ID}-EnaCmd"){
+  info(asyn:READBACK,"1")
+  field(DESC, "Enable cmd")  
+  field(DTYP, "asynUInt32Digital")
+  field(OUT,  "@asynMask($(PORT),$(ADDR=0),$(MASK=0x1),$(TIMEOUT=1))T_SMP_MS=$(T_SMP_MS=1000)/TYPE=asynUInt32Digital/ec${MASTER_ID}.s${SLAVE_POS}.plsControl${CH_ID}?")
+  field(ZNAM, "Disable")
+  field(ONAM, "Enable")
+  field(SCAN, "Passive")
+  field(TSE,  "0")
+}
+
+record(bo,"${ECMC_P}PLS${CH_ID}-BO01"){
+  info(asyn:READBACK,"1")
+  field(DESC, "Enable cmd")  
+  field(DTYP, "asynUInt32Digital")
+  field(OUT,  "@asynMask($(PORT),$(ADDR=0),$(MASK=0x4),$(TIMEOUT=1))T_SMP_MS=$(T_SMP_MS=1000)/TYPE=asynUInt32Digital/ec${MASTER_ID}.s${SLAVE_POS}.plsControl${CH_ID}?")
+  field(ZNAM, "Zero")
+  field(ONAM, "One")
+  field(SCAN, "Passive")
+  field(TSE,  "0")
+}
+
+record(ao,"${ECMC_P}PLS${CH_ID}-PosOnCmd"){
+  info(asyn:READBACK,"1")
+  field(DESC, "PLS position on value")
+  field(DTYP, "asynFloat64")
+  field(OUT,  "@asyn($(PORT),$(ADDR),$(TIMEOUT))CMD=UINT32TOFLOAT64/T_SMP_MS=$(T_SMP_MS=1000)/TYPE=asynFloat64/ec${MASTER_ID}.s${SLAVE_POS}.plsEncoderValueSwitchOn${CH_ID}?")
+  field(SCAN, "Passive")
+  field(EGU,  "${EGU=}")
+  field(TSE,  "0")
+  field(VAL,  0)
+  field(DRVL, ${P_DRVL=0})
+  field(DRVH, ${P_DRVH=0})
+}
+
+record(ao,"${ECMC_P}PLS${CH_ID}-PosOffCmd"){
+  info(asyn:READBACK,"1")
+  field(DESC, "PLS position off value")
+  field(DTYP, "asynFloat64")
+  field(OUT,  "@asyn($(PORT),$(ADDR),$(TIMEOUT))CMD=UINT32TOFLOAT64/T_SMP_MS=$(T_SMP_MS=1000)/TYPE=asynFloat64/ec${MASTER_ID}.s${SLAVE_POS}.plsEncoderValueSwitchOff${CH_ID}?")
+  field(SCAN, "Passive")
+  field(EGU,  "${EGU=}")
+  field(TSE,  "0")
+  field(VAL,  0)
+  field(DRVL, ${P_DRVL=0})
+  field(DRVH, ${P_DRVH=0})
+}
+
+record(bi,"${ECMC_P}PLS${CH_ID}-EnaAct"){
+  field(DESC, "PLS enabled")  
+  field(DTYP, "asynUInt32Digital")
+  field(INP,  "@asynMask($(PORT),$(ADDR=0),$(MASK=0x1),$(TIMEOUT=1))T_SMP_MS=$(T_SMP_MS=1000)/TYPE=asynUInt32Digital/ec${MASTER_ID}.s${SLAVE_POS}.plsStatus${CH_ID}?")
+  field(ZNAM, "Disabled")
+  field(ONAM, "Enabled")
+  field(SCAN, "I/O Intr")
+  field(TSE,  "$(TSE=-2)")
+}
+
+record(bi,"${ECMC_P}PLS${CH_ID}-BO-RB"){
+  field(DESC, "PLS BO actual")  
+  field(DTYP, "asynUInt32Digital")
+  field(INP,  "@asynMask($(PORT),$(ADDR=0),$(MASK=0x4),$(TIMEOUT=1))T_SMP_MS=$(T_SMP_MS=1000)/TYPE=asynUInt32Digital/ec${MASTER_ID}.s${SLAVE_POS}.plsStatus${CH_ID}?")
+  field(ZNAM, "Zero")
+  field(ONAM, "One")
+  field(SCAN, "I/O Intr")
+  field(TSE,  "$(TSE=-2)")
+}

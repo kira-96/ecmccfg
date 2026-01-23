@@ -1,0 +1,56 @@
+# Drive Control word
+file "ecmc_controlWord-chX.template"
+{
+  pattern {CH_ID, KEY,   suffix,  sourceName,     DESC                }
+          {01,    "Drv", "-Cmd", "driveControl", "Drive Control Word"}
+}
+
+# Drive Velocity setpoint
+file "ecmc_analogOutput-chX.template"
+{
+  pattern {CH_ID, KEY,   suffix,    sourceName,         DESC                      , EGU,      PREC}
+          {01,    "Drv", "-Spd", "velocitySetpoint", "Drive Velocity setpoint", "counts", 3}
+}
+
+# Drive Status word
+file "ecmcEL252X-drvStat-chX.template"
+{
+  pattern {CH_ID}
+          {01   }
+}
+
+# Encoder Control word
+file "ecmc_controlWord-chX.template"
+{
+  pattern {CH_ID, KEY,   suffix,  sourceName,      DESC                   }
+          {01,    "Enc", "-Cmd", "encoderControl", "Encoder Control Word"}
+}
+
+# Encoder Status word
+file "ecmcEL252X-encStat-chX.template"
+{
+  pattern {CH_ID}
+          {01   }
+}
+
+# Encoder actual position
+file "ecmc_analogInputUintToFloat-chX.template"
+{
+  pattern {CH_ID, KEY,   suffix,    sourceName,       EGU,      DESC                     }
+          {01,    "Enc", "-PosAct", "positionActual", "Counts", "Encoder Actual position"}
+          {01,    "Enc", "-LtchPosAct", "encoderLatchPostion", "Counts", "Encoder Latch position"}
+}
+
+# Encoder position value (for setting "preset" value)
+file "ecmc_analogOutputUintToFloat-chX.template"
+{
+  pattern {CH_ID, KEY,   suffix,    sourceName,     DESC           }
+          {01,    "Enc", "-PosCmd", "encoderValue", "Encoder Value"}
+}
+
+# PLS control
+file "ecmcEL2521-0124-PLS.template"
+{
+  pattern {CH_ID}
+          {01   }
+}

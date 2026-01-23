@@ -14,7 +14,6 @@ record(bo,"${ECMC_P}BO${CH_ID}-TriState"){
 }
 
 record(bi,"${ECMC_P}BO${CH_ID}-TriState-RB"){
-{
   field(PINI, "YES")
   field(DESC, "$(DESC=$(HWTYPE): Tristate mode RB) RB")
   field(DTYP, "$(DTYP=asynInt32)")
