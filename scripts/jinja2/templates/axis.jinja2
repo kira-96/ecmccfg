@@ -57,8 +57,14 @@ ecmcConfigOrDie "Cfg.LinkEcEntryToObject("{{ axis.healthOutput|default('') }}","
   ecmcConfig "GetAxisGroupIndexByName({{ axis.group }})"
   # Set group id to GRP_{{ axis.group }}_ID env to allow for later use in PLC-Code
   epicsEnvSet(GRP_{{ axis.group }}_ID,${ECMC_CONFIG_RETURN_VAL=0})
+  epicsEnvSet(ECMC_AXIS_GRP_ID,${ECMC_CONFIG_RETURN_VAL=0})
   ecmcIf("${GRP_{{ axis.group }}_ID=-1}<0")
   ${IF_TRUE}ecmcExit : Error: Invalid axis group ID
+  #- populate axes in group list for later dbload in finalize.cmd
+  epicsEnvSet(ECMC_AX_GRP_ID_${GRP_{{ axis.group }}_ID}_LIST, "${ECMC_AX_GRP_ID_${GRP_{{ axis.group }}_ID}_LIST=}{{ axis.id }} ")
+  #- Store axes group name for later dbload in finalize.cmd
+  epicsEnvSet(ECMC_AX_GRP_ID_${GRP_{{ axis.group }}_ID}_NAME, "{{ axis.group }}")
+  
   ecmcEndIf()
 {%- endif %}
 

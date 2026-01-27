@@ -1,0 +1,12 @@
+
+record(stringin,"${P}MCU-Cfg-AXGRP${ID}-Nam"){
+  field(DESC, "Name")
+  field(PINI, "$(PINI=1)")
+  field(VAL,  "${NAME}")
+}
+
+record(stringin,"${P}MCU-Cfg-AXGRP${ID}-Axes"){
+  field(DESC, "Axes")
+  field(PINI, "$(PINI=1)")
+  field(VAL,  "${AXES}")
+}

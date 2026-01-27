@@ -1,0 +1,4 @@
+record(ai,"${P}MCU-Cfg-AXGRP-Cnt"){
+  field(DESC, "Axes group count")
+  field(VAL,  ${COUNT})
+}

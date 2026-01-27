@@ -802,3 +802,8 @@ record(stringin,"${P}${AXIS_NAME}-GrpNam") {
     field(DESC, "Name of Grp ")
     field(VAL,  "${GRP_NAME='No group'}")
 }
+
+record(ai,"${P}${AXIS_NAME}-GrpId") {
+    field(DESC, "Id of Grp ")
+    field(VAL,  "${GRP_ID=-1}")
+}

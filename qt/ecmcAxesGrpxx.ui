@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Dialog</class>
+ <widget class="QDialog" name="Dialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>240</width>
+    <height>150</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <widget class="caLineEdit" name="calineedit">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>42</y>
+     <width>221</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="readOnly">
+    <bool>true</bool>
+   </property>
+   <property name="channel" stdset="0">
+    <string notr="true">$(IOC):MCU-Cfg-AXGRP$(GRP_ID)-Nam</string>
+   </property>
+   <property name="fontScaleMode" stdset="0">
+    <enum>caLineEdit::WidthAndHeight</enum>
+   </property>
+   <property name="formatType">
+    <enum>caLineEdit::string</enum>
+   </property>
+  </widget>
+  <widget class="caLabel" name="calabel">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>20</y>
+     <width>181</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Name</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+   </property>
+   <property name="fontScaleMode">
+    <enum>ESimpleLabel::Height</enum>
+   </property>
+  </widget>
+  <widget class="caLabel" name="calabel_2">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>63</y>
+     <width>181</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Axes</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+   </property>
+   <property name="fontScaleMode">
+    <enum>ESimpleLabel::Height</enum>
+   </property>
+  </widget>
+  <widget class="caLineEdit" name="calineedit_2">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>85</y>
+     <width>221</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="readOnly">
+    <bool>true</bool>
+   </property>
+   <property name="channel" stdset="0">
+    <string notr="true">$(IOC):MCU-Cfg-AXGRP$(GRP_ID)-Axes</string>
+   </property>
+   <property name="fontScaleMode" stdset="0">
+    <enum>caLineEdit::WidthAndHeight</enum>
+   </property>
+   <property name="formatType">
+    <enum>caLineEdit::string</enum>
+   </property>
+  </widget>
+  <widget class="caLabel" name="calabel_3">
+   <property name="geometry">
+    <rect>
+     <x>50</x>
+     <y>5</y>
+     <width>181</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Group Id=$(GRP_ID)</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+   </property>
+   <property name="fontScaleMode">
+    <enum>ESimpleLabel::Height</enum>
+   </property>
+  </widget>
+  <widget class="caShellCommand" name="cashellcommand_7">
+   <property name="geometry">
+    <rect>
+     <x>160</x>
+     <y>115</y>
+     <width>71</width>
+     <height>26</height>
+    </rect>
+   </property>
+   <property name="label">
+    <string notr="true">Open axes</string>
+   </property>
+   <property name="labels">
+    <string>Open overview</string>
+   </property>
+   <property name="files">
+    <string>bash /ioc/modules/qt/ecmcOpenObject.sh</string>
+   </property>
+   <property name="args">
+    <string>AXIS_OVERVIEW_BY_GROUP_ID $(IOC) $(GRP_ID);</string>
+   </property>
+  </widget>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>caLabel</class>
+   <extends>QLabel</extends>
+   <header>caLabel</header>
+  </customwidget>
+  <customwidget>
+   <class>caLineEdit</class>
+   <extends>QLineEdit</extends>
+   <header>caLineEdit</header>
+  </customwidget>
+  <customwidget>
+   <class>caShellCommand</class>
+   <extends>QWidget</extends>
+   <header>caShellCommand</header>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>

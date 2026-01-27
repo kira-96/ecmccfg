@@ -15,6 +15,13 @@
 #  AXIS_NEXT           : CMD, PREFIX, THIS_AX_ID
 #  AXIS_NAME           : CMD, IOC DEV, AX_NAME
 #  AXIS_OVERVIEW       : CMD, IOC 
+#  AXIS_OVERVIEW_BY_GROUP_ID : CMD, IOC, GRP_ID
+#  AXIS_OVERVIEW_BY_GROUP_NAME : CMD, IOC, GRP_NAME
+#  AXIS_OVERVIEW_GROUP_BY_AX_ID : CMD, IOC, AX_ID
+#  AXIS_OVERVIEW_GROUP_BY_AX_NAME : CMD, IOC, AX_NAME
+#  AXIS_OVERVIEW_GROUP_BY_SM_ID_MST : CMD, IOC, SM_ID
+#  AXIS_OVERVIEW_GROUP_BY_SM_ID_SLV : CMD, IOC, SM_ID
+#  AXES_GROUP_OVERVIEW : CMD, IOC 
 #  DS_FIRST            : CMD, PREFIX
 #  DS_NEXT             : CMD, PREFIX, THIS_DS_ID
 #  DS_PREV             : CMD, PREFIX, THIS_DS_ID
@@ -244,9 +251,49 @@ function openPrevAxis() {
 
 function openAxisOverview() {
   PREFIX=$1
-  M_ID=$( getMasterID $PREFIX )
   ROWS=$( caget -noname -nostat -nounit -int $PREFIX:MCU-Cfg-UI-AX-Rows | tr -d '"')
   python3 /ioc/modules/qt/ecmc_start_axis_overview.py --rows $ROWS $PREFIX
+}
+
+function openAxisOverviewByGrpId() {
+  PREFIX=$1
+  GRP_ID=$2
+  python3 /ioc/modules/qt/ecmc_start_axis_overview.py --rows 1 --grp_id $GRP_ID $PREFIX
+}
+
+function openAxisOverviewByGrpName() {
+  PREFIX=$1
+  GRP_NAME=$2
+  python3 /ioc/modules/qt/ecmc_start_axis_overview.py --rows 1 --grp_name $GRP_NAME $PREFIX
+}
+
+function openAxisOverviewGroupByAxId() {
+  PREFIX=$1
+  AX_ID=$2
+  python3 /ioc/modules/qt/ecmc_start_axis_overview.py --rows 1 --grp_ax_id $AX_ID $PREFIX
+}
+
+function openAxisOverviewGroupByAxName() {
+  PREFIX=$1
+  AX_NAME=$2
+  python3 /ioc/modules/qt/ecmc_start_axis_overview.py --rows 1 --grp_ax_name $AX_NAME $PREFIX
+}
+
+function openAxisOverviewGroupBySMIdMst() {
+  PREFIX=$1
+  SM_ID=$2
+  python3 /ioc/modules/qt/ecmc_start_axis_overview.py --rows 1 --sm_id_mst $SM_ID $PREFIX
+}
+
+function openAxisOverviewGroupBySMIdSlv() {
+  PREFIX=$1
+  SM_ID=$2
+  python3 /ioc/modules/qt/ecmc_start_axis_overview.py --rows 1 --sm_id_slv $SM_ID $PREFIX
+}
+
+function openAxesGroupOverview() {
+  PREFIX=$1
+  python3 /ioc/modules/qt/ecmc_start_axesgroup_overview.py --rows 1 $PREFIX
 }
 
 # DATA STORAGE
@@ -468,6 +515,27 @@ case $CMD in
   ;;
   "AXIS_OVERVIEW")
   openAxisOverview $2
+  ;;
+  "AXIS_OVERVIEW_BY_GROUP_ID")
+  openAxisOverviewByGrpId $2 $3
+  ;;
+  "AXIS_OVERVIEW_BY_GROUP_NAME")
+  openAxisOverviewByGrpName $2 $3
+  ;;
+  "AXIS_OVERVIEW_GROUP_BY_AX_ID")
+  openAxisOverviewGroupByAxId $2 $3
+  ;;
+  "AXIS_OVERVIEW_GROUP_BY_AX_NAME")
+  openAxisOverviewGroupByAxName $2 $3
+  ;;
+  "AXIS_OVERVIEW_GROUP_BY_SM_ID_MST")
+  openAxisOverviewGroupBySMIdMst $2 $3
+  ;;
+  "AXIS_OVERVIEW_GROUP_BY_SM_ID_SLV")
+  openAxisOverviewGroupBySMIdSlv $2 $3
+  ;;
+  "AXES_GROUP_OVERVIEW")
+  openAxesGroupOverview $2
   ;;
   "DS_FIRST")
   openFirstDS $2

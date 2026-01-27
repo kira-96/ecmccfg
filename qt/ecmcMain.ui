@@ -420,7 +420,7 @@
         <x>30</x>
         <y>250</y>
         <width>251</width>
-        <height>176</height>
+        <height>261</height>
        </rect>
       </property>
       <property name="title">
@@ -903,6 +903,47 @@
         <string>Overview rows:</string>
        </property>
       </widget>
+      <widget class="caLabel" name="calabel_111">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>175</y>
+         <width>100</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>16</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>Overview groups:</string>
+       </property>
+      </widget>
+      <widget class="caShellCommand" name="cashellcommand_14">
+       <property name="geometry">
+        <rect>
+         <x>175</x>
+         <y>175</y>
+         <width>55</width>
+         <height>18</height>
+        </rect>
+       </property>
+       <property name="label">
+        <string notr="true">&gt;&gt;</string>
+       </property>
+       <property name="labels">
+        <string>Open first axis</string>
+       </property>
+       <property name="files">
+        <string>bash /ioc/modules/qt/ecmcOpenObject.sh</string>
+       </property>
+       <property name="args">
+        <string>AXES_GROUP_OVERVIEW $(IOC)</string>
+       </property>
+      </widget>
      </widget>
      <widget class="QGroupBox" name="groupBox_5">
       <property name="geometry">
@@ -910,7 +951,7 @@
         <x>300</x>
         <y>250</y>
         <width>251</width>
-        <height>176</height>
+        <height>86</height>
        </rect>
       </property>
       <property name="title">
@@ -1078,8 +1119,8 @@
      <widget class="QGroupBox" name="groupBox_6">
       <property name="geometry">
        <rect>
-        <x>30</x>
-        <y>430</y>
+        <x>300</x>
+        <y>340</y>
         <width>251</width>
         <height>86</height>
        </rect>

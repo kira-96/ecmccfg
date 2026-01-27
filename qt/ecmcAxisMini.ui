@@ -139,7 +139,7 @@
       <string>R</string>
      </property>
      <property name="channel" stdset="0">
-      <string notr="true">$(DEV):$(Axis)-RstCmd</string>
+      <string notr="true">$(IOC):MCU-ErrRst</string>
      </property>
      <property name="foreground">
       <color>
@@ -297,7 +297,7 @@
       <x>13</x>
       <y>0</y>
       <width>86</width>
-      <height>20</height>
+      <height>19</height>
      </rect>
     </property>
     <property name="background">
@@ -333,13 +333,13 @@
     </rect>
    </property>
    <property name="labels">
-    <string>Expert;Motor;ecmc Main</string>
+    <string>Expert;Compact;Motor;Main</string>
    </property>
    <property name="files">
-    <string>ecmcAxisExpert.ui;motor_all.ui;ecmcMain.ui</string>
+    <string>ecmcAxisExpert.ui;ecmcAxis.ui;motorx_all.ui;ecmcMain.ui</string>
    </property>
    <property name="args">
-    <string>DEV=$(DEV),Axis=$(Axis),AX_ID=$(AX_ID),IOC=$(IOC);P=$(DEV):,M=$(Axis);DEV=$(DEV),Axis=$(Axis),AX_ID=$(AX_ID),IOC=$(IOC)</string>
+    <string>DEV=$(DEV),Axis=$(Axis),AX_ID=$(AX_ID),IOC=$(IOC);DEV=$(DEV),Axis=$(Axis),AX_ID=$(AX_ID),IOC=$(IOC);P=$(DEV):,M=$(Axis);DEV=$(DEV),Axis=$(Axis),AX_ID=$(AX_ID),IOC=$(IOC)</string>
    </property>
    <property name="stackingMode" stdset="0">
     <enum>caRowColMenu::Menu</enum>
@@ -383,7 +383,7 @@
      </rect>
     </property>
     <property name="channel" stdset="0">
-     <string notr="true">$(DEV):$(Axis)-SumIlockBwd</string>
+     <string notr="true">$(DEV):$(Axis).LVIO</string>
     </property>
     <property name="trueColor">
      <color>
@@ -432,7 +432,7 @@
      </rect>
     </property>
     <property name="channel" stdset="0">
-     <string notr="true">$(DEV):$(Axis)-SumIlockFwd</string>
+     <string notr="true">$(DEV):$(Axis).LVIO</string>
     </property>
     <property name="trueColor">
      <color>
@@ -598,13 +598,19 @@
    <property name="visibility">
     <enum>caFrame::IfNotZero</enum>
    </property>
+   <property name="visibilityCalc">
+    <string notr="true"/>
+   </property>
    <property name="channel" stdset="0">
-    <string notr="true">$(DEV):$(Axis)-Busy</string>
+    <string notr="true">$(DEV):$(Axis)-EnaAct</string>
+   </property>
+   <property name="channelB">
+    <string notr="true"/>
    </property>
    <widget class="caMessageButton" name="camessagebutton_67">
     <property name="geometry">
      <rect>
-      <x>45</x>
+      <x>41</x>
       <y>0</y>
       <width>40</width>
       <height>18</height>
@@ -637,7 +643,7 @@
    <widget class="caMessageButton" name="camessagebutton_66">
     <property name="geometry">
      <rect>
-      <x>1</x>
+      <x>0</x>
       <y>0</y>
       <width>40</width>
       <height>18</height>
