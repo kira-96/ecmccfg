@@ -1,10 +1,10 @@
-file "ecmc_analogInputArray-chX.template"
+file "ecmc_analogInput-chX.template"
 {
-  pattern {CH_ID, DTYP,                FTVL  ,  EGU }
-          {01,    "asynInt32ArrayIn",  "LONG" , "Raw"}
-          {02,    "asynInt32ArrayIn",  "LONG" , "Raw"}
-          {03,    "asynInt32ArrayIn",  "LONG" , "Raw"}
-          {04,    "asynInt32ArrayIn",  "LONG" , "Raw"}
+  pattern {CH_ID, EGU}
+          {01,    Raw}
+          {02,    Raw}
+          {03,    Raw}
+          {04,    Raw}
 }
 
 file "ecmcELM360X-stat-chX.template"
