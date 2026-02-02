@@ -65,3 +65,6 @@ ecmcConfigOrDie "Cfg.EcSlaveConfigDC(${ECMC_EC_SLAVE_NUM},0x700,${ECMC_TEMP_PERI
 #- Cleanup
 epicsEnvUnset(ECMC_TEMP_PERIOD_NANO_SECS)
 epicsEnvUnset(ECMC_CH)
+
+#- Default panel
+epicsEnvSet("ECMC_HW_PANEL"              "ELM3xx4_Scalar")
