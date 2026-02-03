@@ -1,0 +1,21 @@
+# ecmcConfigOrDie "Cfg.EcAddEntryDT(${ECMC_EC_SLAVE_NUM},${ECMC_EC_VENDOR_ID},${ECMC_EC_PRODUCT_ID},2,0,0x1a00,0x6000,0x01,U16,ao_status01)"
+# ecmcConfigOrDie "Cfg.EcAddEntryDT(${ECMC_EC_SLAVE_NUM},${ECMC_EC_VENDOR_ID},${ECMC_EC_PRODUCT_ID},2,0,0x1a51,0x6050,0x011,S16,analogInput01)"
+# ecmcConfigOrDie "Cfg.EcAddEntryDT(${ECMC_EC_SLAVE_NUM},${ECMC_EC_VENDOR_ID},${ECMC_EC_PRODUCT_ID},1,2,0x1601,0x7000,0x1,S16,analogOutput01)"
+
+file "ecmc_analogOutput-chX.template"
+{
+  pattern {CH_ID, KEY,   suffix,  sourceName,     DESC           , EGU, PREC, ESLO    , DRVL, DRVH }
+          {01,    "AO",  "",     "analogOutput", "Analog output", "V", 3    , 1.526E-4, 0 ,   5    }
+}
+
+# for some strange reason the max voltage for AI is 21.44V?!
+file "ecmc_analogInput-chX.template"{
+  pattern {CH_ID, EGU,  PREC, ESLO      }
+          {01,    "V",  3   , 6.5445E-4 }
+}
+
+# device status
+file "ecmc_status-chX.template"{
+  pattern {CH_ID, KEY,  sourceName  }
+          {01,    "AO", "ao_status" }
+}
