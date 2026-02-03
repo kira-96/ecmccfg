@@ -1,0 +1,90 @@
+
+#############
+# PLC motion demo:
+#
+#   Code Description:
+#     1. Move to position 10 (mc_move_abs())
+#     2. Move to position 0  (mc_move_abs())
+#     3. Stop sequence if limit switch violation or errorCode on motion blocks
+#     
+# Macros
+#    AX_ID  : Axis id to move, default 1
+#    FROM   : Start pos, default 0
+#    TO     : End pos, default 10
+#    VEL    : Velo, default 1
+#
+
+VAR
+  myAxis      : ax${AX_ID=1};
+  step        : static.seqStep;
+  cycles      : static.cycleCounter;
+  doMotion    : static.doMotion;
+  doMotionOld : static.doMotionOld;
+  posFrom     : static.posFrom;
+  posTo       : static.posTo;
+END_VAR
+
+var errorCode:=0;
+
+# Initiations here
+if(${SELF}.firstscan){  
+  println('Starting PLC motion demo!');  
+  step:=0;
+  cycles:=0;
+  posFrom:=${FROM=0};
+  posTo:=${TO=10};
+};
+
+if(doMotion and not(doMotionOld)) {
+  step:=1;
+}
+
+# 1. Trigger a absolute move to "posTo"
+if(step==1 and doMotion){
+  errorCode:=mc_move_abs(${AX_ID=1},1,posTo,${VEL=1},${ACC=1},${DEC=1});  
+  if(errorCode){
+    println('Error: mc_move_abs() returned error: ',errorCode);
+    ${SELF}.error:=errorCode;
+  };
+
+  if(not(mc_get_busy(${AX_ID=1})) and myAxis.mon.attarget )
+  {
+    mc_move_abs(${AX_ID=1},0,posFrom,${VEL=1},${ACC=1},${DEC=1});  
+    cycles:=cycles+1;
+    step:=2;
+    println('1. Move done, total moves: ', cycles ); 
+  };
+};   
+
+# 2. Trigger a absolute move to "posFrom"
+if(step==2 and doMotion){
+  # positive edge of execute
+  errorCode:=mc_move_abs(${AX_ID=1},1,posFrom,${VEL=1},${ACC=1},${DEC=1});  
+  if(errorCode){
+    println('Error: mc_move_abs() returned error: ',errorCode);
+    ${SELF}.error:=errorCode;
+  };
+
+  if(not(mc_get_busy(${AX_ID=1})) and myAxis.mon.attarget )
+  {
+    mc_move_abs(${AX_ID=1},0,posFrom,${VEL=1},${ACC=1},${DEC=1});  
+    step:=1;
+    cycles:=cycles+1;
+    println('2. Move done, total cycles: ', cycles );
+  };
+};
+
+doMotionOld:=doMotion;
+
+# 3. Disable power if any of the limits are engaged
+if(not(myAxis.drv.enabled)) {
+    return [];
+}
+
+if((step > 2 and (not(ax1.mon.lowlim) or not(ax1.mon.highlim))) or errorCode)
+{
+  mc_power(${AX_ID=1},0);
+  println('Sequence ended by limit switch violation or errorcode:', errorCode);
+  step:=0;
+  ${SELF}.enable:=0;  // kill PLC
+};
