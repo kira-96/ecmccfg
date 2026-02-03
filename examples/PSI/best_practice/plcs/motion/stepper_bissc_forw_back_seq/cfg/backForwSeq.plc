@@ -81,7 +81,7 @@ if(not(myAxis.drv.enabled)) {
     return [];
 }
 
-if((step > 2 and (not(ax1.mon.lowlim) or not(ax1.mon.highlim))) or errorCode)
+if(((not(ax1.mon.lowlim) or not(ax1.mon.highlim))) or errorCode)
 {
   mc_power(${AX_ID=1},0);
   println('Sequence ended by limit switch violation or errorcode:', errorCode);
