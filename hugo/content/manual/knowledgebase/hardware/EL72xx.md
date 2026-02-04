@@ -6,6 +6,9 @@ chapter = false
 
 ## Topics
 1. [error/warning](#error/warning)
+2. [Tuning](#Tuning)
+3. [Electrical installation Issues](#Electrical-installation-Issues)
+4. [OCT cable failure](#OCT-cable-failure)
 
 ### error/warning
 If the drive is in error/warning state and not possible to enable:
@@ -13,6 +16,7 @@ If the drive is in error/warning state and not possible to enable:
 * STO tripped
 * Defect cable
 * Wrong/messy cabling between connector and actual terminal.
+* Phases connected in wrong order resulting in commutation failure
 
 ### Tuning
 
