@@ -11,6 +11,7 @@ The EL51xx series covers incremental encoder interfaces:
 3. EL5101-0011: 1 ch, diff rs422, 5MHz, oversampling 100kHz
 4. EL5112: 2 ch ABC or 1 ch AB, rs422, 5MHz, **PSI standard**
 5. EL5131: 1 ch, diff rs422, 5MHz, 2 digital outputs for cam/trigger
+6. [Diagnostics](#Diagnostics)
 
 ### General
 Normally, the incremental encoder interfaces do not require any SDO configuration. Therefore, the ecmccomp/applyComponent.cmd, which many times are needed after the ecmccfg/addSlave.cmd, is in most cases not needed. 
@@ -80,3 +81,8 @@ ${SCRIPTEXEC} ${ecmccfg_DIR}addSlave.cmd, "SLAVE_ID=16, HW_DESC=EL5131_DC"
 # EL5131_DC_TRG: Incremental encoder, access to timestamps and configuration of thresholds for outputs/triggering.
 ${SCRIPTEXEC} ${ecmccfg_DIR}addSlave.cmd, "SLAVE_ID=16, HW_DESC=EL5131_DC"
 ```
+
+### Diagnostics
+
+See the hardware diagnostics page.
+
