@@ -42,6 +42,7 @@
 
 enum EcToolCommand {
   CMD_CHANGE_EC_STATE = 10,
+  CMD_READ_DIAG_BUFFER_SDO = 20,
   CMD_EL7062_AUTOTUNE = 70621,
   CMD_EL7062_READBACK = 70622
 };
@@ -54,6 +55,7 @@ static long runEtherCATTool(struct aSubRecord *);
 static int setupChangeSlaveEtherCATstate(int, int, int);
 static int setupEL7062ExeAutoTune(int, int, int, char *, char *, char *);
 static int setupEL7062ReadBack(int, int, int, char *, char *, char *);
+static int setupReadDiagBufferSDO(int master, int slave, char* epics, char *ecmccfg, char * prefix);
 
 // globals
 static epicsEventId scriptEvent;
@@ -156,6 +158,9 @@ static long runEtherCATTool (struct aSubRecord *rec)
         case CMD_CHANGE_EC_STATE:
             setupChangeSlaveEtherCATstate(masterId, slaveId, cmdArg);
             break;
+        case CMD_READ_DIAG_BUFFER_SDO:           
+            setupReadDiagBufferSDO(masterId, slaveId, epicsVer, ecmccfgVer, prefix);
+            break;
         case CMD_EL7062_AUTOTUNE:
             setupEL7062ExeAutoTune(masterId, slaveId, chId, epicsVer, ecmccfgVer, prefix);
             break;
@@ -202,6 +207,22 @@ static int setupChangeSlaveEtherCATstate(int masterId, int slaveId, int cmdArg) 
   return 0;
 }
 
+static int setupReadDiagBufferSDO(int master, int slave, char* epics, char *ecmccfg, char * prefix) {
+    size_t charCount = snprintf(scriptPath,
+            sizeof(scriptPath),
+            "bash /ioc/modules/ecmccfg/%s/R%s/readHwDiag.sh %d %d %s\n",
+            ecmccfg,
+            epics,
+            master,
+            slave,            
+            prefix);
+
+    if (charCount >= sizeof(scriptPath) - 1)
+        return -1;
+
+    hasJob=1;
+    return 0;
+}
 
 static int setupEL7062ExeAutoTune(int master, int slave, int channel, char* epics, char *ecmccfg, char * prefix)
 {

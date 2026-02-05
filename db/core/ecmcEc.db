@@ -195,7 +195,7 @@ record(aSub, "${P}${ECMC_EC_MP}${MASTER_ID}-EcTool") {
     # A: Master ID   (double)
     field(FTA,  "DOUBLE")
     field(NOA,  "1")
-    field(INPA, "${MASTER_ID}")          
+    field(INPA, "${MASTER_ID}")
     
     # B: Command tune EL7062 drive
     field(FTB,  "DOUBLE")
@@ -300,3 +300,10 @@ record(ai,  "${P}${ECMC_EC_MP}${MASTER_ID}-EcTool-Prgs"){
   field(EGU,  "%")
   field(VAL,  0)
 }
+
+record(waveform,"${P}${ECMC_EC_MP}${MASTER_ID}-EcTool-Msg"){
+  field(DESC, "Diag text")
+  field(FTVL, "CHAR")
+  field(NELM, "10240")
+}
+

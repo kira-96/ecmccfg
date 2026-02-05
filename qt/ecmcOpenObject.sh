@@ -37,6 +37,7 @@
 #  SM_FIRST            : CMD, PREFIX
 #  SM_NEXT             : CMD, PREFIX, THIS_PLC_ID
 #  SM_PREV             : CMD, PREFIX, THIS_PLC_ID
+#  TRG_EC_TOOL_HW_DIAG : CMD, PREFIX, M_ID        S_ID
 
 CMD=$1
 
@@ -475,6 +476,23 @@ function openSMPrev() {
   caqtdm -macro $MACROS ecmcSMxx.ui
 }
 
+function ecToolReadHwDiag() {
+  PREFIX=$1
+  MID=$2
+  SID=$3
+  # master
+  caput $PREFIX:m$MID-EcTool.A $MID
+  # slave
+  caput $PREFIX:m$MID-EcTool.D $SID
+  # comamnd (read diags)
+  caput $PREFIX:m$MID-EcTool.B 20
+  # trigger
+  caput $PREFIX:m$MID-EcTool.U 0
+  # trigger
+  caput $PREFIX:m$MID-EcTool.U 1
+  caput $PREFIX:m$MID-EcTool.PROC 1
+}
+
 # Parse commands
 case $CMD in
   "EC_EXP")
@@ -585,6 +603,9 @@ case $CMD in
   "SM_PREV")
   openSMPrev $2 $3
   ;;
+  "TRG_EC_TOOL_HW_DIAG")
+  ecToolReadHwDiag $2 $3 $4
+  ;;  
   *) echo "Invalid command"
   ;;
 esac
