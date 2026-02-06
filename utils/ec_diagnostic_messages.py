@@ -38,7 +38,45 @@ MSG_LUT = {
         0x8201: "No communication to field-side (Auxiliary voltage missing)",
         0xFFFF: "Debug: 0x%X, 0x%X, 0x%X",
     },
-    # Beckhoff EL5042 (vendor id, product code)
+
+    # ['EL5001', 'EL5001-0010', 'EL5001-0011', 'EL5001-0012', 'EL5001-0090']
+    (0x2, 0x13893052): {
+        0x1303: "Encoder Supply ok",
+        0x8350: "Data Length Mismatch (Channel %d, Expect: %d, Received: %d)",
+    },
+
+    # ['EL5031-0011']
+    (0x2, 0x13a73052): {
+        0x1303: "Encoder Supply ok",
+        0x1304: "Encoder initialization successfully, channel: %X",
+        0x1305: "Sent command encoder reset, channel: %X",
+        0x8303: "Encoder supply error",
+        0x8304: "Encoder communication error, channel: %X",
+        0x8305: "EnDat2.2 is not supported, channel: %X",
+        0x8306: "Delay time, tolerance limit exceeded, 0x%X, channel: %X",
+        0x8307: "Delay time, maximum value exceeded, 0x%X, channel: %X",
+        0x8308: "Unsupported ordering designation, 0x%X, channel: %X (only 02 and 22 is supported)",
+        0x8309: "Encoder CRC error, channel: %X",
+        0x830A: "Temperature %X could not be read, channel: %X",
+        0x830B: "Oversampling error, channel: %X",
+    },
+
+    # ['EL5032', 'EL5032-0090']
+    (0x2, 0x13a83052): {
+        0x1303: "Encoder Supply ok",
+        0x1304: "Encoder initialization successfully, channel: %X",
+        0x1305: "Sent command encoder reset, channel: %X",
+        0x8303: "Encoder supply error",
+        0x8304: "Encoder communication error, channel: %X",
+        0x8305: "EnDat2.2 is not supported, channel: %X",
+        0x8306: "Delay time, tolerance limit exceeded, 0x%X, channel: %X",
+        0x8307: "Delay time, maximum value exceeded, 0x%X, channel: %X",
+        0x8308: "Unsupported ordering designation, 0x%X, channel: %X (only 02 and 22 is supported)",
+        0x8309: "Encoder CRC error, channel: %X",
+        0x830A: "Temperature %X could not be read, channel: %X",
+    },
+
+    # ['EL5042']
     (0x2, 0x13b23052): {
         0x1303: "Encoder Supply ok",
         0x1304: "Encoder initialization successfully, channel: %X",
@@ -47,6 +85,99 @@ MSG_LUT = {
         0x8304: "Encoder communication error, channel: %X",
         0x830B: "Encoder Watchdog Error, channel: %X",
         0x830C: "Encoder Single-Cycle-Data Error, channel: %X",
+    },
+
+    # ['EL5072']
+    (0x2, 0x13d03052): {
+        0x117F: "Information: 0x%X",
+        0x417F: "Warning: 0x%X",
+        0x470E: "Overtemprature in device %d°C",
+        0x8003: "Configuration error: 0x%X",
+        0x8104: "Error: allowed temprature exeeded",
+        0x810B: "Supply voltage Up too low or missing",
+        0x817F: "Error: 0x%X",
+        0x8581: "Wire broken Ch %d",
+        0x8613: "Overload detected Ch %d, excitation voltage off",
+        0x8623: "Short circuit detected Ch %d, excitation voltage off",
+        0x8624: "Overload current Ch 1 + Ch 2 detected, excitation voltage off",
+        0x8706: "Channel %d saturation",
+        0x8707: "Channel %d overload",
+        0x870A: "Channel %d range error",
+        0x4101: "Overtemperature in device %d°C",
+    },
+
+    # ['EL5102']
+    (0x2, 0x13ee3052): {
+        0x4302: "Maximum frequency of the input signal is nearly reached (channel %d)",
+        0x4303: "Limit counter value was reduced because of the PDO configuration (channel %d)",
+        0x4304: "Reset counter value was reduced because of the PDO configuration (channel %d)",
+        0x817F: "Internal hardware error (%d)",
+        0x8303: "Encoder power missing (channel %d)",
+        0x8310: "Initialisation error",
+        0x8311: "Maximum frequency of the input signal is exceeded (channel %d)",
+        0x8312: "Encoder plausibility error (channel %d)",
+        0x8313: "Configuration error (channel %d)",
+        0x8314: "Synchronisation error",
+        0x8315: "Error status input (channel %d)",
+        0x831B: "Open circuit or short circuit track A (channel %d)",
+        0x831C: "Open circuit or short circuit track B (channel %d)",
+        0x831D: "Open circuit or short circuit track C (channel %d)",
+    },
+
+    # ['EL5112']
+    (0x2, 0x13f83052): {
+        0x4302: "Maximum frequency of the input signal is nearly reached (channel %d)",
+        0x4303: "Limit counter value was reduced because of the PDO configuration (channel %d)",
+        0x4304: "Reset counter value was reduced because of the PDO configuration (channel %d)",
+        0x817F: "Internal hardware error (%d)",
+        0x8303: "Encoder power missing (channel %d)",
+        0x8310: "Initialisation error",
+        0x8311: "Maximum frequency of the input signal is exceeded (channel %d)",
+        0x8312: "Encoder plausibility error (channel %d)",
+        0x8313: "Configuration error (channel %d)",
+        0x8314: "Synchronisation error",
+        0x8315: "Error status input (channel %d)",
+        0x831B: "Open circuit or short circuit track A (channel %d)",
+        0x831C: "Open circuit or short circuit track B (channel %d)",
+        0x831D: "Open circuit or short circuit track C (channel %d)",
+    },
+
+    # ['EL5122']
+    (0x2, 0x14023052): {
+        0x4302: "Maximum frequency of the input signal is nearly reached (channel %d)",
+        0x4303: "Limit counter value was reduced because of the PDO configuration (channel %d)",
+        0x4304: "Reset counter value was reduced because of the PDO configuration (channel %d)",
+        0x817F: "Internal hardware error (%d)",
+        0x8303: "Encoder power missing (channel %d)",
+        0x8310: "Initialisation error",
+        0x8311: "Maximum frequency of the input signal is exceeded (channel %d)",
+        0x8312: "Encoder plausibility error (channel %d)",
+        0x8313: "Configuration error (channel %d)",
+        0x8314: "Synchronisation error",
+        0x8315: "Error status input (channel %d)",
+        0x831B: "Open circuit or short circuit track A (channel %d)",
+        0x831C: "Open circuit or short circuit track B (channel %d)",
+        0x831D: "Open circuit or short circuit track C (channel %d)",
+    },
+
+    # ['EL5131']
+    (0x2, 0x140b3052): {
+        0x4302: "Maximum frequency of the input signal is nearly reached (channel %d)",
+        0x4303: "Limit counter value was reduced because of the PDO configuration (channel %d)",
+        0x4304: "Reset counter value was reduced because of the PDO configuration (channel %d)",
+        0x817F: "Internal hardware error (%d)",
+        0x8303: "Encoder power missing (channel %d)",
+        0x8310: "Initialisation error",
+        0x8311: "Maximum frequency of the input signal is exceeded (channel %d)",
+        0x8312: "Encoder plausibility error (channel %d)",
+        0x8313: "Configuration error (channel %d)",
+        0x8314: "Synchronisation error",
+        0x8315: "Error status input (channel %d)",
+        0x8318: "Error output (channel %d, output %d)",
+        0x8319: "Error PDOs for threshold base not active (channel %d, output %d)",
+        0x831B: "Open circuit or short circuit track A (channel %d)",
+        0x831C: "Open circuit or short circuit track B (channel %d)",
+        0x831D: "Open circuit or short circuit track C (channel %d)",
     },
 
     # Beckhoff EL7041
