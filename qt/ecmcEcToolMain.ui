@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>734</width>
-    <height>361</height>
+    <width>1014</width>
+    <height>569</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -27,33 +27,51 @@
    <widget class="caMultiLineString" name="camultilinestring_2">
     <property name="geometry">
      <rect>
-      <x>15</x>
-      <y>15</y>
-      <width>706</width>
-      <height>236</height>
+      <x>10</x>
+      <y>35</y>
+      <width>996</width>
+      <height>451</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Lucida Sans Typewriter</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="verticalScrollBarPolicy">
+     <enum>Qt::ScrollBarAsNeeded</enum>
+    </property>
+    <property name="horizontalScrollBarPolicy">
+     <enum>Qt::ScrollBarAsNeeded</enum>
     </property>
     <property name="channel" stdset="0">
      <string notr="true">$(IOC):m$(MasterID)-EcTool-Msg</string>
+    </property>
+    <property name="framePresent" stdset="0">
+     <bool>true</bool>
+    </property>
+    <property name="fontScaleMode" stdset="0">
+     <enum>caMultiLineString::None</enum>
     </property>
    </widget>
    <widget class="QGroupBox" name="groupBox_2">
     <property name="geometry">
      <rect>
-      <x>15</x>
-      <y>260</y>
-      <width>711</width>
-      <height>91</height>
+      <x>10</x>
+      <y>490</y>
+      <width>996</width>
+      <height>71</height>
      </rect>
     </property>
     <property name="title">
-     <string>EC Tool: Read Hw Diagnostics  Buffer</string>
+     <string/>
     </property>
     <widget class="caLineEdit" name="calineedit_36">
      <property name="geometry">
       <rect>
-       <x>605</x>
-       <y>60</y>
+       <x>890</x>
+       <y>45</y>
        <width>51</width>
        <height>16</height>
       </rect>
@@ -93,8 +111,8 @@
     <widget class="caLineEdit" name="calineedit_35">
      <property name="geometry">
       <rect>
-       <x>605</x>
-       <y>40</y>
+       <x>890</x>
+       <y>25</y>
        <width>51</width>
        <height>16</height>
       </rect>
@@ -131,8 +149,8 @@
     <widget class="caLabel" name="calabel_68">
      <property name="geometry">
       <rect>
-       <x>485</x>
-       <y>40</y>
+       <x>770</x>
+       <y>25</y>
        <width>100</width>
        <height>16</height>
       </rect>
@@ -150,8 +168,8 @@
     <widget class="caLabel" name="calabel_69">
      <property name="geometry">
       <rect>
-       <x>485</x>
-       <y>60</y>
+       <x>770</x>
+       <y>45</y>
        <width>100</width>
        <height>16</height>
       </rect>
@@ -166,80 +184,11 @@
       <string>Status</string>
      </property>
     </widget>
-    <widget class="caLabel" name="calabel_71">
-     <property name="geometry">
-      <rect>
-       <x>-50</x>
-       <y>30</y>
-       <width>100</width>
-       <height>16</height>
-      </rect>
-     </property>
-     <property name="maximumSize">
-      <size>
-       <width>16777215</width>
-       <height>16</height>
-      </size>
-     </property>
-     <property name="text">
-      <string>Master</string>
-     </property>
-    </widget>
-    <widget class="caLabel" name="calabel_70">
-     <property name="geometry">
-      <rect>
-       <x>-50</x>
-       <y>50</y>
-       <width>100</width>
-       <height>16</height>
-      </rect>
-     </property>
-     <property name="maximumSize">
-      <size>
-       <width>16777215</width>
-       <height>16</height>
-      </size>
-     </property>
-     <property name="text">
-      <string>Slave:</string>
-     </property>
-    </widget>
-    <widget class="caTextEntry" name="catextentry_13">
-     <property name="geometry">
-      <rect>
-       <x>55</x>
-       <y>25</y>
-       <width>71</width>
-       <height>20</height>
-      </rect>
-     </property>
-     <property name="minimumSize">
-      <size>
-       <width>0</width>
-       <height>20</height>
-      </size>
-     </property>
-     <property name="maximumSize">
-      <size>
-       <width>16777215</width>
-       <height>20</height>
-      </size>
-     </property>
-     <property name="readOnly">
-      <bool>false</bool>
-     </property>
-     <property name="channel" stdset="0">
-      <string notr="true">$(IOC):m$(MasterID)-EcTool.A</string>
-     </property>
-     <property name="keepFocus">
-      <bool>true</bool>
-     </property>
-    </widget>
     <widget class="caTextEntry" name="catextentry_14">
      <property name="geometry">
       <rect>
-       <x>55</x>
-       <y>50</y>
+       <x>170</x>
+       <y>45</y>
        <width>71</width>
        <height>20</height>
       </rect>
@@ -266,42 +215,11 @@
       <bool>true</bool>
      </property>
     </widget>
-    <widget class="caTextEntry" name="catextentry_15">
+    <widget class="caLabel" name="calabel_70">
      <property name="geometry">
       <rect>
-       <x>220</x>
-       <y>50</y>
-       <width>71</width>
-       <height>20</height>
-      </rect>
-     </property>
-     <property name="minimumSize">
-      <size>
-       <width>0</width>
-       <height>20</height>
-      </size>
-     </property>
-     <property name="maximumSize">
-      <size>
-       <width>16777215</width>
-       <height>20</height>
-      </size>
-     </property>
-     <property name="readOnly">
-      <bool>false</bool>
-     </property>
-     <property name="channel" stdset="0">
-      <string notr="true">$(IOC):m$(MasterID)-EcTool.B</string>
-     </property>
-     <property name="keepFocus">
-      <bool>true</bool>
-     </property>
-    </widget>
-    <widget class="caLabel" name="calabel_72">
-     <property name="geometry">
-      <rect>
-       <x>115</x>
-       <y>55</y>
+       <x>65</x>
+       <y>45</y>
        <width>100</width>
        <height>16</height>
       </rect>
@@ -313,14 +231,179 @@
       </size>
      </property>
      <property name="text">
-      <string>Cmd:</string>
+      <string>Slave:</string>
      </property>
+    </widget>
+    <widget class="caLabel" name="calabel_71">
+     <property name="geometry">
+      <rect>
+       <x>65</x>
+       <y>25</y>
+       <width>100</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>16777215</width>
+       <height>16</height>
+      </size>
+     </property>
+     <property name="text">
+      <string>Master</string>
+     </property>
+    </widget>
+    <widget class="caLineEdit" name="calineedit_37">
+     <property name="geometry">
+      <rect>
+       <x>170</x>
+       <y>25</y>
+       <width>71</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>16777215</width>
+       <height>18</height>
+      </size>
+     </property>
+     <property name="channel" stdset="0">
+      <string notr="true">$(IOC):m$(MasterID)-EcTool.A</string>
+     </property>
+     <property name="background">
+      <color alpha="222">
+       <red>192</red>
+       <green>192</green>
+       <blue>192</blue>
+      </color>
+     </property>
+     <property name="colorMode">
+      <enum>caLineEdit::Static</enum>
+     </property>
+     <property name="precisionMode">
+      <enum>caLineEdit::User</enum>
+     </property>
+     <property name="limitsMode">
+      <enum>caLineEdit::User</enum>
+     </property>
+     <property name="unitsEnabled">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="caFrame" name="caframe">
+     <property name="geometry">
+      <rect>
+       <x>250</x>
+       <y>20</y>
+       <width>556</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="visibility">
+      <enum>caFrame::Calc</enum>
+     </property>
+     <property name="visibilityCalc">
+      <string notr="true">B&gt;0</string>
+     </property>
+     <property name="channel" stdset="0">
+      <string notr="true"/>
+     </property>
+     <property name="channelB">
+      <string notr="true">$(IOC):m$(MasterID)-EcTool.U</string>
+     </property>
+     <widget class="caMessageButton" name="camessagebutton">
+      <property name="geometry">
+       <rect>
+        <x>435</x>
+        <y>15</y>
+        <width>101</width>
+        <height>26</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Trigg Cmd</string>
+      </property>
+      <property name="channel" stdset="0">
+       <string notr="true">$(IOC):m$(MasterID)-EcTool.PROC</string>
+      </property>
+      <property name="releaseMessage">
+       <string notr="true">1</string>
+      </property>
+     </widget>
+     <widget class="caMenu" name="camenu">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>15</y>
+        <width>186</width>
+        <height>26</height>
+       </rect>
+      </property>
+      <property name="channel" stdset="0">
+       <string notr="true">$(IOC):m$(MasterID)-EcTool-Cmd</string>
+      </property>
+     </widget>
+     <widget class="caFrame" name="caframe_2">
+      <property name="geometry">
+       <rect>
+        <x>210</x>
+        <y>10</y>
+        <width>201</width>
+        <height>36</height>
+       </rect>
+      </property>
+      <property name="visibility">
+       <enum>caFrame::Calc</enum>
+      </property>
+      <property name="visibilityCalc">
+       <string notr="true">A=3 and B&gt;0</string>
+      </property>
+      <property name="channel" stdset="0">
+       <string notr="true">$(IOC):m$(MasterID)-EcTool-Cmd</string>
+      </property>
+      <property name="channelB">
+       <string notr="true">$(IOC):m$(MasterID)-EcTool.U</string>
+      </property>
+      <widget class="caMenu" name="camenu_2">
+       <property name="geometry">
+        <rect>
+         <x>5</x>
+         <y>5</y>
+         <width>196</width>
+         <height>26</height>
+        </rect>
+       </property>
+       <property name="channel" stdset="0">
+        <string notr="true">$(IOC):m$(MasterID)-EcTool-StateArgs</string>
+       </property>
+      </widget>
+     </widget>
+     <widget class="caLabel" name="calabel_74">
+      <property name="geometry">
+       <rect>
+        <x>-40</x>
+        <y>0</y>
+        <width>100</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>16</height>
+       </size>
+      </property>
+      <property name="text">
+       <string>Command</string>
+      </property>
+     </widget>
     </widget>
     <widget class="caToggleButton" name="catogglebutton">
      <property name="geometry">
       <rect>
-       <x>275</x>
-       <y>25</y>
+       <x>60</x>
+       <y>30</y>
        <width>21</width>
        <height>22</height>
       </rect>
@@ -335,8 +418,8 @@
     <widget class="caLabel" name="calabel_73">
      <property name="geometry">
       <rect>
-       <x>170</x>
-       <y>30</y>
+       <x>-45</x>
+       <y>31</y>
        <width>100</width>
        <height>16</height>
       </rect>
@@ -351,29 +434,28 @@
       <string>Enable</string>
      </property>
     </widget>
-    <widget class="caMessageButton" name="camessagebutton">
-     <property name="geometry">
-      <rect>
-       <x>335</x>
-       <y>50</y>
-       <width>100</width>
-       <height>22</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Trigg</string>
-     </property>
-     <property name="channel" stdset="0">
-      <string notr="true">$(IOC):m$(MasterID)-EcTool.PROC</string>
-     </property>
-     <property name="releaseMessage">
-      <string notr="true">1</string>
-     </property>
-    </widget>
+   </widget>
+   <widget class="caLabel" name="calabel_2">
+    <property name="geometry">
+     <rect>
+      <x>-80</x>
+      <y>5</y>
+      <width>161</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>EcTool:</string>
+    </property>
    </widget>
   </widget>
  </widget>
  <customwidgets>
+  <customwidget>
+   <class>caMenu</class>
+   <extends>QComboBox</extends>
+   <header>caMenu</header>
+  </customwidget>
   <customwidget>
    <class>caTextEntry</class>
    <extends>caLineEdit</extends>
@@ -388,6 +470,12 @@
    <class>caToggleButton</class>
    <extends>QCheckBox</extends>
    <header>caToggleButton</header>
+  </customwidget>
+  <customwidget>
+   <class>caFrame</class>
+   <extends>QFrame</extends>
+   <header>caFrame</header>
+   <container>1</container>
   </customwidget>
   <customwidget>
    <class>caLabel</class>

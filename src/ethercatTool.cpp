@@ -41,10 +41,12 @@
 #define EC_SLAVES_MAX 65535
 
 enum EcToolCommand {
-  CMD_CHANGE_EC_STATE = 10,
-  CMD_READ_DIAG_BUFFER_SDO = 20,
-  CMD_EL7062_AUTOTUNE = 70621,
-  CMD_EL7062_READBACK = 70622
+  CMD_EC_SLV_CHANGE_EC_STATE = 10,
+  CMD_EC_SLVS_LIST = 11,
+  CMD_EC_SLV_READ_DIAG_BUFFER_SDO = 20,
+  CMD_EC_MST = 5,
+  CMD_EC_SLV_EL7062_AUTOTUNE = 70621,
+  CMD_EC_SLV_EL7062_READBACK = 70622
 };
 
 void updateStatEtherCATTool(const char *);
@@ -53,6 +55,8 @@ static void initEtherCATTool(struct aSubRecord *);
 static long runEtherCATTool(struct aSubRecord *);
 
 static int setupChangeSlaveEtherCATstate(int, int, int);
+static int setupEthercatSlaves(int master, char* epics, char *ecmccfg, char * prefix);
+static int setupEthercatMaster(int master, char* epics, char *ecmccfg, char * prefix);
 static int setupEL7062ExeAutoTune(int, int, int, char *, char *, char *);
 static int setupEL7062ReadBack(int, int, int, char *, char *, char *);
 static int setupReadDiagBufferSDO(int master, int slave, char* epics, char *ecmccfg, char * prefix);
@@ -155,16 +159,22 @@ static long runEtherCATTool (struct aSubRecord *rec)
     }
 
     switch(cmd) {
-        case CMD_CHANGE_EC_STATE:
+        case CMD_EC_MST:
+            setupEthercatMaster(masterId, epicsVer, ecmccfgVer, prefix);
+            break;
+        case CMD_EC_SLV_CHANGE_EC_STATE:
             setupChangeSlaveEtherCATstate(masterId, slaveId, cmdArg);
             break;
-        case CMD_READ_DIAG_BUFFER_SDO:           
+        case CMD_EC_SLVS_LIST:
+            setupEthercatSlaves(masterId, epicsVer, ecmccfgVer, prefix);
+            break;        
+        case CMD_EC_SLV_READ_DIAG_BUFFER_SDO:           
             setupReadDiagBufferSDO(masterId, slaveId, epicsVer, ecmccfgVer, prefix);
             break;
-        case CMD_EL7062_AUTOTUNE:
+        case CMD_EC_SLV_EL7062_AUTOTUNE:
             setupEL7062ExeAutoTune(masterId, slaveId, chId, epicsVer, ecmccfgVer, prefix);
             break;
-        case CMD_EL7062_READBACK:
+        case CMD_EC_SLV_EL7062_READBACK:
             setupEL7062ReadBack(masterId, slaveId, chId, epicsVer, ecmccfgVer, prefix);
             break;
     }
@@ -207,10 +217,43 @@ static int setupChangeSlaveEtherCATstate(int masterId, int slaveId, int cmdArg) 
   return 0;
 }
 
+static int setupEthercatMaster(int master, char* epics, char *ecmccfg, char * prefix) {
+    size_t charCount = snprintf(scriptPath,
+            sizeof(scriptPath),
+            "bash /ioc/modules/ecmccfg/%s/R%s/ecToolEthercatMaster.sh %d %s\n",
+            ecmccfg,
+            epics,
+            master,
+            prefix);
+
+    if (charCount >= sizeof(scriptPath) - 1)
+        return -1;
+
+    hasJob=1;
+    return 0;
+}
+
+
+static int setupEthercatSlaves(int master, char* epics, char *ecmccfg, char * prefix) {
+    size_t charCount = snprintf(scriptPath,
+            sizeof(scriptPath),
+            "bash /ioc/modules/ecmccfg/%s/R%s/ecToolEthercatSlaves.sh %d %s\n",
+            ecmccfg,
+            epics,
+            master,
+            prefix);
+
+    if (charCount >= sizeof(scriptPath) - 1)
+        return -1;
+
+    hasJob=1;
+    return 0;
+}
+
 static int setupReadDiagBufferSDO(int master, int slave, char* epics, char *ecmccfg, char * prefix) {
     size_t charCount = snprintf(scriptPath,
             sizeof(scriptPath),
-            "bash /ioc/modules/ecmccfg/%s/R%s/readHwDiag.sh %d %d %s\n",
+            "bash /ioc/modules/ecmccfg/%s/R%s/ecToolReadHwDiag.sh %d %d %s\n",
             ecmccfg,
             epics,
             master,
@@ -228,7 +271,7 @@ static int setupEL7062ExeAutoTune(int master, int slave, int channel, char* epic
 {
     size_t charCount = snprintf(scriptPath,
             sizeof(scriptPath),
-            "bash /ioc/modules/ecmccfg/%s/R%s/el7062_triggTune.sh %d %d %d %s\n",
+            "bash /ioc/modules/ecmccfg/%s/R%s/ecToolEL7062_triggTune.sh %d %d %d %s\n",
             ecmccfg,
             epics,
             master,
@@ -248,7 +291,7 @@ static int setupEL7062ReadBack(int master, int slave, int channel, char* epics, 
 {
     size_t charCount = snprintf(scriptPath,
             sizeof(scriptPath),
-            "bash /ioc/modules/ecmccfg/%s/R%s/el7062_readBackParams.sh %d %d %d %s\n",
+            "bash /ioc/modules/ecmccfg/%s/R%s/ecToolEL7062_readBackParams.sh %d %d %d %s\n",
             ecmccfg,
             epics,
             master,

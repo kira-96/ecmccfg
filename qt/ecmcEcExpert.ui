@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>215</width>
-    <height>456</height>
+    <height>430</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -617,7 +617,7 @@
       <x>20</x>
       <y>315</y>
       <width>181</width>
-      <height>76</height>
+      <height>106</height>
      </rect>
     </property>
     <property name="title">
@@ -740,19 +740,30 @@
       <bool>true</bool>
      </property>
     </widget>
+    <widget class="caShellCommand" name="cashellcommand_2">
+     <property name="geometry">
+      <rect>
+       <x>19</x>
+       <y>75</y>
+       <width>136</width>
+       <height>18</height>
+      </rect>
+     </property>
+     <property name="label">
+      <string notr="true">Read HW diag</string>
+     </property>
+     <property name="labels">
+      <string>Open first axis</string>
+     </property>
+     <property name="files">
+      <string>bash /ioc/modules/qt/ecmcOpenObject.sh</string>
+     </property>
+     <property name="args">
+      <string>OPEN_EC_TOOL_HW_DIAG_MAIN $(IOC) $(MasterID) $(MasterID) 0</string>
+     </property>
+    </widget>
    </widget>
   </widget>
-  <widget class="QMenuBar" name="menubar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>215</width>
-     <height>25</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <customwidgets>
   <customwidget>
@@ -769,6 +780,11 @@
    <class>caLineEdit</class>
    <extends>QLineEdit</extends>
    <header>caLineEdit</header>
+  </customwidget>
+  <customwidget>
+   <class>caShellCommand</class>
+   <extends>QWidget</extends>
+   <header>caShellCommand</header>
   </customwidget>
  </customwidgets>
  <resources/>

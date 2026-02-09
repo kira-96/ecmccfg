@@ -1,15 +1,21 @@
 #!/bin/bash
-echo "EtherCAT tool: Diagnosing: Prefix=$4, Master=$1, Slave=$2"
+echo "EtherCAT tool: ethecat slaves: Prefix=$2, Master=$1"
+
 MID=$1
-SID=$2
-PREFIX=$3
+PREFIX=$2
 
 # Busy
 caput "${PREFIX}m${MID}-EcTool-Stat" "BUSY" > /dev/null 2>&1
 caput "${PREFIX}m${MID}-EcTool-Prgs" 0 > /dev/null 2>&1
 
-# Comamnd to read diagnostics
-text="$(python3 /ioc/NeedfulThings/ecmc_ec_scripts/ec_diagnostic_messages_abs_path.py -m $MID -s $SID | tr -d '\0')"
+if [ $MID -lt 0 ]
+then
+text="$(/opt/etherlab/bin/ethercat slaves | tr -d '\0')"
+else
+text="$(/opt/etherlab/bin/ethercat slaves -m $MID | tr -d '\0')"
+fi
+
+# Comamnd to read ethercat slaves
 caput -S ${PREFIX}m${MID}-EcTool-Msg "$text" > /dev/null 2>&1
 
 echo "Read done"

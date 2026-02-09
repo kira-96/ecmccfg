@@ -200,7 +200,7 @@ record(aSub, "${P}${ECMC_EC_MP}${MASTER_ID}-EcTool") {
     # B: Command tune EL7062 drive
     field(FTB,  "DOUBLE")
     field(NOB,  "1")
-    field(INPB, "")
+    field(INPB, "${P}${ECMC_EC_MP}${MASTER_ID}-EcTool-Cmd.RVAL")
     
     # C: Spare
     field(FTC,  "DOUBLE")
@@ -235,7 +235,7 @@ record(aSub, "${P}${ECMC_EC_MP}${MASTER_ID}-EcTool") {
     # I: command specific arg   (double)
     field(FTI,  "DOUBLE")
     field(NOI,  "1")
-    field(INPI, "")
+    field(INPI, "${P}${ECMC_EC_MP}${MASTER_ID}-EcTool-StateArgs.RVAL")
 
     # R: epics version
     field(FTR,  "STRING")
@@ -304,6 +304,43 @@ record(ai,  "${P}${ECMC_EC_MP}${MASTER_ID}-EcTool-Prgs"){
 record(waveform,"${P}${ECMC_EC_MP}${MASTER_ID}-EcTool-Msg"){
   field(DESC, "Diag text")
   field(FTVL, "CHAR")
-  field(NELM, "10240")
+  field(NELM, "32768")
+}
+
+record(mbbo,  "${P}${ECMC_EC_MP}${MASTER_ID}-EcTool-Cmd"){
+  field(DESC, "Ec Tool Command")
+  field(ZRST, "IDLE")
+  field(ZRVL, 0)
+  field(ONST, "ethercat master")
+  field(ONVL, 5)
+  field(TWST, "ethercat slaves")
+  field(TWVL, 11)
+  field(THST, "ethercat states")
+  field(THVL, 10)
+  field(FRST, "ethercat hw diag")
+  field(FRVL, 20)
+  field(TEST, "EL7062_AUTOTUNE")
+  field(TEVL, 70621)
+  field(ELST, "EL7062_READBACK")
+  field(ELVL, 70622)
+  field(VAL,  0)
+}
+
+# Args for EC_SLAVE_STATE command
+record(mbbo,  "${P}${ECMC_EC_MP}${MASTER_ID}-EcTool-StateArgs"){
+  field(DESC, "Ec Tool status")
+  field(ZRST, "NO_STATE")
+  field(ZRVL, 0)
+  field(ONST, "INIT")
+  field(ONVL, 1)
+  field(TWST, "PREOP")
+  field(TWVL, 2)
+  field(THST, "BOOT")
+  field(THVL, 3)
+  field(FRST, "SAFEOP")
+  field(FRVL, 4)
+  field(FVST, "OP")
+  field(FVVL, 8)
+  field(VAL,  0)
 }
 

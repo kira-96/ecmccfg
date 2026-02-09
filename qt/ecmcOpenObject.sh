@@ -38,6 +38,7 @@
 #  SM_NEXT             : CMD, PREFIX, THIS_PLC_ID
 #  SM_PREV             : CMD, PREFIX, THIS_PLC_ID
 #  TRG_EC_TOOL_HW_DIAG : CMD, PREFIX, M_ID        S_ID
+#  OPEN_EC_TOOL_HW_DIAG_MAIN : CMD, PREFIX, M_ID S_ID
 
 CMD=$1
 
@@ -480,16 +481,34 @@ function ecToolReadHwDiag() {
   PREFIX=$1
   MID=$2
   SID=$3
+
   # master
   caput $PREFIX:m$MID-EcTool.A $MID
   # slave
   caput $PREFIX:m$MID-EcTool.D $SID
   # comamnd (read diags)
-  caput $PREFIX:m$MID-EcTool.B 20
+  caput $PREFIX:m$MID-EcTool-Cmd "ethercat hw diag"
   # trigger
   caput $PREFIX:m$MID-EcTool.U 0
   # trigger
   caput $PREFIX:m$MID-EcTool.U 1
+  caput $PREFIX:m$MID-EcTool.PROC 1
+}
+
+function openEcToolReadHwDiagMain() {
+  PREFIX=$1
+  MID=$2  
+  SID=$3
+  # master
+  caput $PREFIX:m$MID-EcTool.A $MID
+  # slave
+  caput $PREFIX:m$MID-EcTool.D $SID
+  # comamnd (read diags)
+  caput $PREFIX:m$MID-EcTool-Cmd "ethercat hw diag"
+  caput $PREFIX:m$MID-EcTool.U 1
+  MACROS="SYS=$PREFIX,IOC=$PREFIX,MasterID=$MID,SlaveID=$$SID"
+  echo "MACROS=$MACROS"
+  caqtdm -macro $MACROS ecmcEcToolMain.ui
   caput $PREFIX:m$MID-EcTool.PROC 1
 }
 
@@ -605,7 +624,10 @@ case $CMD in
   ;;
   "TRG_EC_TOOL_HW_DIAG")
   ecToolReadHwDiag $2 $3 $4
-  ;;  
+  ;;
+  "OPEN_EC_TOOL_HW_DIAG_MAIN")
+  openEcToolReadHwDiagMain $2 $3 $4
+  ;;
   *) echo "Invalid command"
   ;;
 esac

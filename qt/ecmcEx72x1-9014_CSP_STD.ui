@@ -835,6 +835,28 @@
     <string>Diff</string>
    </property>
   </widget>
+  <widget class="caShellCommand" name="cashellcommand_2">
+   <property name="geometry">
+    <rect>
+     <x>5</x>
+     <y>5</y>
+     <width>26</width>
+     <height>18</height>
+    </rect>
+   </property>
+   <property name="label">
+    <string notr="true">HW</string>
+   </property>
+   <property name="labels">
+    <string>Open first axis</string>
+   </property>
+   <property name="files">
+    <string>bash /ioc/modules/qt/ecmcOpenObject.sh</string>
+   </property>
+   <property name="args">
+    <string>OPEN_EC_TOOL_HW_DIAG_MAIN $(IOC) $(MasterID)  $(SlaveID)</string>
+   </property>
+  </widget>
   <zorder>cainclude</zorder>
   <zorder>caled</zorder>
   <zorder>calabel_16</zorder>
@@ -847,6 +869,7 @@
   <zorder>calineedit_2</zorder>
   <zorder>carelateddisplay_8</zorder>
   <zorder>calabel_6</zorder>
+  <zorder>cashellcommand_2</zorder>
  </widget>
  <customwidgets>
   <customwidget>
@@ -888,6 +911,11 @@
    <class>caByte</class>
    <extends>QWidget</extends>
    <header>caByte</header>
+  </customwidget>
+  <customwidget>
+   <class>caShellCommand</class>
+   <extends>QWidget</extends>
+   <header>caShellCommand</header>
   </customwidget>
  </customwidgets>
  <resources/>

@@ -18,7 +18,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>125</width>
+     <width>128</width>
      <height>500</height>
     </rect>
    </property>
@@ -270,6 +270,28 @@
     <number>15</number>
    </property>
   </widget>
+  <widget class="caShellCommand" name="cashellcommand_2">
+   <property name="geometry">
+    <rect>
+     <x>5</x>
+     <y>5</y>
+     <width>26</width>
+     <height>18</height>
+    </rect>
+   </property>
+   <property name="label">
+    <string notr="true">HW</string>
+   </property>
+   <property name="labels">
+    <string>Open first axis</string>
+   </property>
+   <property name="files">
+    <string>bash /ioc/modules/qt/ecmcOpenObject.sh</string>
+   </property>
+   <property name="args">
+    <string>OPEN_EC_TOOL_HW_DIAG_MAIN $(IOC) $(MasterID)  $(SlaveID)</string>
+   </property>
+  </widget>
  </widget>
  <customwidgets>
   <customwidget>
@@ -296,6 +318,11 @@
    <class>caByte</class>
    <extends>QWidget</extends>
    <header>caByte</header>
+  </customwidget>
+  <customwidget>
+   <class>caShellCommand</class>
+   <extends>QWidget</extends>
+   <header>caShellCommand</header>
   </customwidget>
  </customwidgets>
  <resources/>
