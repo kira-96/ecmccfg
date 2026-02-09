@@ -474,6 +474,10 @@ class ReadDiagMessage:
         self.read_device_information()
         self.print_device_information()
         self.read_diag_messages()
+
+        # sort messages by time
+        self.messages = sorted(self.messages, key=lambda x: x['time'])
+
         self.print_diagnostic_messages()
 
     def getNumberFromRespond(self, respond, datatype):
