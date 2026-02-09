@@ -3229,6 +3229,28 @@
       <enum>caRowColMenu::Menu</enum>
      </property>
     </widget>
+    <widget class="caShellCommand" name="cashellcommand_11">
+     <property name="geometry">
+      <rect>
+       <x>15</x>
+       <y>215</y>
+       <width>56</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="label">
+      <string notr="true">Docs</string>
+     </property>
+     <property name="labels">
+      <string>Open first axis</string>
+     </property>
+     <property name="files">
+      <string>xdg-open https://paulscherrerinstitute.github.io/ecmccfg/manual/</string>
+     </property>
+     <property name="args">
+      <string/>
+     </property>
+    </widget>
    </widget>
    <widget class="QWidget" name="tab">
     <attribute name="title">
@@ -5464,6 +5486,28 @@
        <string>P=$(DEV):,M=$(Axis),DEV=$(DEV),Axis=$(Axis),AX_ID=$(AX_ID),IOC=$(IOC)</string>
       </property>
      </widget>
+    </widget>
+    <widget class="caShellCommand" name="cashellcommand_12">
+     <property name="geometry">
+      <rect>
+       <x>290</x>
+       <y>40</y>
+       <width>51</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="label">
+      <string notr="true">Docs</string>
+     </property>
+     <property name="labels">
+      <string>Open first axis</string>
+     </property>
+     <property name="files">
+      <string>xdg-open https://paulscherrerinstitute.github.io/ecmccfg/manual/</string>
+     </property>
+     <property name="args">
+      <string/>
+     </property>
     </widget>
    </widget>
   </widget>

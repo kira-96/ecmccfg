@@ -88,6 +88,11 @@ caput "${PREFIX}m${MID}-EcTool-Prgs" 95 > /dev/null 2>&1
 echo "ecmccomp macros array: $ecmccompStr"
 caput -S "${PREFIX_PVS}-Arr" "$ecmccompStr" > /dev/null 2>&1
 
+text="Auto tune result: "
+text=$text$ecmccompStr
+# Also write to msg
+caput -S ${PREFIX}m${MID}-EcTool-Msg "$text" > /dev/null 2>&1
+
 # Progress
 caput "${PREFIX}m${MID}-EcTool-Prgs" 100 > /dev/null 2>&1
 

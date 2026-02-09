@@ -70,7 +70,7 @@
     <widget class="caLineEdit" name="calineedit_36">
      <property name="geometry">
       <rect>
-       <x>890</x>
+       <x>825</x>
        <y>45</y>
        <width>51</width>
        <height>16</height>
@@ -111,7 +111,7 @@
     <widget class="caLineEdit" name="calineedit_35">
      <property name="geometry">
       <rect>
-       <x>890</x>
+       <x>825</x>
        <y>25</y>
        <width>51</width>
        <height>16</height>
@@ -149,7 +149,7 @@
     <widget class="caLabel" name="calabel_68">
      <property name="geometry">
       <rect>
-       <x>770</x>
+       <x>705</x>
        <y>25</y>
        <width>100</width>
        <height>16</height>
@@ -168,7 +168,7 @@
     <widget class="caLabel" name="calabel_69">
      <property name="geometry">
       <rect>
-       <x>770</x>
+       <x>705</x>
        <y>45</y>
        <width>100</width>
        <height>16</height>
@@ -187,7 +187,7 @@
     <widget class="caTextEntry" name="catextentry_14">
      <property name="geometry">
       <rect>
-       <x>170</x>
+       <x>125</x>
        <y>45</y>
        <width>71</width>
        <height>20</height>
@@ -218,7 +218,7 @@
     <widget class="caLabel" name="calabel_70">
      <property name="geometry">
       <rect>
-       <x>65</x>
+       <x>20</x>
        <y>45</y>
        <width>100</width>
        <height>16</height>
@@ -237,7 +237,7 @@
     <widget class="caLabel" name="calabel_71">
      <property name="geometry">
       <rect>
-       <x>65</x>
+       <x>20</x>
        <y>25</y>
        <width>100</width>
        <height>16</height>
@@ -256,7 +256,7 @@
     <widget class="caLineEdit" name="calineedit_37">
      <property name="geometry">
       <rect>
-       <x>170</x>
+       <x>125</x>
        <y>25</y>
        <width>71</width>
        <height>16</height>
@@ -294,7 +294,7 @@
     <widget class="caFrame" name="caframe">
      <property name="geometry">
       <rect>
-       <x>250</x>
+       <x>205</x>
        <y>20</y>
        <width>556</width>
        <height>41</height>
@@ -424,7 +424,7 @@
     <widget class="caToggleButton" name="catogglebutton">
      <property name="geometry">
       <rect>
-       <x>60</x>
+       <x>50</x>
        <y>30</y>
        <width>21</width>
        <height>22</height>
@@ -440,7 +440,7 @@
     <widget class="caLabel" name="calabel_73">
      <property name="geometry">
       <rect>
-       <x>-45</x>
+       <x>-55</x>
        <y>31</y>
        <width>100</width>
        <height>16</height>
@@ -454,6 +454,28 @@
      </property>
      <property name="text">
       <string>Enable</string>
+     </property>
+    </widget>
+    <widget class="caShellCommand" name="cashellcommand_2">
+     <property name="geometry">
+      <rect>
+       <x>895</x>
+       <y>40</y>
+       <width>91</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="label">
+      <string notr="true">Docs</string>
+     </property>
+     <property name="labels">
+      <string>Open first axis</string>
+     </property>
+     <property name="files">
+      <string>xdg-open https://paulscherrerinstitute.github.io/ecmccfg/manual/</string>
+     </property>
+     <property name="args">
+      <string/>
      </property>
     </widget>
    </widget>
@@ -513,6 +535,11 @@
    <class>caMultiLineString</class>
    <extends>QPlainTextEdit</extends>
    <header>caMultiLineString</header>
+  </customwidget>
+  <customwidget>
+   <class>caShellCommand</class>
+   <extends>QWidget</extends>
+   <header>caShellCommand</header>
   </customwidget>
  </customwidgets>
  <resources/>

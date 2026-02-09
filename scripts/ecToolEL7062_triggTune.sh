@@ -8,6 +8,10 @@ PREFIX=$4
 # Busy
 caput "${PREFIX}m${MID}-EcTool-Stat" "BUSY" > /dev/null 2>&1
 ok=0
+text="Tuning triggered.."
+
+# Also write to msg
+caput -S ${PREFIX}m${MID}-EcTool-Msg "$text" > /dev/null 2>&1
 
 # Trigger tune
 if [[ $CID -eq "1" ]]; then
@@ -66,6 +70,10 @@ $DIR/el7062_readBackParams.sh $MID $SID $CID $PREFIX
 
 echo "Tuning successfull"
 caput "${PREFIX}m${MID}-EcTool-Prgs" 100 > /dev/null 2>&1
+
+text="Tuning done, please issue readback command to see result."
+# Also write to msg
+caput -S ${PREFIX}m${MID}-EcTool-Msg "$text" > /dev/null 2>&1
 
 #echo "Progress: Done"
 caput "${PREFIX}m${MID}-EcTool-Stat" "IDLE" > /dev/null 2>&1
