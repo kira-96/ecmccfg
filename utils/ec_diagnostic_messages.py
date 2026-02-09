@@ -524,7 +524,7 @@ class ReadDiagMessage:
 
 
     def read_sdo(self, sdo):
-        command = "ethercat -m" + str(self.id_master)
+        command = "/opt/etherlab/bin/ethercat -m" + str(self.id_master)
         command += " -p" + str(self.id_slave)
         command += " --type " + sdo["type"]
         command += " upload " + sdo["index"] + " " + sdo["subindex"]
