@@ -312,25 +312,6 @@
      <property name="channelB">
       <string notr="true">$(IOC):m$(MasterID)-EcTool.U</string>
      </property>
-     <widget class="caMessageButton" name="camessagebutton">
-      <property name="geometry">
-       <rect>
-        <x>435</x>
-        <y>15</y>
-        <width>101</width>
-        <height>26</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Trigg Cmd</string>
-      </property>
-      <property name="channel" stdset="0">
-       <string notr="true">$(IOC):m$(MasterID)-EcTool.PROC</string>
-      </property>
-      <property name="releaseMessage">
-       <string notr="true">1</string>
-      </property>
-     </widget>
      <widget class="caMenu" name="camenu">
       <property name="geometry">
        <rect>
@@ -397,6 +378,47 @@
       <property name="text">
        <string>Command</string>
       </property>
+     </widget>
+     <widget class="caFrame" name="caframe_3">
+      <property name="geometry">
+       <rect>
+        <x>420</x>
+        <y>10</y>
+        <width>116</width>
+        <height>36</height>
+       </rect>
+      </property>
+      <property name="visibility">
+       <enum>caFrame::Calc</enum>
+      </property>
+      <property name="visibilityCalc">
+       <string notr="true">A&gt;0</string>
+      </property>
+      <property name="channel" stdset="0">
+       <string notr="true">$(IOC):m$(MasterID)-EcTool-Cmd</string>
+      </property>
+      <property name="channelB">
+       <string notr="true"/>
+      </property>
+      <widget class="caMessageButton" name="camessagebutton">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>5</y>
+         <width>101</width>
+         <height>26</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Trigg Cmd</string>
+       </property>
+       <property name="channel" stdset="0">
+        <string notr="true">$(IOC):m$(MasterID)-EcTool.PROC</string>
+       </property>
+       <property name="releaseMessage">
+        <string notr="true">1</string>
+       </property>
+      </widget>
      </widget>
     </widget>
     <widget class="caToggleButton" name="catogglebutton">
