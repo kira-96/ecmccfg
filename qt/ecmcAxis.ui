@@ -4380,59 +4380,78 @@
     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
    </property>
   </widget>
-  <widget class="caLineEdit" name="calineedit_29">
+  <widget class="caFrame" name="caframe_2">
    <property name="geometry">
     <rect>
-     <x>130</x>
-     <y>5</y>
-     <width>81</width>
-     <height>16</height>
+     <x>125</x>
+     <y>0</y>
+     <width>111</width>
+     <height>26</height>
     </rect>
    </property>
-   <property name="alignment">
-    <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+   <property name="visibility">
+    <enum>caFrame::Calc</enum>
+   </property>
+   <property name="visibilityCalc">
+    <string notr="true">A&gt;=0</string>
    </property>
    <property name="channel" stdset="0">
-    <string notr="true">$(DEV):$(Axis)-GrpNam</string>
+    <string notr="true">$(DEV):$(Axis)-GrpId</string>
    </property>
-   <property name="background">
-    <color>
-     <red>238</red>
-     <green>238</green>
-     <blue>236</blue>
-    </color>
-   </property>
-   <property name="colorMode">
-    <enum>caLineEdit::Static</enum>
-   </property>
-   <property name="alarmHandling">
-    <enum>caLineEdit::onBackground</enum>
-   </property>
-   <property name="precisionMode">
-    <enum>caLineEdit::User</enum>
-   </property>
-  </widget>
-  <widget class="caShellCommand" name="cashellcommand_10">
-   <property name="geometry">
-    <rect>
-     <x>210</x>
-     <y>5</y>
-     <width>21</width>
-     <height>18</height>
-    </rect>
-   </property>
-   <property name="label">
-    <string notr="true">&gt;</string>
-   </property>
-   <property name="labels">
-    <string>Open first axis</string>
-   </property>
-   <property name="files">
-    <string>bash /ioc/modules/qt/ecmcOpenObject.sh</string>
-   </property>
-   <property name="args">
-    <string>AXIS_OVERVIEW_GROUP_BY_AX_NAME $(IOC) $(DEV):$(Axis);</string>
-   </property>
+   <widget class="caShellCommand" name="cashellcommand_10">
+    <property name="geometry">
+     <rect>
+      <x>85</x>
+      <y>5</y>
+      <width>21</width>
+      <height>18</height>
+     </rect>
+    </property>
+    <property name="label">
+     <string notr="true">&gt;</string>
+    </property>
+    <property name="labels">
+     <string>Open first axis</string>
+    </property>
+    <property name="files">
+     <string>bash /ioc/modules/qt/ecmcOpenObject.sh</string>
+    </property>
+    <property name="args">
+     <string>AXIS_OVERVIEW_GROUP_BY_AX_NAME $(IOC) $(DEV):$(Axis);</string>
+    </property>
+   </widget>
+   <widget class="caLineEdit" name="calineedit_29">
+    <property name="geometry">
+     <rect>
+      <x>5</x>
+      <y>5</y>
+      <width>81</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+    </property>
+    <property name="channel" stdset="0">
+     <string notr="true">$(DEV):$(Axis)-GrpNam</string>
+    </property>
+    <property name="background">
+     <color>
+      <red>238</red>
+      <green>238</green>
+      <blue>236</blue>
+     </color>
+    </property>
+    <property name="colorMode">
+     <enum>caLineEdit::Static</enum>
+    </property>
+    <property name="alarmHandling">
+     <enum>caLineEdit::onBackground</enum>
+    </property>
+    <property name="precisionMode">
+     <enum>caLineEdit::User</enum>
+    </property>
+   </widget>
   </widget>
   <zorder>tabWidget_2</zorder>
   <zorder>camessagebutton_15</zorder>
@@ -4445,8 +4464,7 @@
   <zorder>calabel_2</zorder>
   <zorder>carelateddisplay</zorder>
   <zorder>calabel_3</zorder>
-  <zorder>calineedit_29</zorder>
-  <zorder>cashellcommand_10</zorder>
+  <zorder>caframe_2</zorder>
  </widget>
  <customwidgets>
   <customwidget>
