@@ -17,7 +17,7 @@
    <property name="geometry">
     <rect>
      <x>240</x>
-     <y>335</y>
+     <y>290</y>
      <width>71</width>
      <height>24</height>
     </rect>
@@ -61,7 +61,7 @@
      <x>232</x>
      <y>8</y>
      <width>82</width>
-     <height>321</height>
+     <height>276</height>
     </rect>
    </property>
    <property name="minimumSize">
@@ -3796,47 +3796,6 @@
     </widget>
    </widget>
   </widget>
-  <widget class="caLineEdit" name="calineedit_23">
-   <property name="geometry">
-    <rect>
-     <x>270</x>
-     <y>300</y>
-     <width>32</width>
-     <height>18</height>
-    </rect>
-   </property>
-   <property name="channel" stdset="0">
-    <string notr="true">$(DEV):$(Axis)-LastIlock</string>
-   </property>
-   <property name="precisionMode">
-    <enum>caLineEdit::Channel</enum>
-   </property>
-   <property name="limitsMode">
-    <enum>caLineEdit::User</enum>
-   </property>
-   <property name="unitsEnabled">
-    <bool>true</bool>
-   </property>
-  </widget>
-  <widget class="caLabel" name="calabel_61">
-   <property name="geometry">
-    <rect>
-     <x>240</x>
-     <y>280</y>
-     <width>69</width>
-     <height>18</height>
-    </rect>
-   </property>
-   <property name="minimumSize">
-    <size>
-     <width>69</width>
-     <height>18</height>
-    </size>
-   </property>
-   <property name="text">
-    <string>LastIlock:</string>
-   </property>
-  </widget>
   <widget class="caFrame" name="StatusFrame_2">
    <property name="geometry">
     <rect>
@@ -4458,8 +4417,6 @@
   <zorder>StatusFrame</zorder>
   <zorder>calabel</zorder>
   <zorder>tabWidget</zorder>
-  <zorder>calineedit_23</zorder>
-  <zorder>calabel_61</zorder>
   <zorder>StatusFrame_2</zorder>
   <zorder>calabel_2</zorder>
   <zorder>carelateddisplay</zorder>
