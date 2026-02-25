@@ -683,27 +683,27 @@ monitoring:
   lag:
     enable: false                                     # Enable position lag monitoring (following error)
     tolerance: 0.5                                    # Allowed tolerance
-    time: 10                                          # Allowed time outside tolerance
+    time: 10                                          # Allowed time outside tolerance [cycles]
   target:
     enable: true                                      # Enable at target monitoring (needs to be enabled and configured if using motor record)
     tolerance: 0.5                                    # Allowed tolerance
-    time: 10                                          # Filter time inside tolerance to be at target
+    time: 10                                          # Filter time inside tolerance to be at target [cycles]
   velocity:
     enable: false                                     # Enable velocity monitoring
     max: 100                                          # Allowed max velocity
     time:
-      trajectory: 100                                 # Time allowed outside max velo before system init halt
-      drive: 200                                      # Time allowed outside max velo before system disables drive
+      trajectory: 100                                 # Time allowed outside max velo before system init halt [cycles]
+      drive: 200                                      # Time allowed outside max velo before system disables drive [cycles]
   velocityDifference:
     enable: true                                      # Enable velocity diff monitoring (velo set vs velo act)
     max: 100                                          # Allowed max difference
     time:
-      trajectory: 100                                 # Time allowed outside max diff velo before system init halt
-      drive: 200                                      # Time allowed outside max diff velo before system disables drive
+      trajectory: 100                                 # Time allowed outside max diff velo before system init halt [cycles]
+      drive: 200                                      # Time allowed outside max diff velo before system disables drive [cycles]
   stall:
     enable: True                                      # Enable stall monitoring. Attarget must be enabled for this functionallity
     time:
-      timeout: 10000                                  # If not at target after "timeout" cycles after trajectory generator is ready then drive will disable
+      timeout: 10000                                  # If not at target after "timeout" cycles after trajectory generator i sready then drive will disable
       factor: 5.0                                     # Measures duration of last motion command (busy high edge to busy low edge). The new timeout will be defined as this duration multiplied by this factor. The timeout finaly used for stall detection will be the longest (of time.timeout and calculated from time.factor).
 
 plc:
