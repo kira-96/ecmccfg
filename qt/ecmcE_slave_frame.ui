@@ -39,14 +39,14 @@
        <number>1</number>
       </property>
       <item row="4" column="0">
-       <layout class="QGridLayout" name="gridLayout" rowstretch="0,0" columnstretch="100,0">
+       <layout class="QGridLayout" name="gridLayout" rowstretch="0,0" columnstretch="100,0,0">
         <property name="margin">
          <number>2</number>
         </property>
         <property name="spacing">
          <number>4</number>
         </property>
-        <item row="0" column="0">
+        <item row="0" column="1">
          <widget class="caLabel" name="calabel">
           <property name="minimumSize">
            <size>
@@ -59,7 +59,7 @@
           </property>
          </widget>
         </item>
-        <item row="1" column="0">
+        <item row="1" column="1">
          <widget class="caLabel" name="calabel_2">
           <property name="minimumSize">
            <size>
@@ -72,7 +72,7 @@
           </property>
          </widget>
         </item>
-        <item row="1" column="1">
+        <item row="1" column="2">
          <widget class="caLed" name="caled_2">
           <property name="rectangular">
            <bool>true</bool>
@@ -105,7 +105,7 @@
           </property>
          </widget>
         </item>
-        <item row="0" column="1">
+        <item row="0" column="2">
          <widget class="caLed" name="caled">
           <property name="toolTip">
            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;ONLINE status of the slave&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -140,6 +140,71 @@
            </color>
           </property>
          </widget>
+        </item>
+        <item row="0" column="0">
+         <layout class="QVBoxLayout" name="verticalLayout_hwtype">
+          <property name="leftMargin">
+           <number>4</number>
+          </property>
+          <property name="topMargin">
+           <number>2</number>
+          </property>
+          <property name="rightMargin">
+           <number>0</number>
+          </property>
+          <property name="bottomMargin">
+           <number>0</number>
+          </property>
+          <property name="spacing">
+           <number>0</number>
+          </property>
+          <item>
+           <widget class="caLineEdit" name="calineedit_hwtype">
+            <property name="minimumSize">
+             <size>
+              <width>48</width>
+              <height>17</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>48</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <pointsize>5</pointsize>
+             </font>
+            </property>
+            <property name="readOnly">
+             <bool>true</bool>
+            </property>
+            <property name="maxLength">
+             <number>8</number>
+            </property>
+            <property name="channel" stdset="0">
+             <string notr="true">$(IOC):m$(MasterID)s$(SlaveID)-HWType</string>
+            </property>
+            <property name="background">
+             <color alpha="0">
+              <red>160</red>
+              <green>160</green>
+              <blue>164</blue>
+             </color>
+            </property>
+            <property name="colorMode">
+             <enum>caLineEdit::Static</enum>
+            </property>
+            <property name="fontScaleMode" stdset="0">
+             <enum>caLineEdit::Height</enum>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+            </property>
+           </widget>
+          </item>
+         </layout>
         </item>
        </layout>
       </item>
@@ -206,6 +271,11 @@ SlaveID[$(SlaveID)]</string>
    <class>caLabel</class>
    <extends>QLabel</extends>
    <header>caLabel</header>
+  </customwidget>
+  <customwidget>
+   <class>caLineEdit</class>
+   <extends>QLineEdit</extends>
+   <header>caLineEdit</header>
   </customwidget>
   <customwidget>
    <class>caLed</class>

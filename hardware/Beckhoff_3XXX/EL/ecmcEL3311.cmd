@@ -17,3 +17,6 @@ ${SCRIPTEXEC} ${ecmccfg_DIR}slaveVerify.cmd "RESET=true"
 
 #- analog input Ch1
 ${SCRIPTEXEC} ${ecmccfg_DIR}ecmcAnalogInput_16bit.cmd "CH_ID=01,ECMC_PDO=0x1a00,ECMC_ENTRY=0x6000"
+
+#- Default panel
+epicsEnvSet("ECMC_HW_PANEL"              "Ex3xx1")
