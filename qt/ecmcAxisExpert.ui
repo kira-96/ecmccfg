@@ -1194,6 +1194,45 @@
      <bool>true</bool>
     </property>
    </widget>
+   <widget class="caLabel" name="calabel_2">
+    <property name="geometry">
+     <rect>
+      <x>25</x>
+      <y>170</y>
+      <width>91</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>BLOCKED</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+    <property name="foreground">
+     <color>
+      <red>239</red>
+      <green>41</green>
+      <blue>41</blue>
+     </color>
+    </property>
+    <property name="background">
+     <color>
+      <red>238</red>
+      <green>238</green>
+      <blue>236</blue>
+     </color>
+    </property>
+    <property name="visibility">
+     <enum>caLabel::IfNotZero</enum>
+    </property>
+    <property name="visibilityCalc">
+     <string notr="true"/>
+    </property>
+    <property name="channel" stdset="0">
+     <string notr="true">$(DEV):$(Axis)-Blocked</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QGroupBox" name="groupBox_4">
    <property name="geometry">
@@ -6252,45 +6291,6 @@
      </property>
     </widget>
    </widget>
-  </widget>
-  <widget class="caLabel" name="calabel_2">
-   <property name="geometry">
-    <rect>
-     <x>105</x>
-     <y>705</y>
-     <width>156</width>
-     <height>156</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>BLOCKED</string>
-   </property>
-   <property name="alignment">
-    <set>Qt::AlignCenter</set>
-   </property>
-   <property name="foreground">
-    <color>
-     <red>239</red>
-     <green>41</green>
-     <blue>41</blue>
-    </color>
-   </property>
-   <property name="background">
-    <color>
-     <red>238</red>
-     <green>238</green>
-     <blue>236</blue>
-    </color>
-   </property>
-   <property name="visibility">
-    <enum>caLabel::IfNotZero</enum>
-   </property>
-   <property name="visibilityCalc">
-    <string notr="true"/>
-   </property>
-   <property name="channel" stdset="0">
-    <string notr="true">$(DEV):$(Axis)-Blocked</string>
-   </property>
   </widget>
  </widget>
  <customwidgets>

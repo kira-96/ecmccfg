@@ -3952,9 +3952,9 @@
   <widget class="caLabel" name="calabel_2">
    <property name="geometry">
     <rect>
-     <x>15</x>
-     <y>315</y>
-     <width>201</width>
+     <x>245</x>
+     <y>320</y>
+     <width>61</width>
      <height>56</height>
     </rect>
    </property>
