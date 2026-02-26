@@ -413,6 +413,28 @@
         <bool>true</bool>
        </property>
       </widget>
+      <widget class="caShellCommand" name="cashellcommand_15">
+       <property name="geometry">
+        <rect>
+         <x>135</x>
+         <y>175</y>
+         <width>96</width>
+         <height>26</height>
+        </rect>
+       </property>
+       <property name="label">
+        <string notr="true">Open Cmd Parser App</string>
+       </property>
+       <property name="labels">
+        <string>Open Config Editor</string>
+       </property>
+       <property name="files">
+        <string>bash /ioc/NeedfulThings/ecmc_cfg_tool/start.sh $(IOC)</string>
+       </property>
+       <property name="args">
+        <string/>
+       </property>
+      </widget>
      </widget>
      <widget class="QGroupBox" name="groupBox_4">
       <property name="geometry">

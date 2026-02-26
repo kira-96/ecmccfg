@@ -59,7 +59,10 @@ If the drive is in error/warning state and not possible to enable:
 #### PD-Watchdog error
 PD watch-dog error once occuerd at restart of system after a complete power down event (yearly shutdown test).
 
-Slave goes to OP but stays in fault state.
+Symptoms:
+* Slave goes to OP but stays in fault state (or sometime even not in fault state).
+* Position of absulute encoder 0
+* Refuse to enable
 
 Diagnistic tool output below:
 ```
@@ -81,7 +84,9 @@ DIAGNOSTIC MESSAGES:
 time                        text_id  text                 flags  dynamic                 
 2026-02-23 14:56:55.174172  0x8105   (error) PD-Watchdog  0x2    0x0000000000000000000000
 ```
-Reset with a power cycle of power bus (comuncation bus can be powered). If EL9227-5500 before in EtherCAT chain, the power-bus can be toggled with channel 1 from panels. At PSI do not toggle channel 2 since that could be connected to communication bus feed of EK1100 (then communication will be lost and can only be recovverd by someone going physically to crate and pushes the button/LED).
+Reason seemed to be that the EtherCAT cable was conencted to the lower port of the EK1100 coupler resulting in worng timing. Steppers worked fine but servos that use DC clocks did not work. After moving the cable a power cycle was needed.
+
+Reset with a power cycle of power bus (comuncation bus can be powered). If EL9227-5500 before in EtherCAT chain, the power-bus can be toggled with channel 1 from panels. At PSI, do not toggle channel 2 since that could be connected to communication bus feed of EK1100, then communication will be lost and can only be recovverd by someone going physically to crate and pushes the button/LED.
 
 {{% notice warning %}}
 ** PSI: Do not toggle channel 2 of EL9227-5500, this may break power supply to EtherCAT communication bus**

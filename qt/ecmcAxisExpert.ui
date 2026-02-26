@@ -2972,7 +2972,7 @@
       <rect>
        <x>10</x>
        <y>125</y>
-       <width>336</width>
+       <width>215</width>
        <height>76</height>
       </rect>
      </property>
@@ -3049,7 +3049,7 @@
       <property name="geometry">
        <rect>
         <x>170</x>
-        <y>25</y>
+        <y>30</y>
         <width>18</width>
         <height>18</height>
        </rect>
@@ -3251,6 +3251,50 @@
       <string/>
      </property>
     </widget>
+    <widget class="caShellCommand" name="cashellcommand_13">
+     <property name="geometry">
+      <rect>
+       <x>245</x>
+       <y>145</y>
+       <width>96</width>
+       <height>26</height>
+      </rect>
+     </property>
+     <property name="label">
+      <string notr="true">Open Ax Cfg App</string>
+     </property>
+     <property name="labels">
+      <string>Open Axis Config Editor</string>
+     </property>
+     <property name="files">
+      <string>bash /ioc/NeedfulThings/ecmc_cfg_tool/start_axis.sh $(IOC) $(Axis)</string>
+     </property>
+     <property name="args">
+      <string/>
+     </property>
+    </widget>
+    <widget class="caShellCommand" name="cashellcommand_15">
+     <property name="geometry">
+      <rect>
+       <x>245</x>
+       <y>175</y>
+       <width>96</width>
+       <height>26</height>
+      </rect>
+     </property>
+     <property name="label">
+      <string notr="true">Open Mtn App</string>
+     </property>
+     <property name="labels">
+      <string>Open controller tuning</string>
+     </property>
+     <property name="files">
+      <string>bash /ioc/NeedfulThings/ecmc_cfg_tool/start_mtn.sh $(IOC) $(Axis)</string>
+     </property>
+     <property name="args">
+      <string/>
+     </property>
+    </widget>
    </widget>
    <widget class="QWidget" name="tab">
     <attribute name="title">
@@ -3356,7 +3400,7 @@
        <x>0</x>
        <y>10</y>
        <width>120</width>
-       <height>96</height>
+       <height>141</height>
       </rect>
      </property>
      <property name="visibility">
@@ -3693,6 +3737,28 @@
       </property>
       <property name="unitsEnabled">
        <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="caShellCommand" name="cashellcommand_14">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>105</y>
+        <width>101</width>
+        <height>26</height>
+       </rect>
+      </property>
+      <property name="label">
+       <string notr="true">Open Cntrl Cfg App</string>
+      </property>
+      <property name="labels">
+       <string>Open controller tuning</string>
+      </property>
+      <property name="files">
+       <string>bash /ioc/NeedfulThings/ecmc_cfg_tool/start_cntrl.sh $(IOC) $(Axis)</string>
+      </property>
+      <property name="args">
+       <string/>
       </property>
      </widget>
     </widget>
@@ -5491,7 +5557,7 @@
      <property name="geometry">
       <rect>
        <x>290</x>
-       <y>40</y>
+       <y>30</y>
        <width>51</width>
        <height>21</height>
       </rect>
