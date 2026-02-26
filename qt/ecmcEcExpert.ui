@@ -750,7 +750,7 @@
       </rect>
      </property>
      <property name="label">
-      <string notr="true">Read HW diag</string>
+      <string notr="true">Open EC Tool</string>
      </property>
      <property name="labels">
       <string>Open first axis</string>
