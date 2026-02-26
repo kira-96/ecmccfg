@@ -661,7 +661,7 @@ input:
     forward: ec0.s$(ENC_SLAVE).ONE.0                  # Ethercat entry for low limit switch input,
     forwardPolarity: 0                                # Polarity of forward limit switch
     backward: ec0.s1.BI_2.0                           # Ethercat entry for high limit switch input
-    backwardPolarity: 0                               # Polarity of forward limit switch
+    backwardPolarity: 0                               # Polarity of backward limit switch
   home: 'ec0.s$(MCS2_SLAVE_NUM).ONE.0'                # Ethercat entry for home switch
   homePolarity: 0                                     # Polarity of home switch
   interlock: 'ec0.s$(ENC_SLAVE).ONE.0'                # Ethercat entry for interlock switch input
